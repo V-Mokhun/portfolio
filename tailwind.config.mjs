@@ -6,6 +6,7 @@ export default {
       colors: {
         primary: {
           DEFAULT: "#20B2AA",
+          hover: "#199c94",
         },
         background: {
           DEFAULT: "#2E2E2E",

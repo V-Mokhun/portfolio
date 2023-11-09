@@ -1,10 +1,36 @@
 ---
-import Container from "../shared/container.astro";
-
+import Button from "../shared/Button.astro";
+import Container from "../shared/Container.astro";
+import Logo from "../shared/Logo.astro";
 ---
 
-
-<header class="flex items-center gap-4 justify-between bg-background">
-	<Container>
-	</Container>
+<!-- home, about, projects, contact -->
+<header class="bg-background py-4">
+  <Container>
+    <div class="flex items-center justify-between gap-4">
+      <Logo />
+      <nav class="flex justify-center flex-1">
+        <ul class="flex items-center gap-4 text-white font-medium text-xl">
+          <li>
+            <a class="transition-colors hover:text-primary p-2" href="#about"
+              >About</a
+            >
+          </li>
+          <li>
+            <a class="transition-colors hover:text-primary p-2" href="#skills"
+              >Skills</a
+            >
+          </li>
+          <li>
+            <a class="transition-colors hover:text-primary p-2" href="#projects"
+              >Projects</a
+            >
+          </li>
+        </ul>
+      </nav>
+      <div class="flex items-center gap-2">
+        <Button as="link" href="#contact">Contact</Button>
+      </div>
+    </div>
+  </Container>
 </header>

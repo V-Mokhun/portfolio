@@ -1,0 +1,21 @@
+---
+interface Props {
+  as: "button" | "link";
+  className?: string;
+  href?: string;
+}
+
+const { as = "button", className = "", href } = Astro.props;
+---
+
+{
+  as === "button" ? (
+    <button class:list={[{}]}>
+      <slot />
+    </button>
+  ) : (
+    <a class:list={[{}]} href={href}>
+      <slot />
+    </a>
+  )
+}
