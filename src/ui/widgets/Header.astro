@@ -4,11 +4,15 @@ import Container from "../shared/Container.astro";
 import Logo from "../shared/Logo.astro";
 ---
 
-<!-- home, about, projects, contact -->
 <header class="bg-background py-4">
   <Container>
     <div class="flex items-center justify-between gap-4">
-      <Logo />
+      <div class="flex items-center gap-2">
+        <button class="md:hidden w-8 h-8">
+
+        </button>
+        <Logo />
+      </div>
       <nav class="flex justify-center flex-1">
         <ul class="flex items-center gap-4 text-white font-medium text-xl">
           <li>

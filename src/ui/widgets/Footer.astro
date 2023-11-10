@@ -1,11 +1,65 @@
 ---
 import Container from "../shared/Container.astro";
-
+import Logo from "../shared/Logo.astro";
 ---
 
-
-<footer class="flex gap-4 justify-between">
-	<Container>
-			
-	</Container>
+<footer class="bg-background py-8">
+  <Container>
+    <div class="flex flex-col items-center gap-8">
+      <div class="flex flex-col items-center gap-4">
+        <Logo />
+        <a
+          href="mailto:v.mokhun@gmail.com"
+          class="text-lg text-white hover:text-primary transition-colors"
+          >v.mokhun@gmail.com</a
+        >
+      </div>
+      <ul class="flex items-center gap-6">
+        <li>
+          <a
+            aria-label="GitHub"
+            target="_blank"
+            rel="noopener noreferrer"
+            href="https://github.com/V-Mokhun"
+            class="text-white hover:text-primary transition-colors"
+          >
+            <svg class="w-8 h-8">
+              <use xlink:href="/sprite.svg#github"></use>
+            </svg>
+          </a>
+        </li>
+        <li>
+          <a
+            aria-label="LinkedIn"
+            target="_blank"
+            rel="noopener noreferrer"
+            href="https://www.linkedin.com/in/volodymyr-mokhun-35005723b/"
+            class="text-white hover:text-primary transition-colors"
+          >
+            <svg class="w-8 h-8">
+              <use xlink:href="/sprite.svg#linkedin"></use>
+            </svg>
+          </a>
+        </li>
+        <li>
+          <a
+            aria-label="Facebook"
+            target="_blank"
+            rel="noopener noreferrer"
+            href="https://www.facebook.com/volodymyr.mokhun"
+            class="text-white hover:text-primary transition-colors"
+          >
+            <svg class="w-8 h-8">
+              <use xlink:href="/sprite.svg#facebook"></use>
+            </svg>
+          </a>
+        </li>
+      </ul>
+      <p class="font-light text-zinc-400 text-center">
+        All rights reserved &copy; 2023<span class="font-medium">
+          Volodymyr Mokhun</span
+        >
+      </p>
+    </div>
+  </Container>
 </footer>

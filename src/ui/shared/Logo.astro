@@ -1,8 +1,14 @@
 ---
 import { Image } from "astro:assets";
-import logoImage from "../../assets/logo.png"
+import logoImage from "../../assets/logo.png";
+
+interface Props {
+  className?: string;
+}
+
+const { className = "" } = Astro.props;
 ---
 
-<a href="/">
+<a href="/" class:list={[className]}>
   <Image src={logoImage} alt="Logo" width="150" height="40" />
 </a>

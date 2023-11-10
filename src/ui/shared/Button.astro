@@ -10,11 +10,22 @@ const { as = "button", className = "", href } = Astro.props;
 
 {
   as === "button" ? (
-    <button class:list={[{}]}>
+    <button
+      class:list={[
+        "px-4 py-2 rounded-md bg-primary hover:bg-primary-hover text-white transition-colors",
+        className,
+      ]}
+    >
       <slot />
     </button>
   ) : (
-    <a class:list={[{}]} href={href}>
+    <a
+      class:list={[
+        "px-4 py-2 rounded-md bg-primary hover:bg-primary-hover text-white transition-colors",
+        className,
+      ]}
+      href={href}
+    >
       <slot />
     </a>
   )
