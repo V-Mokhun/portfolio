@@ -1,0 +1,48 @@
+---
+import { Image } from "astro:assets";
+import Container from "../shared/Container.astro";
+import heroImage from "@/assets/images/hero.jpg";
+import { buttonVariants } from "../shared";
+---
+
+<section id="hero" class="py-4 md:py-6 h-[calc(100vh-76px)]">
+  <Container className="h-full">
+    <div class="flex items-center justify-between gap-10 h-full">
+      <div class="flex flex-col flex-auto">
+        <h1 class="text-5xl font-bold mb-3">
+          Hi, I'm <span class="text-primary">Volodymyr,</span>
+        </h1>
+        <h2 class="text-4xl font-medium mb-5">
+          a <span class="text-primary">Frontend Developer</span> living in
+          Poland
+        </h2>
+        <h3 class="text-xl text-zinc-700 mb-6">
+          I aspire to create best products for the web and explore new
+          possibilities of modern technologies. I'm a lifelong learner and I'm
+          also a bit obsessed with calisthenics.
+        </h3>
+        <div class="flex items-center gap-4">
+          <a
+            href="#contact"
+            class={buttonVariants({
+              className: "font-bold text-xl h-12 px-8",
+            })}>Hire me</a
+          >
+          <a
+            href="#projects"
+            class="font-bold text-2xl text-primary hover:text-primary-hover transition-colors uppercase"
+            >See my Portfolio</a
+          >
+        </div>
+      </div>
+      <div class="shrink-0">
+        <Image
+          class="rounded-full"
+          alt="Volodymyr Mokhun photo"
+          width={450}
+          src={heroImage}
+        />
+      </div>
+    </div>
+  </Container>
+</section>
