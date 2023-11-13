@@ -1,13 +1,78 @@
 ---
-import { Title } from "../shared";
+import projectImage from "@/assets/images/project-1.png";
+import { Image } from "astro:assets";
+import { Title, buttonVariants } from "../shared";
 import Container from "../shared/Container.astro";
 ---
 
-<section class="py-4 md:py-6" id="projects">
+<section class="py-4 md:py-6 bg-background-secondary" id="projects">
   <Container>
-    <Title className="text-center">Projects</Title>
-		<ul class="flex gap-4 md:gap-6 flex-wrap">
-			
-		</ul>
+    <Title className="text-center text-white">Projects</Title>
+    <ul class="flex gap-4 md:gap-6 flex-wrap flex-col md:flex-row">
+      <li
+        class="flex flex-1 md:flex-[0_1_calc(50%-12px)] flex-col rounded-lg gap-2 bg-background"
+      >
+        <a class="flex justify-center" href="#">
+          <Image
+            src={projectImage}
+            alt="Project"
+            height={288}
+            class="object-cover rounded-t-lg w-full"
+          />
+        </a>
+        <div class="flex flex-col h-full p-2 md:p-4">
+          <div>
+            <Title tag="h3" size="sm" className="mb-0 md:mb-2">
+              Ecommerce Site
+            </Title>
+            <p
+              class="text-zinc-500 font-medium mb-2 md:mb-4 text-xl md:text-2xl"
+            >
+              Ecommerce
+            </p>
+            <p class="mb-2 md:mb-4 text-sm md:text-base">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit.
+              Exercitationem maxime quibusdam perspiciatis facilis provident,
+              magni similique nisi minus saepe temporibus laboriosam totam?
+              Expedita, natus. Beatae obcaecati pariatur laboriosam voluptatum
+              cumque fugit quibusdam neque, voluptatibus corr.
+            </p>
+          </div>
+          <div class="flex-auto mb-4">
+            <p class="text-zinc-500 font-medium text-xl md:text-2xl mb-2">
+              Technologies
+            </p>
+            <ul class="flex flex-wrap gap-4">
+              <li
+                class="inline-flex items-center rounded-sm px-2.5 py-0.5 text-sm md:text-base font-medium bg-background-secondary text-primary-foreground shadow"
+              >
+                React
+              </li>
+            </ul>
+          </div>
+          <div class="flex items-center gap-4">
+            <a
+              class={buttonVariants({
+                variant: "outline",
+                className: "shadow-md md:hover:scale-105 transition-all",
+              })}
+              href="#"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Live Demo
+            </a>
+            <a
+              class={buttonVariants({
+                className: "md:hover:scale-105 transition-all",
+              })}
+              href="#"
+              target="_blank"
+              rel="noopener noreferrer">Source Code</a
+            >
+          </div>
+        </div>
+      </li>
+    </ul>
   </Container>
 </section>
