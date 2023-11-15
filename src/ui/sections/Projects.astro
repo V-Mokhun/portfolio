@@ -28,8 +28,8 @@ const allProjects = await getCollection("projects");
                 class="object-cover rounded-t-lg w-full"
               />
             </a>
-            <div class="flex flex-col h-full p-2 md:p-4">
-              <div>
+            <div class="flex flex-col h-full p-2 pb-4 md:p-4 md:pt-2">
+              <div class="flex-auto">
                 <Title tag="h3" size="sm" className="mb-0 md:mb-2">
                   {proj.data.title}
                 </Title>
@@ -40,11 +40,11 @@ const allProjects = await getCollection("projects");
                   {proj.data.description}
                 </p>
               </div>
-              <div class="flex-auto mb-4">
+              <div class="mb-4">
                 <p class="text-zinc-500 font-medium text-xl md:text-2xl mb-2">
                   Technologies
                 </p>
-                <ul class="flex flex-wrap gap-4">
+                <ul class="flex flex-wrap gap-x-4 gap-y-2">
                   {proj.data.technologies.map((technology) => (
                     <li class="inline-flex items-center rounded-sm px-2.5 py-0.5 text-sm md:text-base font-medium bg-background-secondary text-primary-foreground shadow">
                       {technology}
@@ -56,7 +56,7 @@ const allProjects = await getCollection("projects");
                 <a
                   class={buttonVariants({
                     variant: "outline",
-                    className: "shadow-md md:hover:scale-105 transition-all",
+                    className: "shadow-md",
                   })}
                   href={proj.data.projectLink}
                   target="_blank"
@@ -64,16 +64,16 @@ const allProjects = await getCollection("projects");
                 >
                   Live Demo
                 </a>
-                <a
-                  class={buttonVariants({
-                    className: "md:hover:scale-105 transition-all",
-                  })}
-                  href={proj.data.sourceCodeLink}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Source Code
-                </a>
+                {proj.data.sourceCodeLink && (
+                  <a
+                    class={buttonVariants()}
+                    href={proj.data.sourceCodeLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Source Code
+                  </a>
+                )}
               </div>
             </div>
           </li>
