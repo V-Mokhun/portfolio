@@ -1,13 +1,12 @@
 ---
-import { Title, TooltipProvider } from "../shared";
-import Container from "../shared/Container.astro";
+import { AboutTechnologies, Container, Title } from "../shared";
 ---
 
 <section class="py-4 md:py-6 bg-background-secondary text-white" id="about">
   <Container>
     <Title className="text-center">About Me</Title>
     <div class="flex justify-between gap-6 pt-4">
-      <div class="flex-[0_1_50%]">
+      <div class="flex-[0_1_calc(50%-12px)] shrink-0">
         <Title size="sm" tag="h3">Get to know me</Title>
         <div class="text-zinc-200 space-y-2 md:text-lg">
           <p>
@@ -46,10 +45,7 @@ import Container from "../shared/Container.astro";
       </div>
       <div class="flex-auto">
         <Title size="sm" tag="h3">What I use</Title>
-        <TooltipProvider>
-          <ul class="flex flex-wrap gap-4">
-          </ul>
-        </TooltipProvider>
+        <AboutTechnologies client:visible />
       </div>
     </div>
   </Container>
