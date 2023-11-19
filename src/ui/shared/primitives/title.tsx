@@ -18,9 +18,9 @@ export const Title = ({
     <Component
       className={cn(
         "font-bold mb-6 md:mb-8",
-        size === "sm" && "text-2xl md:text-3xl",
-        size === "md" && "text-3xl md:text-4xl",
-        size === "lg" && "text-5xl",
+        size === "sm" && "text-2xl md:text-3xl mb-4 md:mb-6",
+        size === "md" && "text-3xl md:text-4xl xl:text-5xl",
+        size === "lg" && "text-4xl md:text-5xl xl:text-6xl",
         className
       )}
       {...props}
