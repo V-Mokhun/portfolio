@@ -1,5 +1,5 @@
 ---
-import { Title } from "../shared";
+import { Title, TooltipProvider } from "../shared";
 import Container from "../shared/Container.astro";
 ---
 
@@ -9,7 +9,7 @@ import Container from "../shared/Container.astro";
     <div class="flex justify-between gap-6 pt-4">
       <div class="flex-[0_1_50%]">
         <Title size="sm" tag="h3">Get to know me</Title>
-        <div class="text-zinc-200 space-y-2 text-lg">
+        <div class="text-zinc-200 space-y-2 md:text-lg">
           <p>
             I'm a second-year Computer Science student at the <a
               class="text-primary hover:text-primary-hover transition-colors font-medium"
@@ -46,9 +46,10 @@ import Container from "../shared/Container.astro";
       </div>
       <div class="flex-auto">
         <Title size="sm" tag="h3">What I use</Title>
-				<ul class="flex flex-wrap gap-4">
-					
-				</ul>
+        <TooltipProvider>
+          <ul class="flex flex-wrap gap-4">
+          </ul>
+        </TooltipProvider>
       </div>
     </div>
   </Container>
