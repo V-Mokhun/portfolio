@@ -3,7 +3,7 @@ import { Container, buttonVariants } from "../shared";
 import Logo from "../shared/Logo.astro";
 ---
 
-<header class="bg-background-secondary py-4">
+<header class="bg-background-secondary py-2 md:py-4 fixed left-0 right-0 top-0">
   <Container>
     <div class="flex items-center justify-between gap-4">
       <div class="flex items-center gap-2">
@@ -13,13 +13,12 @@ import Logo from "../shared/Logo.astro";
       <nav class="flex justify-center flex-1">
         <ul class="flex items-center gap-4 text-white font-medium text-xl">
           <li>
-            <a class="transition-colors hover:text-primary p-2" href="#about"
-              >About</a
+            <a class="transition-colors hover:text-primary p-2" href="#">Home</a
             >
           </li>
           <li>
-            <a class="transition-colors hover:text-primary p-2" href="#skills"
-              >Skills</a
+            <a class="transition-colors hover:text-primary p-2" href="#about"
+              >About</a
             >
           </li>
           <li>
