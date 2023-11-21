@@ -13,10 +13,12 @@ import {
 } from "@/ui/shared";
 import { useForm } from "react-hook-form";
 import { contactFormSchema, type ContactFormValues } from "./model";
+import { useState } from "react";
 
 interface ContactFormProps {}
 
 export const ContactForm = ({}: ContactFormProps) => {
+  const [isLoading, setIsLoading] = useState(false);
   const form = useForm<ContactFormValues>({
     resolver: zodResolver(contactFormSchema),
     defaultValues: {
@@ -26,8 +28,27 @@ export const ContactForm = ({}: ContactFormProps) => {
     },
   });
 
-  function onSubmit(values: ContactFormValues) {
-    console.log(values);
+  async function onSubmit(values: ContactFormValues) {
+    setIsLoading(true);
+
+    try {
+      const formData = new FormData();
+      formData.append("name", values.name);
+      formData.append("email", values.email);
+      formData.append("message", values.message);
+
+      const response = await fetch("/api/send-email", {
+        method: "POST",
+        body: formData,
+      });
+      const data: { message: string; success: boolean } = await response.json();
+      form.reset();
+      console.log(data);
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setIsLoading(false);
+    }
   }
 
   return (
@@ -69,14 +90,25 @@ export const ContactForm = ({}: ContactFormProps) => {
             <FormItem>
               <FormLabel>Message</FormLabel>
               <FormControl>
-                <Textarea className="resize-none min-h-[120px]" placeholder="Your Message" {...field} />
+                <Textarea
+                  className="resize-none min-h-[120px]"
+                  placeholder="Your Message"
+                  {...field}
+                />
               </FormControl>
               <FormMessage />
             </FormItem>
           )}
         />
         <div className="flex justify-center">
-          <Button className="uppercase transition-all duration-300" variant="ghost" type="submit">Send Message</Button>
+          <Button
+            disabled={isLoading}
+            className="uppercase transition-all duration-300"
+            variant="ghost"
+            type="submit"
+          >
+            Send Message
+          </Button>
         </div>
       </form>
     </Form>
