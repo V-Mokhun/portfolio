@@ -15,6 +15,7 @@ export const POST: APIRoute = async ({ request }) => {
     return new Response(
       JSON.stringify({
         message: "Missing required fields",
+				success: false,
       }),
       { status: 400 }
     );
@@ -31,6 +32,7 @@ export const POST: APIRoute = async ({ request }) => {
     return new Response(
       JSON.stringify({
         message: "Something went wrong",
+        success: false,
       }),
       { status: 500 }
     );
@@ -39,6 +41,7 @@ export const POST: APIRoute = async ({ request }) => {
   return new Response(
     JSON.stringify({
       message: "Success!",
+      success: true,
     }),
     { status: 200 }
   );
