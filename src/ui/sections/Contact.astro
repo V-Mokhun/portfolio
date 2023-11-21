@@ -1,9 +1,11 @@
 ---
 import { Container, Title } from "../shared";
+import { ContactForm } from "../widgets";
 ---
 
 <section class="py-16 md:py-20" id="contact">
   <Container>
     <Title className="text-center">Get in Touch</Title>
+    <ContactForm client:visible />
   </Container>
 </section>

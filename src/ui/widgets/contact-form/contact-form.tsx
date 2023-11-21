@@ -9,6 +9,7 @@ import {
   FormLabel,
   FormMessage,
   Input,
+  Textarea,
 } from "@/ui/shared";
 import { useForm } from "react-hook-form";
 import { contactFormSchema, type ContactFormValues } from "./model";
@@ -31,7 +32,10 @@ export const ContactForm = ({}: ContactFormProps) => {
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+      <form
+        onSubmit={form.handleSubmit(onSubmit)}
+        className="bg-card shadow-md px-4 py-6 rounded-lg space-y-6 max-w-lg mx-auto"
+      >
         <FormField
           control={form.control}
           name="name"
@@ -39,13 +43,41 @@ export const ContactForm = ({}: ContactFormProps) => {
             <FormItem>
               <FormLabel>Name</FormLabel>
               <FormControl>
-                <Input placeholder="Your name" {...field} />
+                <Input placeholder="Your Name" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
           )}
         />
-        <Button type="submit">Submit</Button>
+        <FormField
+          control={form.control}
+          name="email"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Email</FormLabel>
+              <FormControl>
+                <Input placeholder="Your Email" {...field} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={form.control}
+          name="message"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Message</FormLabel>
+              <FormControl>
+                <Textarea className="resize-none min-h-[120px]" placeholder="Your Message" {...field} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <div className="flex justify-center">
+          <Button className="uppercase transition-all duration-300" variant="ghost" type="submit">Send Message</Button>
+        </div>
       </form>
     </Form>
   );
