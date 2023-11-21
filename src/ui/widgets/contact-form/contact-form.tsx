@@ -1,24 +1,26 @@
-import { zodResolver } from "@hookform/resolvers/zod";
 import {
   Button,
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
   FormMessage,
   Input,
   Textarea,
+  Toaster,
+  useToast
 } from "@/ui/shared";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { contactFormSchema, type ContactFormValues } from "./model";
-import { useState } from "react";
 
 interface ContactFormProps {}
 
 export const ContactForm = ({}: ContactFormProps) => {
   const [isLoading, setIsLoading] = useState(false);
+  const { toast } = useToast();
   const form = useForm<ContactFormValues>({
     resolver: zodResolver(contactFormSchema),
     defaultValues: {
@@ -42,75 +44,94 @@ export const ContactForm = ({}: ContactFormProps) => {
         body: formData,
       });
       const data: { message: string; success: boolean } = await response.json();
-      form.reset();
-      console.log(data);
+      if (data.success) {
+        toast({
+          title: "Message sent successfully!",
+          description: "I'll get back to you as soon as possible.",
+          variant: "success",
+        });
+        form.reset();
+      } else {
+        toast({
+          title: data.message || "Something went wrong...",
+          description: "Please try again later.",
+          variant: "destructive",
+        });
+      }
     } catch (error) {
-      console.log(error);
+      toast({
+        title: "Something went wrong...",
+        description: "Please try again later.",
+        variant: "destructive",
+      });
     } finally {
       setIsLoading(false);
     }
   }
 
   return (
-    <Form {...form}>
-      <form
-        onSubmit={form.handleSubmit(onSubmit)}
-        className="bg-card shadow-md px-4 py-6 rounded-lg space-y-6 max-w-lg mx-auto"
-      >
-        <FormField
-          control={form.control}
-          name="name"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Name</FormLabel>
-              <FormControl>
-                <Input placeholder="Your Name" {...field} />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <FormField
-          control={form.control}
-          name="email"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Email</FormLabel>
-              <FormControl>
-                <Input placeholder="Your Email" {...field} />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <FormField
-          control={form.control}
-          name="message"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Message</FormLabel>
-              <FormControl>
-                <Textarea
-                  className="resize-none min-h-[120px]"
-                  placeholder="Your Message"
-                  {...field}
-                />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <div className="flex justify-center">
-          <Button
-            disabled={isLoading}
-            className="uppercase transition-all duration-300"
-            variant="ghost"
-            type="submit"
-          >
-            Send Message
-          </Button>
-        </div>
-      </form>
-    </Form>
+    <>
+      <Form {...form}>
+        <form
+          onSubmit={form.handleSubmit(onSubmit)}
+          className="bg-card shadow-md px-4 py-6 rounded-lg space-y-6 max-w-lg mx-auto"
+        >
+          <FormField
+            control={form.control}
+            name="name"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Name</FormLabel>
+                <FormControl>
+                  <Input placeholder="Your Name" {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name="email"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Email</FormLabel>
+                <FormControl>
+                  <Input placeholder="Your Email" {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name="message"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Message</FormLabel>
+                <FormControl>
+                  <Textarea
+                    className="resize-none min-h-[120px]"
+                    placeholder="Your Message"
+                    {...field}
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <div className="flex justify-center">
+            <Button
+              disabled={isLoading}
+              className="uppercase transition-all duration-300"
+              variant="ghost"
+              type="submit"
+            >
+              Send Message
+            </Button>
+          </div>
+        </form>
+      </Form>
+      <Toaster />
+    </>
   );
 };
