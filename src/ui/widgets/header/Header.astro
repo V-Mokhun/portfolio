@@ -1,0 +1,26 @@
+---
+import { HeaderMobileMenu } from ".";
+import { Container, buttonVariants } from "../../shared";
+import Logo from "../../shared/Logo.astro";
+import { HeaderNav } from "./header-nav";
+---
+
+<header
+  class="bg-background-secondary shadow-lg py-2 md:py-4 fixed left-0 right-0 top-0"
+>
+  <Container>
+    <div class="flex items-center justify-between gap-2 md:gap-4">
+      <div class="flex flex-1 items-center gap-2 md:flex-initial">
+        <HeaderMobileMenu client:load />
+        <Logo className="w-full flex justify-center ml-2 md:w-auto md:inline-block md:ml-0"  />
+      </div>
+     <HeaderNav navClassName="hidden md:flex" />
+      <div class="flex items-center gap-2">
+        <a
+          class={buttonVariants({ className: "md:text-lg h-9 md:h-11 px-4 xs:px-6 md:px-8"})}
+          href="#contact">Contact</a
+        >
+      </div>
+    </div>
+  </Container>
+</header>

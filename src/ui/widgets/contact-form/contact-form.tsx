@@ -122,7 +122,7 @@ export const ContactForm = ({}: ContactFormProps) => {
           <div className="flex justify-center">
             <Button
               disabled={isLoading}
-              className="uppercase transition-all duration-300"
+              className="uppercase text-sm rounded-sm transition-all duration-300"
               variant="ghost"
               type="submit"
             >

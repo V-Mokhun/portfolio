@@ -6,3 +6,4 @@ export * from './label';
 export * from './input';
 export * from './textarea';
 export * from './toast';
+export * from './sheet';
