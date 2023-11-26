@@ -11,7 +11,7 @@ interface HeroTitleProps {}
 export const HeroTitle = ({}: HeroTitleProps) => {
   return (
     <TooltipProvider>
-      <Tooltip>
+      <Tooltip delayDuration={300}>
         <TooltipTrigger>
           <Title size="lg" className="md:text-left mb-2 md:mb-3 group">
             Hey, I'm{" "}

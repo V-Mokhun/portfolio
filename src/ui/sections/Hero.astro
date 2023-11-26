@@ -1,7 +1,7 @@
 ---
-import { Image } from "astro:assets";
 import heroImage from "@/assets/images/hero.jpg";
-import { Container, Title, buttonVariants, HeroTitle } from "../shared";
+import { Image } from "astro:assets";
+import { Container, HeroTitle, buttonVariants } from "../shared";
 ---
 
 <section id="hero" class="pb-12 pt-8 md:py-16 xl:py-20">
@@ -10,9 +10,6 @@ import { Container, Title, buttonVariants, HeroTitle } from "../shared";
       class="flex items-center justify-center text-center md:text-left md:justify-between flex-col md:flex-row gap-6 md:gap-10 h-full"
     >
       <div class="flex flex-col flex-auto">
-        <!-- <Title size="lg" className="mb-2 md:mb-3">
-          Hey, I'm <span class="text-primary">Volodymyr,</span>
-        </Title> -->
         <HeroTitle client:load />
         <h2 class="mb-4 font-medium text-3xl md:text-4xl">
           a <span class="text-primary">Front-End Developer</span> living in
