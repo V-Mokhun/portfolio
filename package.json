@@ -13,6 +13,7 @@
     "@astrojs/check": "^0.3.1",
     "@astrojs/react": "^3.0.4",
     "@astrojs/tailwind": "^5.0.2",
+    "@astrojs/vercel": "^5.2.0",
     "@hookform/resolvers": "^3.3.2",
     "@radix-ui/react-dialog": "^1.0.5",
     "@radix-ui/react-label": "^2.0.2",
