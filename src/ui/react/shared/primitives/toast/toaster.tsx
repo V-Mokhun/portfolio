@@ -5,8 +5,8 @@ import {
   ToastProvider,
   ToastTitle,
   ToastViewport,
-} from "@/ui/shared/primitives/toast/toast"
-import { useToast } from "@/ui/shared/primitives/toast/use-toast"
+  useToast
+} from "./"
 
 export function Toaster() {
   const { toasts } = useToast()

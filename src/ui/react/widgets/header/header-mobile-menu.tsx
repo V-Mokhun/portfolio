@@ -1,4 +1,4 @@
-import { Sheet, SheetContent, SheetTrigger } from "@/ui/shared";
+import { Sheet, SheetContent, SheetTrigger } from "@/ui/react";
 import { HeaderNav } from "./header-nav";
 import { useState } from "react";
 

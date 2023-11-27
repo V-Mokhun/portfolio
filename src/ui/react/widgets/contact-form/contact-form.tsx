@@ -10,7 +10,7 @@ import {
   Textarea,
   Toaster,
   useToast
-} from "@/ui/shared";
+} from "@/ui/react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
