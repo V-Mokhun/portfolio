@@ -1,54 +1,72 @@
-# Astro Starter Kit: Basics
+# Portfolio
 
-```sh
-npm create astro@latest -- --template basics
-```
+[![LinkedIn][linkedin-shield]][linkedin-url]
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/basics)
-[![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/withastro/astro/tree/latest/examples/basics)
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/withastro/astro?devcontainer_path=.devcontainer/basics/devcontainer.json)
+<br />
+<div align="center">
+  <a href="https://v-mokhun.com">
+		<img src="readme-images/logo.png" alt="Logo" width="400" height="100">
+  </a>
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+  <p align="center">
+	This is my portfolio website created with Astro and React.
+    <br />
+    <br />
+    <a href="https://v-mokhun.com">View Site</a>
+    ·
+    <a href="https://github.com/v-mokhun/portfolio/issues">Report Bug</a>
+  </p>
+</div>
 
-![just-the-basics](https://github.com/withastro/astro/assets/2244813/a0a5533c-a856-4198-8470-2d67b1d7c554)
+## About The Project
 
-## 🚀 Project Structure
+<!-- [![Home Screenshot][home]](https://v-mokhun.com) -->
 
-Inside of your Astro project, you'll see the following folders and files:
+This is an Astro/React site. It uses SSR (Api routes specifically) in contact form for sending emails if you want to contact me. For styling TailwindCSS and Shadcnui are used, site is hosted on Vercel but has a custom domain. 
 
-```text
-/
-├── public/
-│   └── favicon.svg
-├── src/
-│   ├── components/
-│   │   └── Card.astro
-│   ├── layouts/
-│   │   └── Layout.astro
-│   └── pages/
-│       └── index.astro
-└── package.json
-```
+The website is fully responsive and works on all screen sizes.
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+<p align="right">(<a href="#portfolio">back to top</a>)</p>
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+### Built With
 
-Any static assets, like images, can be placed in the `public/` directory.
+- [![Astro][Astro]][Astro-url] With [![React.js][React.js]][React-url] as a Frontend Framework
 
-## 🧞 Commands
+- [![TypeScript][TypeScript.org]][TypeScript-url] For Type Safety
 
-All commands are run from the root of the project, from a terminal:
+- [![TailwindCSS][TailwindCSS.com]][TailwindCSS-url] With [![RadixUI][RadixUI.com]][RadixUI-url] For UI Components
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+- [![ReactHookForm][ReactHookForm.com]][ReactHookForm-url] For Form Handling
 
-## 👀 Want to learn more?
+- [![Zod][Zod.dev]][Zod-url] For Form Validation
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+
+<p align="right">(<a href="#portfolio">back to top</a>)</p>
+
+## Contact
+
+[Telegram](https://t.me/v_mokhun)
+
+[LinkedIn](https://www.linkedin.com/in/volodymyr-mokhun/)
+
+Project Link: [https://v-mokhun.com](https://v-mokhun.com)
+
+<p align="right">(<a href="#portfolio">back to top</a>)</p>
+
+[linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
+[linkedin-url]: https://www.linkedin.com/in/volodymyr-mokhun/
+[home]: readme-images/home.jpg
+[Astro]: https://img.shields.io/badge/-Astro-000000?logo=astro&logoColor=white&style=for-the-badge
+[Astro-url]: https://astro.build/
+[React.js]: https://img.shields.io/badge/-ReactJs-61DAFB?logo=react&logoColor=white&style=for-the-badge
+[React-url]: https://reactjs.org/
+[ReactHookForm.com]: https://img.shields.io/badge/React%20Hook%20Form-%23EC5990.svg?style=for-the-badge&logo=reacthookform&logoColor=white
+[ReactHookForm-url]: https://react-hook-form.com/
+[TailwindCSS.com]: https://img.shields.io/badge/tailwindcss-%2338B2AC.svg?style=for-the-badge&logo=tailwind-css&logoColor=white
+[TailwindCSS-url]: https://tailwindcss.com/
+[TypeScript.org]: https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white
+[TypeScript-url]: https://www.typescriptlang.org/
+[RadixUI.com]: https://img.shields.io/static/v1?style=for-the-badge&message=Radix+UI&color=161618&logo=Radix+UI&logoColor=FFFFFF&label=
+[RadixUI-url]: https://www.radix-ui.com/
+[Zod.dev]: https://img.shields.io/static/v1?style=for-the-badge&message=Zod&color=3E67B1&logo=Zod&logoColor=FFFFFF&label=
+[Zod-url]: https://zod.dev/
