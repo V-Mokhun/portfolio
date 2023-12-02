@@ -1,5 +1,8 @@
 ---
-import { AboutTechnologies, Container, Title } from "@/ui/react";
+import { Container, Title, Hover } from "@/ui/react";
+import { Image } from "astro:assets";
+import aboutFirstImage from "@/assets/images/about-1.jpg";
+import aboutSecondImage from "@/assets/images/about-2.jpg";
 ---
 
 <section class="py-16 md:py-20 bg-background-secondary text-white" id="about">
@@ -8,8 +11,21 @@ import { AboutTechnologies, Container, Title } from "@/ui/react";
     <div
       class="flex flex-col md:flex-row justify-between gap-4 md:gap-6 md:pt-4"
     >
-      <div class="flex-[0_1_calc(40%-12px)] shrink-0">
-        
+      <div class="relative z-[1] flex-[0_0_calc(50%-12px)] shrink-0">
+        <Hover max={15} client:visible>
+          <Image
+            width={250}
+            class="rounded-md absolute top-0 right-0"
+            src={aboutFirstImage}
+            alt="Image of Volodymyr Mokhun"
+          />
+          <Image
+            width={250}
+            class="rounded-md absolute top-12 left-24"
+            src={aboutSecondImage}
+            alt="Image of Volodymyr Mokhun"
+          />
+        </Hover>
       </div>
       <div class="flex-auto">
         <Title size="sm" tag="h3">Get to know me</Title>
