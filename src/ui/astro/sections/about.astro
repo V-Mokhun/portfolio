@@ -8,21 +8,21 @@ import aboutSecondImage from "@/assets/images/about-2.jpg";
 <section class="py-16 md:py-20 bg-background-secondary text-white" id="about">
   <Container>
     <Title className="text-center">About Me</Title>
-    <div
-      class="flex flex-col md:flex-row justify-between gap-4 md:gap-6 pt-4"
-    >
-      <div class="relative z-[1] flex-[0_0_calc(50%-12px)] shrink-0 mb-6 md:mb-0">
-        <Hover max={15} client:visible>
+    <div class="flex flex-col md:flex-row justify-between gap-4 md:gap-6 pt-4">
+      <div
+        class="relative z-[1] flex-[0_0_calc(50%-12px)] shrink-0 mb-6 md:mb-0"
+      >
+        <Hover className="w-full h-[320px] xxs:h-[340px] xs:h-[400px]" max={15} client:visible>
           <div class="flex justify-center">
             <Image
               width={256}
-              class="rounded-md mb-6 md:mb-0 md:absolute top-0 right-0 md:w-56 lg:w-64"
+              class="rounded-md mb-6 md:mb-0 md:absolute top-0 md:right-0 lg:right-24 w-40 xxs:w-48 xs:w-56 lg:w-64 aspect-[4/7]"
               src={aboutFirstImage}
               alt="Image of Volodymyr Mokhun"
             />
             <Image
               width={256}
-              class="rounded-md -ml-10 mt-10 md:m-0 md:absolute top-12 md:left-0 md:w-56 lg:w-64 lg:left-24"
+              class="rounded-md -ml-10 mt-10 md:m-0 md:absolute top-12 md:left-0 w-40 xxs:w-48 xs:w-56 lg:w-64 aspect-[4/7]"
               src={aboutSecondImage}
               alt="Image of Volodymyr Mokhun"
             />
