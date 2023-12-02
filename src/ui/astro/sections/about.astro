@@ -12,17 +12,21 @@ import aboutSecondImage from "@/assets/images/about-2.jpg";
       <div
         class="relative z-[1] flex-[0_0_calc(50%-12px)] shrink-0 mb-6 md:mb-0"
       >
-        <Hover className="w-full h-[320px] xxs:h-[340px] xs:h-[400px]" max={15} client:visible>
-          <div class="flex justify-center">
+        <Hover
+          className="w-full h-[320px] xxs:h-[340px] xs:h-[400px]"
+          max={15}
+          client:visible
+        >
+          <div class="flex flex-row-reverse justify-center">
             <Image
               width={256}
-              class="rounded-md mb-6 md:mb-0 md:absolute top-0 md:right-0 lg:right-24 w-40 xxs:w-48 xs:w-56 lg:w-64 aspect-[4/7]"
+              class="rounded-md relative z-[1] md:absolute top-0 right-4 md:right-0 lg:right-24 w-40 xxs:w-48 xs:w-56 lg:w-64 aspect-[4/7]"
               src={aboutFirstImage}
               alt="Image of Volodymyr Mokhun"
             />
             <Image
               width={256}
-              class="rounded-md -ml-10 mt-10 md:m-0 md:absolute top-12 md:left-0 w-40 xxs:w-48 xs:w-56 lg:w-64 aspect-[4/7]"
+              class="rounded-md relative z-[2] md:absolute top-6 md:top-12 left-4 md:left-0 w-40 xxs:w-48 xs:w-56 lg:w-64 aspect-[4/7]"
               src={aboutSecondImage}
               alt="Image of Volodymyr Mokhun"
             />
