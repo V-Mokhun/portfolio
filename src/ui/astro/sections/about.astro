@@ -8,7 +8,10 @@ import { AboutTechnologies, Container, Title } from "@/ui/react";
     <div
       class="flex flex-col md:flex-row justify-between gap-4 md:gap-6 md:pt-4"
     >
-      <div class="flex-[0_1_calc(50%-12px)] shrink-0">
+      <div class="flex-[0_1_calc(40%-12px)] shrink-0">
+        
+      </div>
+      <div class="flex-auto">
         <Title size="sm" tag="h3">Get to know me</Title>
         <div class="text-zinc-200 space-y-2 md:text-lg">
           <p>
@@ -18,22 +21,19 @@ import { AboutTechnologies, Container, Title } from "@/ui/react";
               target="_blank"
               rel="noreferrer noopener">University of Warmia and Mazury</a
             >. I have experience in developing websites, from simple landing
-            pages to complex web applications and also recently obtained <a
+            pages to complex web applications. I have also recently obtained <a
               class="text-primary hover:text-primary-hover transition-colors font-medium"
               href="https://www.cambridgeenglish.org/exams-and-tests/advanced/"
               target="_blank"
               rel="noreferrer noopener">Cambridge C1 Advanced Certification</a
-            >. Check out my work in the <a
-              class="text-primary hover:text-primary-hover transition-colors font-medium"
-              href="#projects">Projects</a
-            > section.
+            >.
           </p>
           <p>
             Being exposed to the world of programming at a <span
               class="font-bold">young age</span
             >, I don't imagine myself doing anything else as seriously. I'm
             passionate about web development, especially <span class="font-bold"
-              >frontend</span
+              >Front-End</span
             >. I'm always looking for new challenges and opportunities to learn.
           </p>
           <p>
@@ -44,10 +44,6 @@ import { AboutTechnologies, Container, Title } from "@/ui/react";
             >, or <span class="font-bold">playing volleyball</span>.
           </p>
         </div>
-      </div>
-      <div class="flex-auto">
-        <Title size="sm" tag="h3">What I use</Title>
-        <AboutTechnologies client:visible />
       </div>
     </div>
   </Container>

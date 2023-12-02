@@ -1,0 +1,18 @@
+---
+import { AboutTechnologies, Container, Title } from "@/ui/react";
+---
+
+<section class="py-16 md:py-20">
+  <Container>
+    <Title className="text-center">Technologies</Title>
+    <div
+      class="flex flex-col md:flex-row justify-between gap-4 md:gap-6 md:pt-4"
+    >
+      <div class="flex-[0_1_alc(40%-12px)] shrink-0"> </div>
+      <div class="flex-auto">
+        <Title size="sm" tag="h3">What I use</Title>
+        <AboutTechnologies client:visible />
+      </div>
+    </div>
+  </Container>
+</section>

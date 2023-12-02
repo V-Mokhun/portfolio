@@ -28,9 +28,16 @@ const allProjects = await getCollection("projects");
             </a>
             <div class="flex flex-col h-full p-2 pb-4 md:p-4 md:pt-2">
               <div class="flex-auto">
+                <a
+                  href={proj.data.projectLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="hover:text-primary-hover transition-colors"
+                >
                 <Title tag="h3" size="sm" className="mb-0 md:mb-2">
                   {proj.data.title}
                 </Title>
+                </a>
                 <p class="text-zinc-500 font-medium mb-2 md:mb-4 text-xl md:text-2xl">
                   {proj.data.type}
                 </p>
