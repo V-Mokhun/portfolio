@@ -1,5 +1,6 @@
 // @ts-nocheck
 
+import { cn } from "@/lib";
 import { useRef, useState } from "react";
 
 const defaultStyles = {
@@ -15,6 +16,7 @@ export function Hover({
   speed = 400,
   perspective = 1000,
   max = 10,
+	className="",
   onMouseEnter = () => {},
   onMouseMove = () => {},
   onMouseLeave = () => {},
@@ -124,7 +126,7 @@ export function Hover({
 
   return (
     <div
-      className="relative h-[400px] w-full"
+      className={cn("relative h-[400px] w-full", className)}
       style={{
         ...style,
         ...tiltStyles,
