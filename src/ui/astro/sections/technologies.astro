@@ -1,14 +1,52 @@
 ---
-import { AboutTechnologies, Container, Title } from "@/ui/react";
+import {
+  AboutTechnologies,
+  Container,
+  Title,
+  buttonVariants,
+} from "@/ui/react";
+import { ArrowDown } from "lucide-react";
 ---
 
-<section class="py-16 md:py-20">
+<section class="py-16 md:py-20 bg-slate-100">
   <Container>
     <Title className="text-center">Technologies</Title>
     <div
-      class="flex flex-col md:flex-row justify-between gap-4 md:gap-6 md:pt-4"
+      class="flex flex-col md:flex-row justify-between gap-6 md:pt-4"
     >
-      <div class="flex-[0_1_calc(40%-12px)] shrink-0"> </div>
+      <div class="flex-[0_1_calc(50%-12px)] shrink-0">
+        <div class="md:text-lg">
+          <p class="mb-4">
+            I qualify myself as a <strong>React</strong> developer, that's why
+            it is my main tool for building web applications. Mainly I use <strong
+              >TypeScript</strong
+            > when I can, but I'm also comfortable with <strong
+              >JavaScript</strong
+            >. <span class="hidden md:inline">
+              For full list of technologies I use, check out the <strong
+                >list to the right</strong
+              > and hover over the icons to see technology name.
+            </span>
+          </p>
+          <a
+            href="/resume.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="text-primary-hover font-medium flex items-center gap-1 hover:underline mb-2"
+          >
+            <ArrowDown className="animate-bounce md:w-8 md:h-8 shrink-0" />
+            <span>I also encourage you to take a look at my resume</span>
+          </a>
+          <a
+            href="/resume.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            class={buttonVariants({ className: "uppercase" })}
+          >
+            See Resume
+          </a>
+        </div>
+      </div>
       <div class="flex-auto">
         <Title size="sm" tag="h3">What I use</Title>
         <AboutTechnologies client:visible />
