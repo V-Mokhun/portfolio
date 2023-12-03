@@ -6,7 +6,18 @@ import { getCollection } from "astro:content";
 const allProjects = await getCollection("projects");
 ---
 
-<section class="py-16 md:py-20 bg-background-secondary" id="projects">
+<section class="relative py-16 md:py-20 bg-background-secondary" id="projects">
+  <div class="curve">
+    <svg
+      data-name="Layer 1"
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 1200 120"
+      preserveAspectRatio="none"
+    >
+      <path d="M1200 120L0 16.48 0 0 1200 0 1200 120z" class="fill-slate-100"
+      ></path>
+    </svg>
+  </div>
   <Container>
     <Title className="text-center text-white">Projects</Title>
     <ul class="flex gap-4 md:gap-6 flex-wrap flex-col md:flex-row">
@@ -34,9 +45,9 @@ const allProjects = await getCollection("projects");
                   rel="noopener noreferrer"
                   class="hover:text-primary-hover transition-colors"
                 >
-                <Title tag="h3" size="sm" className="mb-0 md:mb-2">
-                  {proj.data.title}
-                </Title>
+                  <Title tag="h3" size="sm" className="mb-0 md:mb-2">
+                    {proj.data.title}
+                  </Title>
                 </a>
                 <p class="text-zinc-500 font-medium mb-2 md:mb-4 text-xl md:text-2xl">
                   {proj.data.type}
@@ -87,3 +98,27 @@ const allProjects = await getCollection("projects");
     </ul>
   </Container>
 </section>
+
+<style>
+  .curve {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+  }
+
+  .curve svg {
+    position: relative;
+    display: block;
+    width: calc(130% + 1.3px);
+    height: 35px;
+  }
+
+  @media (min-width: 768px) {
+    .curve svg {
+      height: 70px;
+    }
+  }
+</style>

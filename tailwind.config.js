@@ -77,6 +77,15 @@ export default {
         xxs: "360px",
         xs: "479px",
       },
+      keyframes: {
+        "horizontal-bounce": {
+          "0%, 100%": { transform: "translateX(0px)" },
+          "50%": { transform: "translateX(-30px)" },
+        },
+      },
+      animation: {
+        "horizontal-bounce": "horizontal-bounce 3s ease-in-out infinite",
+      },
     },
   },
   plugins: [require("tailwindcss-animate")],

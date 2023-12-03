@@ -5,7 +5,13 @@ import { Image } from "astro:assets";
 ---
 
 <section id="hero" class="pb-12 pt-8 md:py-16 xl:py-20">
-  <Container className="h-full">
+  <Container className="relative h-full">
+    <svg
+      class="hidden md:block absolute left-0 -bottom-24 lg:bottom-0 w-28 h-20 fill-zinc-400 animate-horizontal-bounce"
+      aria-hidden="true"
+    >
+      <use xlink:href="/sprite.svg#curved-arrow"></use>
+    </svg>
     <div
       class="flex items-center justify-center text-center md:text-left md:justify-between flex-col md:flex-row gap-6 md:gap-10 h-full"
     >
