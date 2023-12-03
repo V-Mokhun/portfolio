@@ -22,7 +22,9 @@
 
 <!-- [![Home Screenshot][home]](https://v-mokhun.com) -->
 
-This is an Astro/React site. It uses SSR (Api routes specifically) in contact form for sending emails if you want to contact me. For styling TailwindCSS and Shadcnui are used, site is hosted on Vercel but has a custom domain. 
+The site was created to showcase my skills and projects as well as to provide a way to contact me.
+
+It was built using Astro and React.js. It uses SSR (Api routes specifically) in contact form for sending emails if you want to contact me. For styling TailwindCSS and Shadcnui are used, site is hosted on Vercel but has a custom domain.
 
 The website is fully responsive and works on all screen sizes.
 
@@ -39,7 +41,6 @@ The website is fully responsive and works on all screen sizes.
 - [![ReactHookForm][ReactHookForm.com]][ReactHookForm-url] For Form Handling
 
 - [![Zod][Zod.dev]][Zod-url] For Form Validation
-
 
 <p align="right">(<a href="#portfolio">back to top</a>)</p>
 
