@@ -1,5 +1,6 @@
 ---
 import { ContactForm, Container, Title } from "@/ui/react";
+import { PhoneCall } from "lucide-react";
 ---
 
 <section class="relative z-0 contact-section py-16 md:py-20" id="contact">
@@ -18,6 +19,9 @@ import { ContactForm, Container, Title } from "@/ui/react";
     </svg>
   </div>
   <Container className="relative z-[1]">
+    <PhoneCall
+      className="absolute right-[7%] top-8 md:top-auto md:bottom-10 text-primary animate-zoom"
+    />
     <Title className="text-center">Get in Touch</Title>
     <ContactForm client:visible />
   </Container>

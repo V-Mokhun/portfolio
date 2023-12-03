@@ -1,4 +1,7 @@
 /** @type {import('tailwindcss').Config} */
+
+const plugin = require('tailwindcss/plugin')
+
 export default {
   darkMode: ["class"],
   content: ["./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}"],
@@ -82,11 +85,32 @@ export default {
           "0%, 100%": { transform: "translateX(0px)" },
           "50%": { transform: "translateX(-30px)" },
         },
+        zoom: {
+          "0%, 100%": { transform: "scale(1)", opacity: 1 },
+          "50%": { transform: "scale(0.3)", opacity: 0.3 },
+        },
       },
       animation: {
         "horizontal-bounce": "horizontal-bounce 3s ease-in-out infinite",
+        zoom: "zoom 5s ease-in-out infinite",
       },
     },
   },
-  plugins: [require("tailwindcss-animate")],
+  plugins: [
+    require("tailwindcss-animate"),
+    plugin(({ matchUtilities, theme }) => {
+      matchUtilities(
+        {
+          "animation-delay": (value) => {
+            return {
+              "animation-delay": value,
+            };
+          },
+        },
+        {
+          values: theme("transitionDelay"),
+        }
+      );
+    }),
+  ],
 };

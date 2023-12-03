@@ -3,13 +3,20 @@ import { Container, Title, Hover } from "@/ui/react";
 import { Image } from "astro:assets";
 import aboutFirstImage from "@/assets/images/about-1.jpg";
 import aboutSecondImage from "@/assets/images/about-2.jpg";
+import { Dumbbell, Laptop } from "lucide-react";
 ---
 
 <section
   class="relative py-16 md:py-20 bg-background-secondary text-white"
   id="about"
 >
-  <Container>
+  <Container className="relative">
+    <Laptop
+      className="hidden md:block absolute right-[10%] top-12 animate-zoom text-primary"
+    />
+    <Dumbbell
+      className="absolute left-[5%] top-16 md:top-24 animate-zoom animation-delay-[1500ms] text-primary"
+    />
     <Title className="text-center">About Me</Title>
     <div class="flex flex-col md:flex-row justify-between gap-4 md:gap-6 pt-4">
       <div
@@ -36,7 +43,10 @@ import aboutSecondImage from "@/assets/images/about-2.jpg";
           </div>
         </Hover>
       </div>
-      <div class="flex-auto">
+      <div class="flex-auto relative">
+        <Laptop
+          className="md:hidden absolute right-[10%] -top-6 animate-zoom text-primary"
+        />
         <Title size="sm" tag="h3">Get to know me</Title>
         <div class="text-zinc-200 space-y-2 md:text-lg">
           <p>
