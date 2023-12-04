@@ -20,7 +20,7 @@
 
 ## About The Project
 
-<!-- [![Home Screenshot][home]](https://v-mokhun.com) -->
+[![Home Screenshot][home]](https://v-mokhun.com)
 
 The site was created to showcase my skills and projects as well as to provide a way to contact me.
 
@@ -56,7 +56,7 @@ Project Link: [https://v-mokhun.com](https://v-mokhun.com)
 
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://www.linkedin.com/in/volodymyr-mokhun/
-[home]: readme-images/home.jpg
+[home]: readme-images/home.png
 [Astro]: https://img.shields.io/badge/-Astro-000000?logo=astro&logoColor=white&style=for-the-badge
 [Astro-url]: https://astro.build/
 [React.js]: https://img.shields.io/badge/-ReactJs-61DAFB?logo=react&logoColor=white&style=for-the-badge
