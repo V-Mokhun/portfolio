@@ -14,10 +14,12 @@ const { title } = Astro.props;
 <html class="h-full" lang="en">
   <head>
     <meta charset="UTF-8" />
+    <title>{title}</title>
     <meta
       name="description"
-      content="Volodymyr Mokhun - Front-End developer portfolio website"
+      content="Volodymyr Mokhun, Front-End Developer specializing in React.js, TypeScript, Next.js. Elevate your web experience with innovative solutions. Explore my portfolio now."
     />
+
     <meta
       name="keywords"
       content="HTML, CSS, JavaScript, React, TypeScript, Next.js, Portfolio website, Frontend developer, frontend, web developer"
@@ -26,6 +28,7 @@ const { title } = Astro.props;
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 
+    <!-- Facebook Meta Tags -->
     <meta
       property="og:title"
       content="Volodymyr Mokhun | Front-End developer"
@@ -39,10 +42,25 @@ const { title } = Astro.props;
     <meta property="og:image" content="https://www.v-mokhun.com/og-image.png" />
     <meta
       property="og:description"
-      content="Volodymyr Mokhun - Front-End developer portfolio website"
+      content="Volodymyr Mokhun, Front-End Developer specializing in React.js, TypeScript, Next.js. Elevate your web experience with innovative solutions. Explore my portfolio now."
     />
 
-    <title>{title}</title>
+    <!-- Twitter Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta property="twitter:domain" content="v-mokhun.com" />
+    <meta property="twitter:url" content="https://www.v-mokhun.com/" />
+    <meta
+      name="twitter:title"
+      content="Volodymyr Mokhun | Front-End developer"
+    />
+    <meta
+      name="twitter:description"
+      content="Volodymyr Mokhun, Front-End Developer specializing in React.js, TypeScript, Next.js. Elevate your web experience with innovative solutions. Explore my portfolio now."
+    />
+    <meta
+      name="twitter:image"
+      content="https://www.v-mokhun.com/og-image.png"
+    />
   </head>
   <body class="flex flex-col h-full">
     <Header />
