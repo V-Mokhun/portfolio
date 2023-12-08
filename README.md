@@ -48,14 +48,14 @@ The website is fully responsive and works on all screen sizes.
 
 [Telegram](https://t.me/v_mokhun)
 
-[LinkedIn](https://www.linkedin.com/in/volodymyr-mokhun/)
+[LinkedIn](https://www.linkedin.com/in/v-mokhun/)
 
 Project Link: [https://v-mokhun.com](https://v-mokhun.com)
 
 <p align="right">(<a href="#portfolio">back to top</a>)</p>
 
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
-[linkedin-url]: https://www.linkedin.com/in/volodymyr-mokhun/
+[linkedin-url]: https://www.linkedin.com/in/v-mokhun/
 [home]: readme-images/home.png
 [Astro]: https://img.shields.io/badge/-Astro-000000?logo=astro&logoColor=white&style=for-the-badge
 [Astro-url]: https://astro.build/
