@@ -1,5 +1,5 @@
 ---
-import { Container } from "@/ui/react";
+import { Container, Icon } from "@/ui/react";
 import Logo from "../shared/logo.astro";
 
 const year = new Date().getFullYear();
@@ -25,9 +25,7 @@ const year = new Date().getFullYear();
             href="https://github.com/V-Mokhun"
             class="text-white hover:text-primary transition-colors"
           >
-            <svg class="w-8 h-8">
-              <use xlink:href="/sprite.svg#github"></use>
-            </svg>
+            <Icon name="github" />
           </a>
         </li>
         <li>
@@ -38,9 +36,7 @@ const year = new Date().getFullYear();
             href="https://www.linkedin.com/in/v-mokhun/"
             class="text-white hover:text-primary transition-colors"
           >
-            <svg class="w-8 h-8">
-              <use xlink:href="/sprite.svg#linkedin"></use>
-            </svg>
+            <Icon name="linkedin" />
           </a>
         </li>
         <li>
@@ -51,9 +47,7 @@ const year = new Date().getFullYear();
             href="https://www.facebook.com/volodymyr.mokhun"
             class="text-white hover:text-primary transition-colors"
           >
-            <svg class="w-8 h-8">
-              <use xlink:href="/sprite.svg#facebook"></use>
-            </svg>
+            <Icon name="facebook" />
           </a>
         </li>
       </ul>

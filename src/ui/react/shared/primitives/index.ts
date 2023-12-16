@@ -8,3 +8,5 @@ export * from "./textarea";
 export * from "./toast";
 export * from "./sheet";
 export * from "./popover";
+export * from "./accordion";
+export * from "./icon";
