@@ -1,6 +1,7 @@
 import { cn, languages, useTranslatedPath, type Lang } from "@/lib";
 import { ChevronDown } from "lucide-react";
 import { Popover, PopoverContent, PopoverTrigger } from "../..";
+import { useEffect, useState } from "react";
 
 interface LangPickerProps {
   lang: Lang;
@@ -8,6 +9,13 @@ interface LangPickerProps {
 
 export const LangPicker = ({ lang: currentLang }: LangPickerProps) => {
   const translatePath = useTranslatedPath(currentLang);
+  const [isMd, setIsMd] = useState(false);
+
+  useEffect(() => {
+    setIsMd(window.matchMedia("(min-width: 768px)").matches);
+  }, []);
+
+  if (!isMd) return null;
 
   return (
     <Popover>

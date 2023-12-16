@@ -1,10 +1,11 @@
-import { cn } from "@/lib";
+import { cn, useTranslations, type Lang } from "@/lib";
 
 interface HeaderNavProps {
   navClassName?: string;
   listClassName?: string;
   linkClassName?: string;
   onLinkClick?: () => void;
+  lang: Lang;
 }
 
 export const HeaderNav = ({
@@ -12,7 +13,10 @@ export const HeaderNav = ({
   linkClassName,
   listClassName,
   onLinkClick,
+  lang,
 }: HeaderNavProps) => {
+  const t = useTranslations(lang);
+
   return (
     <nav
       className={cn("flex md:justify-center flex-1 py-4 md:py-0", navClassName)}
@@ -32,7 +36,7 @@ export const HeaderNav = ({
             )}
             href="#"
           >
-            Home
+            {t("nav.home")}
           </a>
         </li>
         <li>
@@ -44,7 +48,7 @@ export const HeaderNav = ({
             )}
             href="#about"
           >
-            About
+            {t("nav.about")}
           </a>
         </li>
         <li>
@@ -56,7 +60,7 @@ export const HeaderNav = ({
             )}
             href="#technologies"
           >
-            Technologies
+            {t("nav.technologies")}
           </a>
         </li>
         <li>
@@ -68,7 +72,7 @@ export const HeaderNav = ({
             )}
             href="#projects"
           >
-            Projects
+            {t("nav.projects")}
           </a>
         </li>
         <li className="md:hidden">
@@ -80,7 +84,7 @@ export const HeaderNav = ({
             )}
             href="#contact"
           >
-            Contact
+            {t("nav.contact")}
           </a>
         </li>
       </ul>
