@@ -1,4 +1,5 @@
 ---
+import { getLangFromUrl } from "@/lib";
 import "@/styles/global.css";
 import Footer from "@/ui/astro/widgets/footer.astro";
 import Header from "@/ui/astro/widgets/header.astro";
@@ -8,10 +9,12 @@ interface Props {
 }
 
 const { title } = Astro.props;
+
+const lang = getLangFromUrl(Astro.url);
 ---
 
 <!doctype html>
-<html class="h-full" lang="en">
+<html class="h-full" lang={lang}>
   <head>
     <meta charset="UTF-8" />
     <title>{title}</title>
