@@ -1,11 +1,10 @@
-import { cn, useTranslations, type Lang } from "@/lib";
+import { cn } from "@/lib";
 
 interface HeaderNavProps {
   navClassName?: string;
   listClassName?: string;
   linkClassName?: string;
   onLinkClick?: () => void;
-  lang: Lang;
 }
 
 export const HeaderNav = ({
@@ -13,9 +12,8 @@ export const HeaderNav = ({
   linkClassName,
   listClassName,
   onLinkClick,
-  lang,
 }: HeaderNavProps) => {
-  const t = useTranslations(lang);
+  const t = (s: any) => s;
 
   return (
     <nav

@@ -1,4 +1,3 @@
-import { type Lang } from "@/lib";
 import {
   Icon,
   MobileLangPicker,
@@ -10,10 +9,9 @@ import { useState } from "react";
 import { HeaderNav } from "./header-nav";
 
 interface HeaderMobileMenuProps {
-  lang: Lang;
 }
 
-export const HeaderMobileMenu = ({ lang }: HeaderMobileMenuProps) => {
+export const HeaderMobileMenu = ({ }: HeaderMobileMenuProps) => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
@@ -23,12 +21,11 @@ export const HeaderMobileMenu = ({ lang }: HeaderMobileMenuProps) => {
       </SheetTrigger>
       <SheetContent className="md:hidden" side="left">
         <HeaderNav
-          lang={lang}
           onLinkClick={() => {
             setIsOpen(false);
           }}
         />
-        <MobileLangPicker lang={lang} />
+        <MobileLangPicker />
       </SheetContent>
     </Sheet>
   );

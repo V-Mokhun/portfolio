@@ -7,10 +7,6 @@ import {
   LangPicker,
 } from "@/ui/react";
 import Logo from "../shared/logo.astro";
-import { getLangFromUrl, useTranslations } from "@/lib";
-
-const lang = getLangFromUrl(Astro.url);
-const t = useTranslations(lang);
 ---
 
 <header
@@ -19,20 +15,20 @@ const t = useTranslations(lang);
   <Container>
     <div class="flex items-center justify-between gap-2 md:gap-4">
       <div class="flex flex-1 items-center gap-2 md:flex-initial">
-        <HeaderMobileMenu lang={lang} client:load />
+        <HeaderMobileMenu client:load />
         <Logo
           className="w-full flex justify-center ml-2 md:w-auto md:inline-block md:ml-0"
         />
       </div>
-      <HeaderNav lang={lang} navClassName="hidden md:flex" />
+      <HeaderNav navClassName="hidden md:flex" />
       <div class="flex items-center gap-4">
         <a
           class={buttonVariants({
             className: "md:text-lg h-9 md:h-11 px-4 sm:px-6",
           })}
-          href="#contact">{t("nav.contact")}</a
+          href="#contact">Contact</a
         >
-        <LangPicker client:load lang={lang} />
+        <LangPicker client:load />
       </div>
     </div>
   </Container>

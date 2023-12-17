@@ -1,17 +1,20 @@
 import tailwind from "@astrojs/tailwind";
 import react from "@astrojs/react";
 import { defineConfig, passthroughImageService } from "astro/config";
-
 import vercel from "@astrojs/vercel/serverless";
 
 // https://astro.build/config
 export default defineConfig({
   output: "server",
-  integrations: [tailwind({
-    applyBaseStyles: false
-  }),, react()],
+  integrations: [
+    tailwind({
+      applyBaseStyles: false,
+    }),
+    ,
+    react(),
+  ],
   image: {
-    service: passthroughImageService()
+    service: passthroughImageService(),
   },
-  adapter: vercel()
+  adapter: vercel(),
 });

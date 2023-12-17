@@ -13,7 +13,7 @@ export const HeroTitle = ({}: HeroTitleProps) => {
     <TooltipProvider>
       <Tooltip delayDuration={300}>
         <TooltipTrigger>
-          <Title size="lg" className="md:text-left mb-2 md:mb-3 group">
+          <Title tag="h1" size="lg" className="md:text-left mb-2 md:mb-3 group">
             Hey, I'm{" "}
             <span className="text-primary md:underline group-hover:no-underline">
               Volodymyr,

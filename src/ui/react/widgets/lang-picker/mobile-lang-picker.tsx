@@ -1,10 +1,4 @@
-import {
-  languages,
-  type Lang,
-  cn,
-  useTranslatedPath,
-  getLangFromUrl,
-} from "@/lib";
+import { cn } from "@/lib";
 import {
   Accordion,
   AccordionContent,
@@ -13,14 +7,10 @@ import {
   Icon,
 } from "../..";
 
-interface MobileLangPickerProps {
-  lang: Lang;
-}
+interface MobileLangPickerProps {}
 
-export const MobileLangPicker = ({
-  lang: currentLang,
-}: MobileLangPickerProps) => {
-  const translatePath = useTranslatedPath(currentLang);
+export const MobileLangPicker = ({}: MobileLangPickerProps) => {
+  const currentLang = "en";
 
   return (
     <Accordion type="single" collapsible>
@@ -33,7 +23,7 @@ export const MobileLangPicker = ({
         </AccordionTrigger>
         <AccordionContent className="text-xl">
           <ul>
-            {Object.entries(languages).map(([lang, label]) => (
+            {/* {Object.entries(languages).map(([lang, label]) => (
               <li
                 className={cn(lang === currentLang && "text-primary font-bold")}
                 key={lang}
@@ -46,7 +36,7 @@ export const MobileLangPicker = ({
                   <span>{label}</span>
                 </a>
               </li>
-            ))}
+            ))} */}
           </ul>
         </AccordionContent>
       </AccordionItem>
