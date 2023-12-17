@@ -1,5 +1,5 @@
 ---
-import { Container, Title, Hover } from "@/ui/react";
+import { Container, Title, Hover, Separator } from "@/ui/react";
 import { Image } from "astro:assets";
 import aboutFirstImage from "@/assets/images/about-1.jpg";
 import aboutSecondImage from "@/assets/images/about-2.jpg";
@@ -79,6 +79,29 @@ import { Dumbbell, Laptop } from "lucide-react";
             >, or <span class="font-bold">playing volleyball</span>.
           </p>
         </div>
+        <Separator className="my-3 opacity-50" />
+        <ul
+          class="flex flex-wrap justify-between flex-col lg:flex-row gap-2 md:text-lg text-zinc-200"
+        >
+          <li class="flex-1 lg:flex-[0_0_calc(50%-8px)] flex items-center gap-2">
+            Name: <span class="font-medium text-zinc-400">Volodymyr Mokhun</span
+            >
+          </li>
+          <li class="flex-1 lg:flex-[0_0_calc(50%-8px)] flex items-center gap-2">
+            Email: <a
+              href="mailto:v.mokhun@gmail.com"
+              class="font-medium text-primary hover:text-primary-hover transition-colors"
+              >v.mokhun@gmail.com</a
+            >
+          </li>
+          <li class="flex-1 lg:flex-[0_0_calc(50%-8px)] flex items-center gap-2">
+            Age: <span class="font-medium text-zinc-400">18</span>
+          </li>
+          <li class="flex-1 lg:flex-[0_0_calc(50%-8px)] flex items-center gap-2">
+            Location: <span class="font-medium text-zinc-400">Olsztyn</span
+            >
+          </li>
+        </ul>
       </div>
     </div>
   </Container>
