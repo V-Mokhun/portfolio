@@ -9,5 +9,10 @@
     "technologies": "Technologies",
     "projects": "Projects",
     "contact": "Contact"
+  },
+  "hero": {
+    "title": "Hey, I'm <1>Volodymyr,</1>",
+    "titleTooltip": "I actually prefer the name <1>Vova </1> as it's easier to pronouce and doesn't sound too formal.",
+    "subtitle": "a passionate <0>Front-End Developer</0>"
   }
 }
