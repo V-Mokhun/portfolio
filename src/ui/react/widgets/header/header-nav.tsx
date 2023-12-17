@@ -1,4 +1,5 @@
 import { cn } from "@/lib";
+import { useTranslation } from "react-i18next";
 
 interface HeaderNavProps {
   navClassName?: string;
@@ -13,7 +14,7 @@ export const HeaderNav = ({
   listClassName,
   onLinkClick,
 }: HeaderNavProps) => {
-  const t = (s: any) => s;
+  const { t } = useTranslation();
 
   return (
     <nav

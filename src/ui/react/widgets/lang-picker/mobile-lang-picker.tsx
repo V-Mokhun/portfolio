@@ -1,4 +1,4 @@
-import { cn } from "@/lib";
+import { cn, defaultLang, languages, translatePath } from "@/lib";
 import {
   Accordion,
   AccordionContent,
@@ -6,11 +6,13 @@ import {
   AccordionTrigger,
   Icon,
 } from "../..";
+import { useTranslation } from "react-i18next";
 
 interface MobileLangPickerProps {}
 
 export const MobileLangPicker = ({}: MobileLangPickerProps) => {
-  const currentLang = "en";
+  const { i18n } = useTranslation();
+  const currentLang = i18n.resolvedLanguage ?? defaultLang;
 
   return (
     <Accordion type="single" collapsible>
@@ -23,7 +25,7 @@ export const MobileLangPicker = ({}: MobileLangPickerProps) => {
         </AccordionTrigger>
         <AccordionContent className="text-xl">
           <ul>
-            {/* {Object.entries(languages).map(([lang, label]) => (
+            {Object.entries(languages).map(([lang, label]) => (
               <li
                 className={cn(lang === currentLang && "text-primary font-bold")}
                 key={lang}
@@ -36,7 +38,7 @@ export const MobileLangPicker = ({}: MobileLangPickerProps) => {
                   <span>{label}</span>
                 </a>
               </li>
-            ))} */}
+            ))}
           </ul>
         </AccordionContent>
       </AccordionItem>

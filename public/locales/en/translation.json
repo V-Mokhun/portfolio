@@ -1,0 +1,13 @@
+{
+  "site": {
+    "title": "Volodymyr Mokhun | Frontend Developer",
+    "description": "Explore my portfolio as a React and TypeScript Front-End Developer. See projects that showcase practical, effective web solutions."
+  },
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "technologies": "Technologies",
+    "projects": "Projects",
+    "contact": "Contact"
+  }
+}

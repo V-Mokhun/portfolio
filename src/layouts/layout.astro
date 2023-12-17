@@ -1,26 +1,30 @@
 ---
+import { languages, translateUrl } from "@/lib";
 import "@/styles/global.css";
 import Footer from "@/ui/astro/widgets/footer.astro";
 import Header from "@/ui/astro/widgets/header.astro";
+import i18next, { t } from "i18next";
+
+const currentUrl = Astro.url.origin;
 ---
 
 <!doctype html>
-<html lang="en" class="h-full">
+<html lang={i18next.language} class="h-full">
   <head>
     <meta charset="UTF-8" />
-    <!-- {
+    {
       Object.keys(languages).map((supportedLanguage) => (
         <link
           rel="alternate"
           hreflang={supportedLanguage}
-          href={translateUrl(currentUrl, supportedLanguage as Lang)}
+          href={translateUrl(currentUrl, supportedLanguage)}
         />
       ))
-    } -->
-    <title>Volodymyr Mokhun | Frontend Developer</title>
+    }
+    <title>{t("site.title")}</title>
     <meta
       name="description"
-      content="Volodymyr Mokhun, Front-End Developer specializing in React.js, TypeScript, Next.js. Elevate your web experience with innovative solutions. Explore my portfolio now."
+      content={t("site.description")}
     />
 
     <meta

@@ -7,6 +7,7 @@ import {
   LangPicker,
 } from "@/ui/react";
 import Logo from "../shared/logo.astro";
+import { t } from "i18next";
 ---
 
 <header
@@ -26,7 +27,7 @@ import Logo from "../shared/logo.astro";
           class={buttonVariants({
             className: "md:text-lg h-9 md:h-11 px-4 sm:px-6",
           })}
-          href="#contact">Contact</a
+          href="#contact">{t("nav.contact")}</a
         >
         <LangPicker client:load />
       </div>

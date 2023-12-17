@@ -1,13 +1,15 @@
 import { ChevronDown } from "lucide-react";
 import { Popover, PopoverContent, PopoverTrigger } from "../..";
 import { useEffect, useState } from "react";
-import { cn } from "@/lib";
+import { cn, defaultLang, languages, translatePath } from "@/lib";
+import { useTranslation } from "react-i18next";
 
 interface LangPickerProps {}
 
 export const LangPicker = ({}: LangPickerProps) => {
   const [isMd, setIsMd] = useState(false);
-  const currentLang = "en";
+  const { i18n } = useTranslation();
+  const currentLang = i18n.resolvedLanguage ?? defaultLang;
 
   useEffect(() => {
     setIsMd(window.matchMedia("(min-width: 768px)").matches);
@@ -28,7 +30,7 @@ export const LangPicker = ({}: LangPickerProps) => {
         sideOffset={10}
       >
         <ul className="space-y-2">
-          {/* {Object.entries(languages).map(([lang, label]) => (
+          {Object.entries(languages).map(([lang, label]) => (
             <li
               className={cn(
                 "text-lg hover:text-primary-hover transition-colors",
@@ -41,7 +43,7 @@ export const LangPicker = ({}: LangPickerProps) => {
                 {label}
               </a>
             </li>
-          ))} */}
+          ))}
         </ul>
       </PopoverContent>
     </Popover>
