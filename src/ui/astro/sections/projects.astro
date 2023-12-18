@@ -2,9 +2,11 @@
 import { Image } from "astro:assets";
 import { Container, Title, buttonVariants } from "@/ui/react";
 import { getCollection } from "astro:content";
-import { t } from "i18next";
+import i18next, { t } from "i18next";
 
-const allProjects = await getCollection("projects");
+const allProjects = await getCollection("projects", ({ id }) => {
+  return id.startsWith(i18next.language);
+});
 ---
 
 <section class="relative py-16 md:py-20 bg-background-secondary" id="projects">

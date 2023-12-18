@@ -6,6 +6,11 @@ export const languages = {
 };
 export const defaultLang = "en";
 
+export function getLangFromPath(path: string) {
+  const lang = path.split("/")[1];
+  return lang ?? defaultLang;
+}
+
 export function translatePath(path: string, l: string) {
   return l === defaultLang ? path : `/${l}${path}`;
 }
