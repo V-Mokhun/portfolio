@@ -4,7 +4,7 @@
     "description": "Zapoznaj się z moim portfolio jako Front-End Developera React i TypeScript. Zobacz projekty, które prezentują praktyczne, skuteczne rozwiązania internetowe."
   },
   "nav": {
-    "home": "Strona główna",
+    "home": "Główna",
     "about": "O mnie",
     "technologies": "Technologie",
     "projects": "Projekty",
@@ -13,6 +13,51 @@
   "hero": {
     "title": "Hej, jestem <1>Volodymyr,</1>",
     "titleTooltip": "Właściwie wolę imię <1>Vova</1>, ponieważ jest łatwiejsza do wymówienia i nie brzmi zbyt formalnie.",
-    "subtitle": "<0>Front-End Developer</0> z pasją"
+    "subtitle": "<0>Front-End Developer</0> z pasją",
+    "description": "Dążę do tworzenia najlepszych produktów dla sieci i odkrywania nowych możliwości nowoczesnych technologii. Uczę się przez całe życie i mam też lekką obsesję na punkcie kalisteniki"
+  },
+  "hireMe": "Kontakt",
+  "seePortfolio": "Zobaczyć portfolio",
+  "about": {
+    "title": "O mnie",
+    "subtitle": "Poznaj mnie",
+    "description1": "Jestem studentem drugiego roku Informatyki na <0>Uniwersytecie Warmińsko-Mazurskim</0>. Mam doświadczenie w tworzeniu stron internetowych, od prostych landing page'y po rozbudowane aplikacje webowe. Niedawno uzyskałem również <1>Cambridge C1 Advanced Certification</1>.",
+    "description2": "Będąc wystawionym na świat programowania w <0>młodym wieku</0>, nie wyobrażam sobie siebie robiącego cokolwiek innego równie poważnie. Pasjonuję się tworzeniem stron internetowych, szczególnie <0>Front-End'em</0>. Zawsze szukam nowych wyzwań i możliwości nauki.",
+    "description3": "Kiedy nie siedzę przed komputerem, lubię spędzać czas <0>ćwicząc</0>, <1>oglądając seriale i filmy</1>, <2>czytając</2>, lub <3>grając w siatkówkę</3>.",
+    "name": "Imie: <0>Volodymyr Mokhun</0>",
+    "age": "Wiek: <0>18</0>",
+    "location": "Miasto: <0>Olsztyn</0>"
+  },
+  "technologies": {
+    "title": "Technologie",
+    "subtitle": "Czego używam",
+    "description": "Kwalifikuję siebie jako programistę <0>React</0>, dlatego jest to moje główne narzędzie do budowania aplikacji webowych. Głównie używam <1>TypeScript</1> kiedy tylko mogę, ale czuję się również komfortowo z <2>JavaScript</2>. <3>Pełna lista używanych przeze mnie technologii znajduje się na <4>liście po prawej stronie</4>, a po najechaniu kursorem na ikony można zobaczyć nazwę technologii. </3>",
+    "resume": "Zachęcam również do zapoznania się z moim CV"
+  },
+  "seeResume": "Zobaczyć CV",
+  "projects": {
+    "title": "Projekty",
+    "technologies": "Technologie",
+    "liveDemo": "Demo",
+    "sourceCode": "Kod"
+  },
+  "contact": {
+    "title": "Skontaktuj się",
+    "name": "Imię",
+    "namePlaceholder": "Wprowadź swoje imię",
+    "email": "Email",
+    "emailPlaceholder": "Wprowadź swój adres e-mail",
+    "message": "Wiadomość",
+    "messagePlaceholder": "Wprowadź swoją wiadomość",
+    "sendMessage": "Wysłać wiadomość",
+
+    "nameLengthError": "Nazwa musi mieć co najmniej 2 znaki",
+    "emailError": "Wprowadź prawidłowy adres e-mail",
+    "messageLengthError": "Wiadomość musi mieć co najmniej 10 znaków",
+
+    "successMessageTitle": "Twoja wiadomość została wysłana pomyślnie!",
+    "successMessageDescription": "Skontaktuję się z Tobą tak szybko, jak to możliwe.",
+    "errorMessageTitle": "Coś poszło nie tak!",
+    "errorMessageDescription": "Spróbuj ponownie później lub skontaktuj się ze mną bezpośrednio pod adresem v.mokhun@gmail.com"
   }
 }

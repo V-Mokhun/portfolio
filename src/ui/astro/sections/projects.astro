@@ -2,6 +2,7 @@
 import { Image } from "astro:assets";
 import { Container, Title, buttonVariants } from "@/ui/react";
 import { getCollection } from "astro:content";
+import { t } from "i18next";
 
 const allProjects = await getCollection("projects");
 ---
@@ -19,7 +20,7 @@ const allProjects = await getCollection("projects");
     </svg>
   </div>
   <Container>
-    <Title className="text-center text-white">Projects</Title>
+    <Title className="text-center text-white">{t("projects.title")}</Title>
     <ul class="flex gap-4 md:gap-6 flex-wrap flex-col md:flex-row">
       {
         allProjects.map((proj) => (
@@ -58,7 +59,7 @@ const allProjects = await getCollection("projects");
               </div>
               <div class="mb-4">
                 <p class="text-zinc-500 font-medium text-xl md:text-2xl mb-2">
-                  Technologies
+                  {t("projects.technologies")}
                 </p>
                 <ul class="flex flex-wrap gap-x-4 gap-y-2">
                   {proj.data.technologies.map((technology) => (
@@ -78,7 +79,7 @@ const allProjects = await getCollection("projects");
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  Live Demo
+                  {t("projects.liveDemo")}
                 </a>
                 {proj.data.sourceCodeLink && (
                   <a
@@ -87,7 +88,7 @@ const allProjects = await getCollection("projects");
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    Source Code
+                    {t("projects.sourceCode")}
                   </a>
                 )}
               </div>

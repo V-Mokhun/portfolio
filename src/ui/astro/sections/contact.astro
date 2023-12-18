@@ -1,6 +1,7 @@
 ---
 import { ContactForm, Container, Title } from "@/ui/react";
 import { PhoneCall } from "lucide-react";
+import {t} from "i18next"
 ---
 
 <section class="relative z-0 contact-section py-16 md:py-20" id="contact">
@@ -22,7 +23,7 @@ import { PhoneCall } from "lucide-react";
     <PhoneCall
       className="absolute right-[7%] top-8 md:top-auto md:bottom-10 text-primary animate-zoom"
     />
-    <Title className="text-center">Get in Touch</Title>
+    <Title className="text-center">{t("contact.title")}</Title>
     <ContactForm client:visible />
   </Container>
 </section>

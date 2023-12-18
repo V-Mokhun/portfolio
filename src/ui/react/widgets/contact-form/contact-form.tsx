@@ -9,16 +9,18 @@ import {
   Input,
   Textarea,
   Toaster,
-  useToast
+  useToast,
 } from "@/ui/react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { contactFormSchema, type ContactFormValues } from "./model";
+import { useTranslation } from "react-i18next";
 
 interface ContactFormProps {}
 
 export const ContactForm = ({}: ContactFormProps) => {
+  const { t } = useTranslation();
   const [isLoading, setIsLoading] = useState(false);
   const { toast } = useToast();
   const form = useForm<ContactFormValues>({
@@ -46,22 +48,31 @@ export const ContactForm = ({}: ContactFormProps) => {
       const data: { message: string; success: boolean } = await response.json();
       if (data.success) {
         toast({
-          title: "Message sent successfully!",
-          description: "I'll get back to you as soon as possible.",
+          title:
+            t("contact.successMessageTitle") ??
+            "Your message has been sent successfully!",
+          description:
+            t("contact.successMessageDescription") ??
+            "I will get back to you as soon as possible.",
           variant: "success",
         });
         form.reset();
       } else {
         toast({
-          title: data.message || "Something went wrong...",
-          description: "Please try again later.",
+          title:
+            data.message ??
+            t("contact.errorMessageTitle") ??
+            "Something went wrong...",
+          description:
+            t("contact.errorMessageDescription") ?? "Please try again later.",
           variant: "destructive",
         });
       }
     } catch (error) {
       toast({
-        title: "Something went wrong...",
-        description: "Please try again later.",
+        title: t("contact.errorMessageTitle") ?? "Something went wrong...",
+        description:
+          t("contact.errorMessageDescription") ?? "Please try again later.",
         variant: "destructive",
       });
     } finally {
@@ -81,9 +92,14 @@ export const ContactForm = ({}: ContactFormProps) => {
             name="name"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Name</FormLabel>
+                <FormLabel>{t("contact.name")}</FormLabel>
                 <FormControl>
-                  <Input placeholder="Your Name" {...field} />
+                  <Input
+                    placeholder={
+                      t("contact.namePlaceholder") ?? "Enter your name"
+                    }
+                    {...field}
+                  />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -94,9 +110,14 @@ export const ContactForm = ({}: ContactFormProps) => {
             name="email"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Email</FormLabel>
+                <FormLabel>{t("contact.email")}</FormLabel>
                 <FormControl>
-                  <Input placeholder="Your Email" {...field} />
+                  <Input
+                    placeholder={
+                      t("contact.emailPlaceholder") ?? "Enter your email"
+                    }
+                    {...field}
+                  />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -107,11 +128,13 @@ export const ContactForm = ({}: ContactFormProps) => {
             name="message"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Message</FormLabel>
+                <FormLabel>{t("contact.message")}</FormLabel>
                 <FormControl>
                   <Textarea
                     className="resize-none min-h-[120px]"
-                    placeholder="Your Message"
+                    placeholder={
+                      t("contact.messagePlaceholder") ?? "Enter your message"
+                    }
                     {...field}
                   />
                 </FormControl>
@@ -126,7 +149,7 @@ export const ContactForm = ({}: ContactFormProps) => {
               variant="ghost"
               type="submit"
             >
-              Send Message
+              {t("contact.sendMessage")}
             </Button>
           </div>
         </form>

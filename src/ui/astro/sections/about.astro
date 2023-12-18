@@ -4,6 +4,8 @@ import { Image } from "astro:assets";
 import aboutFirstImage from "@/assets/images/about-1.jpg";
 import aboutSecondImage from "@/assets/images/about-2.jpg";
 import { Dumbbell, Laptop } from "lucide-react";
+import { t } from "i18next";
+import { Trans } from "astro-i18next/components";
 ---
 
 <section
@@ -17,7 +19,7 @@ import { Dumbbell, Laptop } from "lucide-react";
     <Dumbbell
       className="absolute left-[5%] top-16 md:top-24 animate-zoom animation-delay-[1500ms] text-primary"
     />
-    <Title className="text-center">About Me</Title>
+    <Title className="text-center">{t("about.title")}</Title>
     <div class="flex flex-col md:flex-row justify-between gap-4 md:gap-6 pt-4">
       <div
         class="relative z-[1] flex-[0_0_calc(50%-12px)] shrink-0 mb-6 md:mb-0"
@@ -47,59 +49,80 @@ import { Dumbbell, Laptop } from "lucide-react";
         <Laptop
           className="md:hidden absolute right-[10%] -top-6 animate-zoom text-primary"
         />
-        <Title size="sm" tag="h3">Get to know me</Title>
+        <Title size="sm" tag="h3">{t("about.subtitle")}</Title>
         <div class="text-zinc-200 space-y-2 md:text-lg text-justify">
           <p>
-            I'm a second-year Computer Science student at the <a
-              class="text-primary hover:text-primary-hover transition-colors font-medium"
-              href="https://uwm.edu.pl/"
-              target="_blank"
-              rel="noreferrer noopener">University of Warmia and Mazury</a
-            >. I have experience in developing websites, from simple landing
-            pages to complex web applications. I have also recently obtained <a
-              class="text-primary hover:text-primary-hover transition-colors font-medium"
-              href="https://www.cambridgeenglish.org/exams-and-tests/advanced/"
-              target="_blank"
-              rel="noreferrer noopener">Cambridge C1 Advanced Certification</a
-            >.
+            <Trans i18nKey="about.description1">
+              I'm a second-year Computer Science student at the <a
+                class="text-primary hover:text-primary-hover transition-colors font-medium"
+                href="https://uwm.edu.pl/"
+                target="_blank"
+                rel="noreferrer noopener">University of Warmia and Mazury</a
+              >. I have experience in developing websites, from simple landing
+              pages to complex web applications. I have also recently obtained <a
+                class="text-primary hover:text-primary-hover transition-colors font-medium"
+                href="https://www.cambridgeenglish.org/exams-and-tests/advanced/"
+                target="_blank"
+                rel="noreferrer noopener">Cambridge C1 Advanced Certification</a
+              >.
+            </Trans>
           </p>
           <p>
-            Being exposed to the world of programming at a <span
-              class="font-bold">young age</span
-            >, I don't imagine myself doing anything else as seriously. I'm
-            passionate about web development, especially <span class="font-bold"
-              >Front-End</span
-            >. I'm always looking for new challenges and opportunities to learn.
+            <Trans i18nKey="about.description2">
+              Being exposed to the world of programming at a <span
+                class="font-bold">young age</span
+              >, I don't imagine myself doing anything else as seriously. I'm
+              passionate about web development, especially <span
+                class="font-bold">Front-End</span
+              >. I'm always looking for new challenges and opportunities to
+              learn.
+            </Trans>
           </p>
           <p>
-            When I'm not in front of the computer, I like to spend my time <span
-              class="font-bold">working out</span
-            >, <span class="font-bold">watching TV shows and movies</span>, <span
-              class="font-bold">reading</span
-            >, or <span class="font-bold">playing volleyball</span>.
+            <Trans i18nKey="about.description3">
+              When I'm not in front of the computer, I like to spend my time <span
+                class="font-bold">working out</span
+              >, <span class="font-bold">watching TV shows and movies</span>, <span
+                class="font-bold">reading</span
+              >, or <span class="font-bold">playing volleyball</span>.
+            </Trans>
           </p>
         </div>
         <Separator className="my-3 opacity-50" />
         <ul
           class="flex flex-wrap justify-between flex-col lg:flex-row gap-2 md:text-lg text-zinc-200"
         >
-          <li class="flex-1 lg:flex-[0_0_calc(50%-8px)] flex items-center gap-2">
-            Name: <span class="font-medium text-zinc-400">Volodymyr Mokhun</span
-            >
+          <li
+            class="flex-1 lg:flex-[0_0_calc(50%-8px)] flex items-center gap-2"
+          >
+            <Trans i18nKey="about.name">
+              Name: <span class="font-medium text-zinc-400"
+                >Volodymyr Mokhun</span
+              >
+            </Trans>
           </li>
-          <li class="flex-1 lg:flex-[0_0_calc(50%-8px)] flex items-center gap-2">
+          <li
+            class="flex-1 lg:flex-[0_0_calc(50%-8px)] flex items-center gap-2"
+          >
             Email: <a
               href="mailto:v.mokhun@gmail.com"
               class="font-medium text-primary hover:text-primary-hover transition-colors"
               >v.mokhun@gmail.com</a
             >
           </li>
-          <li class="flex-1 lg:flex-[0_0_calc(50%-8px)] flex items-center gap-2">
-            Age: <span class="font-medium text-zinc-400">18</span>
+          <li
+            class="flex-1 lg:flex-[0_0_calc(50%-8px)] flex items-center gap-2"
+          >
+            <Trans i18nKey="about.age">
+              Age: <span class="font-medium text-zinc-400">18</span>
+            </Trans>
           </li>
-          <li class="flex-1 lg:flex-[0_0_calc(50%-8px)] flex items-center gap-2">
-            Location: <span class="font-medium text-zinc-400">Olsztyn</span
-            >
+          <li
+            class="flex-1 lg:flex-[0_0_calc(50%-8px)] flex items-center gap-2"
+          >
+            <Trans i18nKey="about.location">
+              Location: <span class="font-medium text-zinc-400">Olsztyn</span>
+            </Trans>
           </li>
         </ul>
       </div>
