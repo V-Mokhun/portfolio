@@ -1,7 +1,7 @@
 ---
 title: "GameHub"
-type: "Gaming Platform"
-description: "This is a learning project. It's a neat gaming platform where you can discover and add various games to your library. Connect with fellow gamers, have a chat, import games from Steam, share your game reviews, and explore the rating charts. Whether you're a seasoned gamer or just kicking off your gaming journey, GameHub has something for everyone. This website was built with Next.js and TypeScript as a frontend framework, Prisma as an ORM, and PostgreSQL as a database. The frontend state is managed with Zustand, and React Query is used for data fetching. Tailwind CSS and shadcn/ui are used for styling. "
+type: "Ігрова платформа"
+description: "Це навчальний проект. Це зручна ігрова платформа, де ви можете знаходити і додавати різні ігри до своєї бібліотеки. Спілкуйтеся з іншими геймерами, спілкуйтеся в чаті, імпортуйте ігри зі Steam, діліться своїми відгуками про ігри та вивчайте рейтингові графіки. Незалежно від того, чи ви досвідчений геймер, чи тільки починаєте свою ігрову подорож, на GameHub знайдеться щось для кожного. Цей веб-сайт було створено за допомогою Next.js та TypeScript як фронтенд фреймворку, Prisma як ORM та PostgreSQL як бази даних. Стан фронтенду управляється за допомогою Zustand, а для отримання даних використовується React Query. Для стилізації використовуються Tailwind CSS та shadcn/ui."
 image: "../../images/project-2.jpeg"
 projectLink: "https://gamehub-proj.vercel.app"
 sourceCodeLink: "https://github.com/V-Mokhun/gamehub"

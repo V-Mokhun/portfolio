@@ -1,7 +1,7 @@
 ---
-title: "Ecommerce Site"
+title: "Strona Ecommerce"
 type: "Ecommerce"
-description: "This project constitutes an e-commerce website designed for seamless product browsing, cart management, and transactional experiences. Developed with React.js and powered by Sanity.io as a headless CMS, the platform integrates GraphQL for efficient data querying from Sanity and employs Redux Toolkit for robust state management. Stripe is seamlessly integrated for secure payment processing. In addition to its commercial functionality, the platform incorporates a blog section, enabling users to peruse, and administrators to create, edit, and delete blog posts. The website is fully responsive, delivering a user-friendly experience across all screen sizes."
+description: "Ten projekt stanowi witrynę e-commerce zaprojektowaną do łatwego przeglądania produktów, zarządzania koszykiem i płynnego dokonywania transakcji. Stworzony przy użyciu React.js i zasilany przez Sanity.io jako headless CMS, platforma integruje GraphQL w celu efektywnego przesyłania danych z Sanity i korzysta z Redux Toolkit do solidnego zarządzania stanem. Stripe jest płynnie zintegrowany w celu zapewnienia bezpiecznej obsługi płatności. Oprócz swojej funkcjonalności handlowej, platforma obejmuje sekcję bloga, umożliwiając użytkownikom przeglądanie, a administratorom tworzenie, edytowanie i usuwanie wpisów. Strona jest w pełni responsywna, co gwarantuje przyjazne doświadczenie użytkownika na wszystkich rozmiarach ekranu."
 image: "../../images/project-1.png"
 projectLink: "https://ecommerce-frontend.up.railway.app"
 sourceCodeLink: "https://github.com/V-Mokhun/ecommerce-frontend"

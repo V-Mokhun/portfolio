@@ -1,7 +1,7 @@
 ---
 title: "Charus"
-type: "Corporate Website"
-description: "This project, undertaken on a freelance basis, involved the creation of a corporate website using HTML, SCSS, and JavaScript. Commencing with a Figma design, I collaborated closely with a designer to enhance both the visual appeal and functionality of the site. Beyond the technical aspects, effective communication played a crucial role as I elucidated design nuances to the client. Additionally, I undertook the task of persuading the client regarding the necessity of specific changes aimed at optimizing the overall User Experience."
+type: "Корпоративный сайт"
+description: "Этот проект, выполненный на фрилансе, включал в себя создание корпоративного сайта с использованием HTML, SCSS и JavaScript. Начав с дизайна Figma, я тесно сотрудничал с дизайнером, чтобы улучшить как визуальную привлекательность, так и функциональность сайта. Помимо технических аспектов, важную роль сыграла эффективная коммуникация, в ходе которой я разъяснял клиенту нюансы дизайна. Кроме того, мне пришлось убеждать клиента в необходимости конкретных изменений, направленных на оптимизацию общего пользовательского опыта (UX)".
 image: "../../images/project-3.jpeg"
 projectLink: "https://charus.netlify.app"
 technologies:
