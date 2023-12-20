@@ -1,4 +1,5 @@
 {
+  "name": "Volodymyr",
   "site": {
     "title": "Volodymyr Mokhun | Frontend Developer",
     "description": "Zapoznaj się z moim portfolio jako Front-End Developera React i TypeScript. Zobacz projekty, które prezentują praktyczne, skuteczne rozwiązania internetowe."
@@ -11,7 +12,7 @@
     "contact": "Kontakt"
   },
   "hero": {
-    "title": "Hej, jestem <1>Volodymyr,</1>",
+    "title": "Hej, jestem",
     "titleTooltip": "Właściwie wolę imię <1>Vova</1>, ponieważ jest łatwiejsza do wymówienia i nie brzmi zbyt formalnie.",
     "subtitle": "<0>Front-End Developer</0> z pasją",
     "description": "Dążę do tworzenia najlepszych produktów dla sieci i odkrywania nowych możliwości nowoczesnych technologii. Uczę się przez całe życie i mam też lekką obsesję na punkcie kalisteniki"

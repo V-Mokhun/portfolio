@@ -1,4 +1,5 @@
 {
+  "name": "Volodymyr",
   "site": {
     "title": "Volodymyr Mokhun | Frontend Developer",
     "description": "Explore my portfolio as a React and TypeScript Front-End Developer. See projects that showcase practical, effective web solutions."
@@ -11,7 +12,7 @@
     "contact": "Contact"
   },
   "hero": {
-    "title": "Hey, I'm <1>Volodymyr,</1>",
+    "title": "Hey, I'm",
     "titleTooltip": "I actually prefer the name <1>Vova </1> as it's easier to pronouce and doesn't sound too formal.",
     "subtitle": "a passionate <0>Front-End Developer</0>",
     "description": "I aspire to create best products for the web and explore new possibilities of modern technologies I'm a lifelong learner and I'm also a bit obsessed with calisthenics."

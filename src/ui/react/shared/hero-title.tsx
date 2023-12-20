@@ -10,17 +10,17 @@ import {
 interface HeroTitleProps {}
 
 export const HeroTitle = ({}: HeroTitleProps) => {
+  const { t } = useTranslation();
+
   return (
     <TooltipProvider>
       <Tooltip delayDuration={300}>
         <TooltipTrigger>
           <Title tag="h1" size="lg" className="md:text-left mb-2 md:mb-3 group">
-            <Trans i18nKey="hero.title">
-              Hey, I'm
-              <span className="text-primary md:underline group-hover:no-underline">
-                Volodymyr,
-              </span>
-            </Trans>
+            {t("hero.title")}{" "}
+            <span className="text-primary md:underline group-hover:no-underline">
+              {t("name")},
+            </span>
           </Title>
         </TooltipTrigger>
         <TooltipContent className="hidden md:block max-w-xs">
