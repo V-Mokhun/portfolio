@@ -18,7 +18,7 @@
     "description": "Dążę do tworzenia najlepszych produktów dla sieci i odkrywania nowych możliwości nowoczesnych technologii. Uczę się przez całe życie i mam też lekką obsesję na punkcie kalisteniki"
   },
   "hireMe": "Kontakt",
-  "seePortfolio": "Zobaczyć portfolio",
+  "seePortfolio": "Zobacz portfolio",
   "about": {
     "title": "O mnie",
     "subtitle": "Poznaj mnie",
@@ -35,7 +35,7 @@
     "description": "Kwalifikuję siebie jako programistę <0>React</0>, dlatego jest to moje główne narzędzie do budowania aplikacji webowych. Głównie używam <1>TypeScript</1> kiedy tylko mogę, ale czuję się również komfortowo z <2>JavaScript</2>. <3>Pełna lista używanych przeze mnie technologii znajduje się na <4>liście po prawej stronie</4>, a po najechaniu kursorem na ikony można zobaczyć nazwę technologii. </3>",
     "resume": "Zachęcam również do zapoznania się z moim CV"
   },
-  "seeResume": "Zobaczyć CV",
+  "seeResume": "Zobacz CV",
   "projects": {
     "title": "Projekty",
     "technologies": "Technologie",
