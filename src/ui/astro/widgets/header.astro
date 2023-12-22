@@ -5,6 +5,7 @@ import {
   buttonVariants,
   HeaderNav,
   LangPicker,
+ThemeToggle,
 } from "@/ui/react";
 import Logo from "../shared/logo.astro";
 import { t } from "i18next";
@@ -22,7 +23,7 @@ import { t } from "i18next";
         />
       </div>
       <HeaderNav navClassName="hidden md:flex" />
-      <div class="flex items-center gap-4">
+      <div class="flex items-center gap-3">
         <a
           class={buttonVariants({
             className: "md:text-lg h-9 md:h-11 px-4 sm:px-6",
@@ -30,6 +31,7 @@ import { t } from "i18next";
           href="#contact">{t("nav.contact")}</a
         >
         <LangPicker client:load />
+        <!-- <ThemeToggle client:load /> -->
       </div>
     </div>
   </Container>
