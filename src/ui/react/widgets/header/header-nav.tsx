@@ -22,7 +22,7 @@ export const HeaderNav = ({
     >
       <ul
         className={cn(
-          "flex flex-col md:flex-row md:items-center gap-6 md:gap-2 lg:gap-4 text-white font-medium text-xl",
+          "flex flex-col md:flex-row md:items-center gap-6 md:gap-2 lg:gap-4 text-white dark:text-foreground font-medium text-xl",
           listClassName
         )}
       >

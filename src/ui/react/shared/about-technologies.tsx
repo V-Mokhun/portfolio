@@ -71,7 +71,7 @@ export const AboutTechnologies = () => {
           <li key={label}>
             <Tooltip>
               <TooltipTrigger>
-                <svg className="w-12 h-12 md:w-16 md:h-16 xl:w-20 xl:h-20 transition-colors cursor-pointer fill-zinc-800 hover:fill-primary-hover">
+                <svg className="w-12 h-12 md:w-16 md:h-16 xl:w-20 xl:h-20 transition-colors cursor-pointer fill-zinc-800 dark:fill-slate-200 hover:fill-primary-hover dark:hover:fill-primary-hover">
                   <use xlinkHref={path} />
                 </svg>
               </TooltipTrigger>

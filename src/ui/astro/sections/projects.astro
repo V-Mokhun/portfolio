@@ -17,7 +17,7 @@ const allProjects = await getCollection("projects", ({ id }) => {
       viewBox="0 0 1200 120"
       preserveAspectRatio="none"
     >
-      <path d="M1200 120L0 16.48 0 0 1200 0 1200 120z" class="fill-slate-100"
+      <path d="M1200 120L0 16.48 0 0 1200 0 1200 120z" class="fill-slate-100 dark:fill-background"
       ></path>
     </svg>
   </div>
@@ -52,7 +52,7 @@ const allProjects = await getCollection("projects", ({ id }) => {
                     {proj.data.title}
                   </Title>
                 </a>
-                <p class="text-zinc-500 font-medium mb-2 md:mb-4 text-xl md:text-2xl">
+                <p class="text-zinc-500 dark:text-zinc-400 font-medium mb-2 md:mb-4 text-xl md:text-2xl">
                   {proj.data.type}
                 </p>
                 <p class="mb-2 md:mb-4 text-sm md:text-base text-justify">
@@ -60,7 +60,7 @@ const allProjects = await getCollection("projects", ({ id }) => {
                 </p>
               </div>
               <div class="mb-4">
-                <p class="text-zinc-500 font-medium text-xl md:text-2xl mb-2">
+                <p class="text-zinc-500 dark:text-zinc-400 font-medium text-xl md:text-2xl mb-2">
                   {t("projects.technologies")}
                 </p>
                 <ul class="flex flex-wrap gap-x-4 gap-y-2">
