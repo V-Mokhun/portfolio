@@ -74,7 +74,7 @@ export const HeaderNav = ({
             {t("nav.projects")}
           </a>
         </li>
-        <li className="md:hidden">
+        <li className="lg:hidden">
           <a
             onClick={onLinkClick}
             className={cn(
