@@ -22,10 +22,7 @@ const currentUrl = Astro.url.origin;
       ))
     }
     <title>{t("site.title")}</title>
-    <meta
-      name="description"
-      content={t("site.description")}
-    />
+    <meta name="description" content={t("site.description")} />
 
     <meta
       name="keywords"
@@ -79,9 +76,14 @@ const currentUrl = Astro.url.origin;
 </html>
 
 <script is:inline>
+  const LOCAL_STORAGE_THEME_KEY = "v-mokhun-portfolio-theme";
+
   const theme = (() => {
-    if (typeof localStorage !== "undefined" && localStorage.getItem("theme")) {
-      return localStorage.getItem("theme");
+    if (
+      typeof localStorage !== "undefined" &&
+      localStorage.getItem(LOCAL_STORAGE_THEME_KEY)
+    ) {
+      return localStorage.getItem(LOCAL_STORAGE_THEME_KEY);
     }
     if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
       return "dark";
@@ -94,5 +96,5 @@ const currentUrl = Astro.url.origin;
   } else {
     document.documentElement.classList.add("dark");
   }
-  window.localStorage.setItem("theme", theme);
+  window.localStorage.setItem(LOCAL_STORAGE_THEME_KEY, theme);
 </script>

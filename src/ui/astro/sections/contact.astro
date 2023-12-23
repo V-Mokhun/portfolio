@@ -5,7 +5,9 @@ import { t } from "i18next";
 ---
 
 <section class="relative z-0 contact-section py-16 md:py-20" id="contact">
-  <div class="absolute z-0 top-0 left-0 right-0 bottom-0 bg-white opacity-70 dark:opacity-5">
+  <div
+    class="absolute z-0 top-0 left-0 right-0 bottom-0 bg-white opacity-70 dark:opacity-5"
+  >
   </div>
   <div class="triangle">
     <svg
@@ -34,6 +36,12 @@ import { t } from "i18next";
     background-repeat: no-repeat;
     background-size: cover;
     background-image: url("../../../assets/images/contact-bg.svg");
+  }
+
+  @media only screen and (min-width: 768px) {
+    .contact-section {
+      background-attachment: fixed;
+    }
   }
 
   html:is(.dark) .contact-section {

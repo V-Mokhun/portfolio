@@ -12,14 +12,14 @@ export const LangPicker = ({}: LangPickerProps) => {
   const currentLang = i18n.resolvedLanguage ?? defaultLang;
 
   useEffect(() => {
-    setIsMd(window.matchMedia("(min-width: 768px)").matches);
+    setIsMd(window.matchMedia("(min-width: 1024px)").matches);
   }, []);
 
   if (!isMd) return null;
 
   return (
     <Popover>
-      <PopoverTrigger className="flex items-center text-lg text-white dark:text-foreground hover:text-primary-hover transition-colors data-[state='open']:text-primary-hover">
+      <PopoverTrigger className="flex items-center text-lg text-white dark:text-foreground hover:text-primary-hover dark:hover:text-primary-hover transition-colors data-[state='open']:text-primary-hover">
         <span className="uppercase font-medium">{currentLang}</span>
         <ChevronDown />
       </PopoverTrigger>

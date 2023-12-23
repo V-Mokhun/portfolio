@@ -5,28 +5,28 @@ import {
   buttonVariants,
   HeaderNav,
   LangPicker,
-ThemeToggle,
+  ThemeToggle,
 } from "@/ui/react";
 import Logo from "../shared/logo.astro";
 import { t } from "i18next";
 ---
 
 <header
-  class="bg-background-secondary shadow-lg py-2 md:py-4 fixed left-0 right-0 top-0 z-10"
+  class="bg-background-secondary shadow-lg py-2 lg:py-4 fixed left-0 right-0 top-0 z-10"
 >
   <Container>
-    <div class="flex items-center justify-between gap-3 md:gap-4">
-      <div class="flex flex-1 items-center gap-2 md:flex-initial">
+    <div class="flex items-center justify-between gap-3 lg:gap-4">
+      <div class="flex flex-1 items-center gap-2 lg:flex-initial">
         <HeaderMobileMenu client:load />
         <Logo
-          className="w-full flex justify-center md:w-auto md:inline-block"
+          className="w-full flex justify-center lg:w-auto lg:inline-block"
         />
       </div>
-      <HeaderNav navClassName="hidden md:flex" />
-      <div class="flex items-center gap-2 md:gap-3">
+      <HeaderNav navClassName="hidden lg:flex" />
+      <div class="flex items-center gap-2 lg:gap-3">
         <a
           class={buttonVariants({
-            className: "md:text-lg h-9 md:h-11 px-4 sm:px-6",
+            className: "md:text-lg h-9 lg:h-10 px-4 sm:px-6",
           })}
           href="#contact">{t("nav.contact")}</a
         >

@@ -1,10 +1,11 @@
+import { LOCAL_STORAGE_THEME_KEY } from "@/consts";
 import { MoonIcon, SunIcon } from "lucide-react";
 import { useEffect, useState } from "react";
 
 export const ThemeToggle = ({}) => {
   const [theme, setTheme] = useState(
     typeof localStorage !== "undefined"
-      ? localStorage.getItem("theme") ?? "light"
+      ? localStorage.getItem(LOCAL_STORAGE_THEME_KEY) ?? "light"
       : "light"
   );
   const [isMounted, setIsMounted] = useState(false);
@@ -23,7 +24,7 @@ export const ThemeToggle = ({}) => {
     } else {
       document.documentElement.classList.remove("dark");
     }
-    localStorage.setItem("theme", theme);
+    localStorage.setItem(LOCAL_STORAGE_THEME_KEY, theme);
   }, [theme]);
 
   if (!isMounted) return null;
