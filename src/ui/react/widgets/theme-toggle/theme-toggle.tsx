@@ -1,6 +1,7 @@
 import { LOCAL_STORAGE_THEME_KEY } from "@/consts";
 import { MoonIcon, SunIcon } from "lucide-react";
 import { useEffect, useState } from "react";
+import { Skeleton } from "../..";
 
 export const ThemeToggle = ({}) => {
   const [theme, setTheme] = useState(
@@ -27,7 +28,7 @@ export const ThemeToggle = ({}) => {
     localStorage.setItem(LOCAL_STORAGE_THEME_KEY, theme);
   }, [theme]);
 
-  if (!isMounted) return null;
+  if (!isMounted) return <Skeleton className="w-6 h-6 rounded-md" />;
 
   return (
     <button onClick={handleClick}>

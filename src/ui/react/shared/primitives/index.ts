@@ -10,4 +10,5 @@ export * from "./sheet";
 export * from "./popover";
 export * from "./accordion";
 export * from "./icon";
-export * from './separator';
+export * from "./separator";
+export * from "./skeleton";

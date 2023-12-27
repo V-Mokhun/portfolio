@@ -65,7 +65,32 @@ const currentUrl = Astro.url.origin;
       name="twitter:image"
       content="https://www.v-mokhun.com/og-image.png"
     />
+
+    <script is:inline>
+      const LOCAL_STORAGE_THEME_KEY = "v-mokhun-portfolio-theme";
+
+      const theme = (() => {
+        if (
+          typeof localStorage !== "undefined" &&
+          localStorage.getItem(LOCAL_STORAGE_THEME_KEY)
+        ) {
+          return localStorage.getItem(LOCAL_STORAGE_THEME_KEY);
+        }
+        if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+          return "dark";
+        }
+        return "light";
+      })();
+
+      if (theme === "light") {
+        document.documentElement.classList.remove("dark");
+      } else {
+        document.documentElement.classList.add("dark");
+      }
+      window.localStorage.setItem(LOCAL_STORAGE_THEME_KEY, theme);
+    </script>
   </head>
+
   <body class="flex flex-col h-full">
     <Header />
     <main class="flex-1 pt-[60px] md:pt-[76px]">
@@ -74,27 +99,3 @@ const currentUrl = Astro.url.origin;
     <Footer />
   </body>
 </html>
-
-<script is:inline>
-  const LOCAL_STORAGE_THEME_KEY = "v-mokhun-portfolio-theme";
-
-  const theme = (() => {
-    if (
-      typeof localStorage !== "undefined" &&
-      localStorage.getItem(LOCAL_STORAGE_THEME_KEY)
-    ) {
-      return localStorage.getItem(LOCAL_STORAGE_THEME_KEY);
-    }
-    if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
-      return "dark";
-    }
-    return "light";
-  })();
-
-  if (theme === "light") {
-    document.documentElement.classList.remove("dark");
-  } else {
-    document.documentElement.classList.add("dark");
-  }
-  window.localStorage.setItem(LOCAL_STORAGE_THEME_KEY, theme);
-</script>

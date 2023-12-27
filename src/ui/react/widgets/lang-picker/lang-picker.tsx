@@ -1,31 +1,23 @@
-import { ChevronDown } from "lucide-react";
-import { Popover, PopoverContent, PopoverTrigger } from "../..";
-import { useEffect, useState } from "react";
 import { cn, defaultLang, languages, translatePath } from "@/lib";
+import { ChevronDown } from "lucide-react";
 import { useTranslation } from "react-i18next";
+import { Popover, PopoverContent, PopoverTrigger } from "../..";
 
 interface LangPickerProps {}
 
 export const LangPicker = ({}: LangPickerProps) => {
-  const [isMd, setIsMd] = useState(false);
   const { i18n } = useTranslation();
   const currentLang = i18n.resolvedLanguage ?? defaultLang;
 
-  useEffect(() => {
-    setIsMd(window.matchMedia("(min-width: 1024px)").matches);
-  }, []);
-
-  if (!isMd) return null;
-
   return (
     <Popover>
-      <PopoverTrigger className="flex items-center text-lg text-white dark:text-foreground hover:text-primary-hover dark:hover:text-primary-hover transition-colors data-[state='open']:text-primary-hover">
+      <PopoverTrigger className="hidden lg:flex items-center text-lg text-white dark:text-foreground hover:text-primary-hover dark:hover:text-primary-hover transition-colors data-[state='open']:text-primary-hover">
         <span className="uppercase font-medium">{currentLang}</span>
         <ChevronDown />
       </PopoverTrigger>
       <PopoverContent
         triangleSide="top"
-        className="w-32 py-2"
+        className="hidden lg:block w-32 py-2"
         side="bottom"
         sideOffset={10}
       >
