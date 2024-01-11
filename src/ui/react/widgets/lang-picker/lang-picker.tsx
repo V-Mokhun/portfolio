@@ -11,7 +11,7 @@ export const LangPicker = ({}: LangPickerProps) => {
 
   return (
     <Popover>
-      <PopoverTrigger className="hidden lg:flex items-center text-lg text-white dark:text-foreground hover:text-primary-hover dark:hover:text-primary-hover transition-colors data-[state='open']:text-primary-hover">
+      <PopoverTrigger data-testid="lang-picker-trigger" className="hidden lg:flex items-center text-lg text-white dark:text-foreground hover:text-primary-hover dark:hover:text-primary-hover transition-colors data-[state='open']:text-primary-hover">
         <span className="uppercase font-medium">{currentLang}</span>
         <ChevronDown />
       </PopoverTrigger>

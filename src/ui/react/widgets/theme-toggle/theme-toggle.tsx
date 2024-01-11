@@ -31,7 +31,7 @@ export const ThemeToggle = ({}) => {
   if (!isMounted) return <Skeleton className="w-6 h-6 rounded-md" />;
 
   return (
-    <button onClick={handleClick}>
+    <button data-testid="dark-mode-toggle" onClick={handleClick}>
       {theme === "light" ? (
         <MoonIcon className="text-white w-6 h-6 transition-colors hover:text-primary-hover" />
       ) : (
