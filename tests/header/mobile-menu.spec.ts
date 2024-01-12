@@ -1,6 +1,11 @@
 import { expect, test } from "@playwright/test";
 
-test.use({ isMobile: true, viewport: { width: 640, height: 480 } });
+// Use chromium browser because firefox doesn't support isMobile option
+test.use({
+  isMobile: true,
+  browserName: "chromium",
+  viewport: { width: 640, height: 480 },
+});
 
 test.describe("Header Mobile Menu", () => {
   test.beforeEach(async ({ page }) => {
