@@ -25,4 +25,21 @@ test.describe("About Section", () => {
     await expect(page.locator("#about").getByText("Olsztyn")).toBeInViewport();
   });
 
+  test("External links work", async ({ page }) => {
+    const universityPagePromise = page.waitForEvent("popup");
+    await page
+      .getByRole("link", { name: "University of Warmia and Mazury" })
+      .click();
+    const universityPage = await universityPagePromise;
+    await expect(universityPage).toHaveURL(/uwm/);
+    await universityPage.close();
+
+    const caePagePromise = page.waitForEvent("popup");
+    await page
+      .getByRole("link", { name: "Cambridge C1 Advanced Certification" })
+      .click();
+    const caePage = await caePagePromise;
+    await expect(caePage).toHaveURL(/cambridgeenglish/);
+    await caePage.close();
+  });
 });
