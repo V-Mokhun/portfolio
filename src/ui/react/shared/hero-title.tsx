@@ -16,14 +16,14 @@ export const HeroTitle = ({}: HeroTitleProps) => {
     <TooltipProvider>
       <Tooltip delayDuration={300}>
         <TooltipTrigger>
-          <Title tag="h1" size="lg" className="md:text-left mb-2 md:mb-3 group">
+          <Title data-testid="hero-title" tag="h1" size="lg" className="md:text-left mb-2 md:mb-3 group">
             {t("hero.title")}{" "}
             <span className="text-primary md:underline group-hover:no-underline">
               {t("name")},
             </span>
           </Title>
         </TooltipTrigger>
-        <TooltipContent className="hidden md:block max-w-xs">
+        <TooltipContent data-testid="hero-tooltip" className="hidden md:block max-w-xs">
           <span className="text-lg">
             <Trans i18nKey="hero.titleTooltip">
               I actually prefer the name
