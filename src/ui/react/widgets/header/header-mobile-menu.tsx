@@ -18,10 +18,10 @@ export const HeaderMobileMenu = ({}: HeaderMobileMenuProps) => {
 
   return (
     <Sheet open={isOpen} onOpenChange={(open) => setIsOpen(open)}>
-      <SheetTrigger className="lg:hidden">
+      <SheetTrigger data-testid="mobile-menu-trigger" className="lg:hidden">
         <Icon name="hamburger" className="fill-primary" />
       </SheetTrigger>
-      <SheetContent className="lg:hidden" side="left">
+      <SheetContent className="lg:hidden overflow-y-auto" side="left">
         <HeaderNav
           onLinkClick={() => {
             setIsOpen(false);
