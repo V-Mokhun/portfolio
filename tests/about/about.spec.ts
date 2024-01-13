@@ -1,0 +1,43 @@
+import { expect, test } from "@playwright/test";
+
+test.describe("About Section", () => {
+  test.beforeEach(async ({ page }) => {
+    await page.goto("/");
+    await page.waitForLoadState("networkidle");
+  });
+
+  test("Personal information is visible", async ({ page }) => {
+    await expect(
+      page.getByRole("heading", { name: "About Me" })
+    ).not.toBeInViewport();
+    await page.getByRole("link", { name: "About" }).click();
+
+    await expect(
+      page.getByRole("heading", { name: "About Me" })
+    ).toBeInViewport();
+    await expect(
+      page.locator("#about").getByText("Volodymyr Mokhun")
+    ).toBeInViewport();
+    await expect(
+      page.locator("#about").getByRole("link", { name: "v.mokhun@gmail.com" })
+    ).toBeInViewport();
+  });
+
+  test("External links work", async ({ page }) => {
+    const universityPagePromise = page.waitForEvent("popup");
+    await page
+      .getByRole("link", { name: "University of Warmia and Mazury" })
+      .click();
+    const universityPage = await universityPagePromise;
+    await expect(universityPage).toHaveURL(/uwm/);
+    await universityPage.close();
+
+    const caePagePromise = page.waitForEvent("popup");
+    await page
+      .getByRole("link", { name: "Cambridge C1 Advanced Certification" })
+      .click();
+    const caePage = await caePagePromise;
+    await expect(caePage).toHaveURL(/cambridgeenglish/);
+    await caePage.close();
+  });
+});

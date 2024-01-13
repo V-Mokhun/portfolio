@@ -66,7 +66,7 @@ const TECHNOLOGIES = [
 export const AboutTechnologies = () => {
   return (
     <TooltipProvider>
-      <ul className="flex flex-wrap gap-6">
+      <ul data-testid="technologies-list" className="flex flex-wrap gap-6">
         {TECHNOLOGIES.map(({ label, path }) => (
           <li key={label}>
             <Tooltip>
