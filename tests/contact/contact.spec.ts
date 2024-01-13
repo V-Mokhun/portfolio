@@ -55,14 +55,18 @@ test.describe("Contact Section", () => {
       await route.fulfill({ json });
     });
     await expect(
-      page.getByText("Your message has been sent successfully!", { exact: true })
+      page.getByText("Your message has been sent successfully!", {
+        exact: true,
+      })
     ).not.toBeVisible();
 
     await fillForm(page);
     await page.getByRole("button", { name: "Send Message" }).click();
 
     await expect(
-      page.getByText("Your message has been sent successfully!", { exact: true })
+      page.getByText("Your message has been sent successfully!", {
+        exact: true,
+      })
     ).toBeVisible();
   });
 
