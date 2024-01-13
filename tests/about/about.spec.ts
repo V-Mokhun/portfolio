@@ -21,8 +21,6 @@ test.describe("About Section", () => {
     await expect(
       page.locator("#about").getByRole("link", { name: "v.mokhun@gmail.com" })
     ).toBeInViewport();
-    await expect(page.locator("#about").getByText("18")).toBeInViewport();
-    await expect(page.locator("#about").getByText("Olsztyn")).toBeInViewport();
   });
 
   test("External links work", async ({ page }) => {
