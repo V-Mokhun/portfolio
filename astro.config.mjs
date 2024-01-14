@@ -15,7 +15,7 @@ export default defineConfig({
     react(),
     astroI18next(),
     sentry({
-      dsn: "https://9d17477b35114d30c440aa1d935f8dab@o4506558168039424.ingest.sentry.io/4506558170660864",
+      dsn: process.env.SENTRY_DSN,
       sourceMapsUploadOptions: {
         project: "javascript-astro",
         authToken: process.env.SENTRY_AUTH_TOKEN,
