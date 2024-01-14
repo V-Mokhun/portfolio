@@ -68,13 +68,17 @@ test.describe("Header Mobile Menu", () => {
   });
 
   test("Language picker works", async ({ page }) => {
-    await expect(page.getByRole("button", { name: "en" })).not.toBeInViewport();
+    await expect(
+      page.getByRole("button", { name: "en", exact: true })
+    ).not.toBeInViewport();
     const mobileMenuTrigger = await page.getByTestId("mobile-menu-trigger");
     await mobileMenuTrigger.click();
 
-    await expect(page.getByRole("button", { name: "en" })).toBeInViewport();
+    await expect(
+      page.getByRole("button", { name: "en", exact: true })
+    ).toBeInViewport();
     await expect(page.getByRole("button", { name: "pl" })).not.toBeInViewport();
-    await page.getByRole("button", { name: "en" }).click();
+    await page.getByRole("button", { name: "en", exact: true }).click();
     await expect(page.getByRole("link", { name: "Polski" })).toBeInViewport();
 
     // Change to Polish
@@ -91,7 +95,9 @@ test.describe("Header Mobile Menu", () => {
     // Change back to English
     await mobileMenuTrigger.click();
     await expect(page.getByRole("button", { name: "pl" })).toBeInViewport();
-    await expect(page.getByRole("button", { name: "en" })).not.toBeInViewport();
+    await expect(
+      page.getByRole("button", { name: "en", exact: true })
+    ).not.toBeInViewport();
     await page.getByRole("button", { name: "pl" }).click();
 
     await page.getByRole("link", { name: "English" }).click();
