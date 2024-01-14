@@ -30,6 +30,8 @@ There also is a language switcher that changes the language of the site: English
 
 The website also implements a theme switcher that changes the theme of the site: light and dark are supported.
 
+E2E tests are implemented using Playwright.
+
 The website is fully responsive and works on all screen sizes.
 
 <p align="right">(<a href="#portfolio">back to top</a>)</p>
@@ -45,6 +47,8 @@ The website is fully responsive and works on all screen sizes.
 - [![ReactHookForm][ReactHookForm.com]][ReactHookForm-url] For Form Handling
 
 - [![Zod][Zod.dev]][Zod-url] For Form Validation
+
+- [![Playwright][Playwright.dev]][Playwright-url] For E2E Testing
 
 <p align="right">(<a href="#portfolio">back to top</a>)</p>
 
@@ -75,3 +79,5 @@ Project Link: [https://v-mokhun.com](https://v-mokhun.com)
 [RadixUI-url]: https://www.radix-ui.com/
 [Zod.dev]: https://img.shields.io/static/v1?style=for-the-badge&message=Zod&color=3E67B1&logo=Zod&logoColor=FFFFFF&label=
 [Zod-url]: https://zod.dev/
+[Playwright.dev]: https://img.shields.io/static/v1?style=for-the-badge&message=Playwright&color=2EAD33&logo=Playwright&logoColor=FFFFFF&label=
+[Playwright-url]: https://playwright.dev/
