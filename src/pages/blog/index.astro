@@ -2,17 +2,13 @@
 import { POSTS_PER_PAGE } from "@/consts";
 import Layout from "@/layouts/layout.astro";
 import PostCard from "@/ui/astro/widgets/post-card.astro";
-import { Container, Title } from "@/ui/react";
+import { Container, Pagination } from "@/ui/react";
 import type { CollectionEntry } from "astro:content";
 import { getCollection } from "astro:content";
 
 export const prerender = true;
 
-const currentPage =
-  Astro.url.searchParams.get("page") != undefined &&
-  +Astro.url.searchParams.get("page")! > 0
-    ? +Astro.url.searchParams.get("page")!
-    : 1;
+const currentPage = +Astro.url.searchParams.get("page")! || 1;
 
 const allBlogPosts: CollectionEntry<"blog">[] = (
   await getCollection("blog")
@@ -33,19 +29,30 @@ const postsForPage = allBlogPosts.slice(
   <section class="h-full pb-10 md:pb-12 -mt-6 lg:mt-0">
     <div class="bg-background-secondary pt-10 md:pt-12 pb-72">
       <Container className="mb-20">
-        <h1 class="text-7xl leading-none font-semibold mb-3 text-white dark:text-foreground">
+        <h1
+          class="text-7xl leading-none font-semibold mb-3 text-white dark:text-foreground"
+        >
           Blog
         </h1>
-        <h2 class="text-3xl leading-tight font-medium text-zinc-300 dark:text-zinc-400 max-w-xl">
+        <h2
+          class="text-3xl leading-tight font-medium text-zinc-300 dark:text-zinc-400 max-w-xl"
+        >
           Just describing some of my thoughts, sharing things I find
           interesting, and documenting my journey as a developer
         </h2>
       </Container>
     </div>
     <Container>
-      <div class="grid grid-cols-1 gap-4 md:grid-cols-2 -mt-72">
+      <div class="grid grid-cols-1 gap-4 md:grid-cols-2 -mt-72 mb-10">
         {postsForPage.map((post) => <PostCard post={post} />)}
       </div>
+      <Pagination
+        client:visible
+        totalPages={totalPages}
+        currentPage={currentPage}
+        disableNext={currentPage === totalPages}
+        disablePrevious={currentPage === 1}
+      />
     </Container>
-  </section>
-</Layout>
+  </section></Layout
+>
