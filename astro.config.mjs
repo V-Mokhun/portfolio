@@ -16,13 +16,13 @@ export default defineConfig({
     }),
     react(),
     astroI18next(),
-    sentry({
-      dsn: SENTRY_DSN,
-      sourceMapsUploadOptions: {
-        project: "javascript-astro",
-        authToken: SENTRY_AUTH_TOKEN,
-      },
-    }),
+    // sentry({
+    //   dsn: SENTRY_DSN,
+    //   sourceMapsUploadOptions: {
+    //     project: "javascript-astro",
+    //     authToken: SENTRY_AUTH_TOKEN,
+    //   },
+    // }),
   ],
   image: {
     service: passthroughImageService(),

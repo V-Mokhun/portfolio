@@ -1,4 +1,5 @@
 import { cn } from "@/lib";
+import { ExternalLink } from "lucide-react";
 import { useTranslation } from "react-i18next";
 
 interface HeaderNavProps {
@@ -26,14 +27,14 @@ export const HeaderNav = ({
           listClassName
         )}
       >
-        <li>
+        <li className="lg:hidden">
           <a
             onClick={onLinkClick}
             className={cn(
               "transition-colors hover:text-primary p-2",
               linkClassName
             )}
-            href="#"
+            href="/#"
           >
             {t("nav.home")}
           </a>
@@ -45,7 +46,7 @@ export const HeaderNav = ({
               "transition-colors hover:text-primary p-2",
               linkClassName
             )}
-            href="#about"
+            href="/#about"
           >
             {t("nav.about")}
           </a>
@@ -57,7 +58,7 @@ export const HeaderNav = ({
               "transition-colors hover:text-primary p-2",
               linkClassName
             )}
-            href="#technologies"
+            href="/#technologies"
           >
             {t("nav.technologies")}
           </a>
@@ -69,7 +70,7 @@ export const HeaderNav = ({
               "transition-colors hover:text-primary p-2",
               linkClassName
             )}
-            href="#projects"
+            href="/#projects"
           >
             {t("nav.projects")}
           </a>
@@ -81,9 +82,22 @@ export const HeaderNav = ({
               "transition-colors hover:text-primary p-2",
               linkClassName
             )}
-            href="#contact"
+            href="/#contact"
           >
             {t("nav.contact")}
+          </a>
+        </li>
+        <li>
+          <a
+            onClick={onLinkClick}
+            className={cn(
+              "inline-flex items-center gap-1 transition-colors hover:text-primary p-2",
+              linkClassName
+            )}
+            href="/blog"
+          >
+            <span>{t("nav.blog")}</span>
+            <ExternalLink className="w-5 h-5" />
           </a>
         </li>
       </ul>
