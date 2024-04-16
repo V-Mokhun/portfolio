@@ -17,8 +17,9 @@ const allProjects = await getCollection("projects", ({ id }) => {
       viewBox="0 0 1200 120"
       preserveAspectRatio="none"
     >
-      <path d="M1200 120L0 16.48 0 0 1200 0 1200 120z" class="fill-slate-100 dark:fill-background"
-      ></path>
+      <path
+        d="M1200 120L0 16.48 0 0 1200 0 1200 120z"
+        class="fill-slate-100 dark:fill-background"></path>
     </svg>
   </div>
   <Container>
@@ -28,7 +29,7 @@ const allProjects = await getCollection("projects", ({ id }) => {
         allProjects.map((proj) => (
           <li class="flex flex-1 md:flex-[0_1_calc(50%-12px)] flex-col rounded-lg gap-2 bg-background">
             <a
-              class="flex justify-center"
+              class="flex justify-center group"
               href={proj.data.projectLink}
               target="_blank"
               rel="noopener noreferrer"
@@ -37,7 +38,7 @@ const allProjects = await getCollection("projects", ({ id }) => {
                 src={proj.data.image}
                 alt={proj.data.title}
                 height={288}
-                class="object-cover rounded-t-lg w-full"
+                class="object-cover rounded-t-lg w-full transition-opacity group-hover:opacity-75"
               />
             </a>
             <div class="flex flex-col h-full p-2 pb-4 md:p-4 md:pt-2">
@@ -48,7 +49,11 @@ const allProjects = await getCollection("projects", ({ id }) => {
                   rel="noopener noreferrer"
                   class="hover:text-primary-hover transition-colors"
                 >
-                  <Title tag="h3" size="sm" className="mb-0 md:mb-2 dark:text-inherit">
+                  <Title
+                    tag="h3"
+                    size="sm"
+                    className="mb-0 md:mb-2 dark:text-inherit"
+                  >
                     {proj.data.title}
                   </Title>
                 </a>

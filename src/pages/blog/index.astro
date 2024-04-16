@@ -1,17 +1,48 @@
 ---
-import { changeLanguage } from "i18next";
+import { POSTS_PER_PAGE } from "@/consts";
 import Layout from "@/layouts/layout.astro";
+import PostCard from "@/ui/astro/widgets/post-card.astro";
 import { Container, Title } from "@/ui/react";
-
-// changeLanguage("en");
+import type { CollectionEntry } from "astro:content";
+import { getCollection } from "astro:content";
 
 export const prerender = true;
+
+const currentPage =
+  Astro.url.searchParams.get("page") != undefined &&
+  +Astro.url.searchParams.get("page")! > 0
+    ? +Astro.url.searchParams.get("page")!
+    : 1;
+
+const allBlogPosts: CollectionEntry<"blog">[] = (
+  await getCollection("blog")
+).sort(
+  (a: CollectionEntry<"blog">, b: CollectionEntry<"blog">) =>
+    b.data.date.valueOf() - a.data.date.valueOf()
+);
+
+const totalPages = Math.ceil(allBlogPosts.length / POSTS_PER_PAGE);
+
+const postsForPage = allBlogPosts.slice(
+  (currentPage - 1) * POSTS_PER_PAGE,
+  currentPage * POSTS_PER_PAGE
+);
 ---
 
 <Layout>
   <section class="h-full py-10 md:py-12">
     <Container>
-      <Title tag="h1" size="lg">Blog</Title>
+      <Title tag="h1" size="lg" className="md:mb-4">Blog</Title>
+      <Title
+        tag="h2"
+        size="sm"
+        className="font-medium text-zinc-500 dark:text-zinc-400 max-w-xl"
+        >Just describing some of my thoughts, sharing things I find interesting,
+        and documenting my journey as a developer</Title
+      >
+      <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
+        {postsForPage.map((post) => <PostCard post={post} />)}
+      </div>
     </Container>
   </section>
 </Layout>

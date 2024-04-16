@@ -5,27 +5,28 @@ import { defineConfig, passthroughImageService } from "astro/config";
 import vercel from "@astrojs/vercel/serverless";
 import sentry from "@sentry/astro";
 import { loadEnv } from "vite";
+import mdx from "@astrojs/mdx";
+const {
+  SENTRY_DSN,
+  SENTRY_AUTH_TOKEN
+} = loadEnv(process.env.NODE_ENV, process.cwd(), "");
 
-const { SENTRY_DSN, SENTRY_AUTH_TOKEN } = loadEnv(process.env.NODE_ENV, process.cwd(), "");
-
+// https://astro.build/config
 export default defineConfig({
   output: "server",
-  integrations: [
-    tailwind({
-      applyBaseStyles: false,
-    }),
-    react(),
-    astroI18next(),
-    // sentry({
-    //   dsn: SENTRY_DSN,
-    //   sourceMapsUploadOptions: {
-    //     project: "javascript-astro",
-    //     authToken: SENTRY_AUTH_TOKEN,
-    //   },
-    // }),
-  ],
+  integrations: [tailwind({
+    applyBaseStyles: false
+  }), react(), astroI18next()
+  // sentry({
+  //   dsn: SENTRY_DSN,
+  //   sourceMapsUploadOptions: {
+  //     project: "javascript-astro",
+  //     authToken: SENTRY_AUTH_TOKEN,
+  //   },
+  // }),
+  , mdx()],
   image: {
-    service: passthroughImageService(),
+    service: passthroughImageService()
   },
-  adapter: vercel(),
+  adapter: vercel()
 });

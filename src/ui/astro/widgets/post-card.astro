@@ -1,0 +1,44 @@
+---
+import { formatDate } from "@/lib";
+import { Image } from "astro:assets";
+import type { CollectionEntry } from "astro:content";
+import { Timer } from "lucide-react";
+
+interface Props {
+  post: CollectionEntry<"blog">;
+}
+const { post } = Astro.props;
+---
+
+<article class="flex flex-col rounded-b-md shadow-sm">
+  <a href={`/blog/${post.slug}`} class="group">
+    <Image
+      src={post.data.image}
+      alt={post.data.imageAlt}
+      class="max-w-full h-auto object-cover transition-opacity group-hover:opacity-75"
+    />
+  </a>
+  <div class="p-4 pt-6 flex flex-col h-full">
+    <h3
+      class="text-3xl font-semibold leading-none tracking-tight mb-3 transition-colors hover:text-primary-hover"
+    >
+      <a href={`/blog/${post.slug}`}>
+        {post.data.title}
+      </a>
+    </h3>
+    <p class="text-base mb-4 peer flex-1">{post.data.excerpt}</p>
+    <div class="flex items-center justify-between gap-2 text-sm">
+      <span class="inline-flex items-center gap-1">
+        <Timer className="w-4 h-4" />
+        {formatDate(post.data.date)}
+      </span>
+      {
+        post.data.category && (
+          <span class="inline-flex items-center rounded-sm px-2.5 py-0.5 font-medium bg-background-secondary text-primary-foreground shadow">
+            {post.data.category}
+          </span>
+        )
+      }
+    </div>
+  </div>
+</article>
