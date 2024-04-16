@@ -2,7 +2,7 @@
 import Layout from "@/layouts/layout.astro";
 import { getEntryBySlug } from "astro:content";
 import { formatDate } from "@/lib";
-import { Title } from "@/ui/react";
+import { Container, Title } from "@/ui/react";
 import { Layers3 } from "lucide-react";
 import { Image } from "astro:assets";
 
@@ -18,27 +18,29 @@ const { Content } = await entry.render();
 ---
 
 <Layout>
-  <article>
-    <Title tag="h1">{entry.data.title}</Title>
-    <h3 class="text-lg italic inline-flex items-center gap-2 mb-2">
-      <span>
-        {formatDate(entry.data.date)}
-      </span>
-      {
-        entry.data.category && (
-          <span class="inline-flex items-center gap-1">
-            <Layers3 className="h-4 w-4 text-primary" />
-            {entry.data.category}
-            <Layers3 className="h-4 w-4 text-primary" />
-          </span>
-        )
-      }
-    </h3>
-    <Image
-      src={entry.data.image}
-      alt={entry.data.imageAlt}
-      class="w-full h-96 object-cover mb-4"
-    />
-    <Content />
-  </article>
+  <Container>
+    <article class="py-8">
+      <Title tag="h1" size="lg" className="md:mb-4">{entry.data.title}</Title>
+      <h3 class="text-md italic inline-flex items-center gap-4 mb-2">
+        <time datetime={entry.data.date.toLocaleDateString()}>
+          {formatDate(entry.data.date)}
+        </time>
+        {
+          entry.data.category && (
+            <span class="inline-flex items-center gap-1">
+              <Layers3 className="h-4 w-4 text-primary" />
+              {entry.data.category}
+              <Layers3 className="h-4 w-4 text-primary" />
+            </span>
+          )
+        }
+      </h3>
+      <Image
+        src={entry.data.image}
+        alt={entry.data.imageAlt}
+        class="w-full h-96 object-cover mb-4"
+      />
+      <Content />
+    </article>
+  </Container>
 </Layout>

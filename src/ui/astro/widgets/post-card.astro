@@ -10,15 +10,15 @@ interface Props {
 const { post } = Astro.props;
 ---
 
-<article class="flex flex-col rounded-b-md shadow-sm">
+<article class="flex flex-col shadow-sm">
   <a href={`/blog/${post.slug}`} class="group">
     <Image
       src={post.data.image}
       alt={post.data.imageAlt}
-      class="max-w-full h-auto object-cover transition-opacity group-hover:opacity-75"
+      class="max-w-full h-full max-h-72 object-cover transition-opacity group-hover:opacity-75"
     />
   </a>
-  <div class="p-4 pt-6 flex flex-col h-full">
+  <div class="rounded-b-md p-4 pt-6 flex flex-col h-full bg-white dark:bg-zinc-800">
     <h3
       class="text-3xl font-semibold leading-none tracking-tight mb-3 transition-colors hover:text-primary-hover"
     >
@@ -28,10 +28,13 @@ const { post } = Astro.props;
     </h3>
     <p class="text-base mb-4 peer flex-1">{post.data.excerpt}</p>
     <div class="flex items-center justify-between gap-2 text-sm">
-      <span class="inline-flex items-center gap-1">
+      <time
+        class="inline-flex items-center gap-1"
+        datetime={post.data.date.toLocaleDateString()}
+      >
         <Timer className="w-4 h-4" />
         {formatDate(post.data.date)}
-      </span>
+      </time>
       {
         post.data.category && (
           <span class="inline-flex items-center rounded-sm px-2.5 py-0.5 font-medium bg-background-secondary text-primary-foreground shadow">
