@@ -6,6 +6,12 @@ import Header from "@/ui/astro/widgets/header.astro";
 import i18next, { t } from "i18next";
 
 const currentUrl = Astro.url.origin;
+
+interface Props {
+  title?: string;
+}
+
+const { title } = Astro.props;
 ---
 
 <!doctype html>
@@ -21,7 +27,7 @@ const currentUrl = Astro.url.origin;
         />
       ))
     }
-    <title>{t("site.title")}</title>
+    <title>{title || t("site.title")}</title>
     <meta name="description" content={t("site.description")} />
 
     <meta
@@ -35,11 +41,11 @@ const currentUrl = Astro.url.origin;
     <!-- Facebook Meta Tags -->
     <meta
       property="og:title"
-      content="Volodymyr Mokhun | Front-End developer"
+      content="Volodymyr Mokhun - Front-End developer"
     />
     <meta
       property="og:site_name"
-      content="Volodymyr Mokhun | Front-End developer"
+      content="Volodymyr Mokhun - Front-End developer"
     />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://www.v-mokhun.com/" />
@@ -55,7 +61,7 @@ const currentUrl = Astro.url.origin;
     <meta property="twitter:url" content="https://www.v-mokhun.com/" />
     <meta
       name="twitter:title"
-      content="Volodymyr Mokhun | Front-End developer"
+      content="Volodymyr Mokhun - Front-End Developer"
     />
     <meta
       name="twitter:description"

@@ -4,7 +4,7 @@ import { formatDate } from "@/lib";
 import { Container, Title } from "@/ui/react";
 import { Image } from "astro:assets";
 import { getEntryBySlug } from "astro:content";
-import { X } from "lucide-react";
+import { ArrowLeft, X } from "lucide-react";
 
 const { slug } = Astro.params;
 
@@ -105,34 +105,60 @@ const { Content } = await entry.render();
   }
 </style>
 
-<Layout>
-  <Container className="max-w-[70ch]">
-    <article class="py-8 text-justify">
-      <p class="text-zinc-500 dark:text-zinc-400 flex items-center gap-3">
-        <span>
-          Published {" "}
-          <time class="italic" datetime={entry.data.date.toLocaleDateString()}>
-            {formatDate(entry.data.date)}
-          </time>
-        </span>
-        {
-          entry.data.category && (
-            <>
-              <X className="h-5 w-5 text-primary stroke-[4px]" />
-              <span class="">{entry.data.category}</span>
-            </>
-          )
-        }
-      </p>
-      <h1 class="text-5xl leading-tight font-semibold mb-6">
-        {entry.data.title}
-      </h1>
-      <Image
-        src={entry.data.image}
-        alt={entry.data.imageAlt}
-        class="w-full h-full object-cover mb-4"
-      />
-      <Content />
-    </article>
-  </Container>
+<!-- 
+  - Add "All Posts" back link to the top of the page
+  - Add "Found an issue" block at the bottom of the page
+  - Style blockquotes
+  - Add social medias to the top alongside the date
+  - Add meta tags for SEO
+  - Add View Transitions
+  - Figure out next and prev blog posts
+ -->
+
+<Layout title={`${entry.data.title} - Volodymyr Mokhun`}>
+  <div
+    class="flex flex-col lg:flex-row items-start pt-4 pb-8 lg:pt-8 max-w-[70ch] lg:max-w-6xl mx-auto px-3 md:px-5"
+  >
+    <a
+      class="lg:text-zinc-500 lg:dark:text-zinc-400 transition-colors lg:hover:text-primary-hover lg:dark:hover:text-primary-hover inline-flex items-center gap-1 bg-transparent border lg:border-0 border-zinc-500 dark:border-zinc-400 hover:bg-primary lg:hover:bg-transparent hover:text-primary-foreground hover:border-transparent px-3 py-1 rounded-sm lg:p-0 font-semibold lg:font-normal mb-8 lg:mb-0"
+      href="/blog"
+    >
+      <ArrowLeft className="w-4 h-4" />
+      <span>All Posts</span>
+    </a>
+    <div class="max-w-[70ch] mx-auto">
+      <article class="text-justify">
+        <p
+          class="text-zinc-500 dark:text-zinc-400 flex items-center gap-3 my-0"
+        >
+          <span>
+            Published {" "}
+            <time
+              class="italic"
+              datetime={entry.data.date.toLocaleDateString()}
+            >
+              {formatDate(entry.data.date)}
+            </time>
+          </span>
+          {
+            entry.data.category && (
+              <>
+                <X className="h-5 w-5 text-primary stroke-[4px]" />
+                <span class="">{entry.data.category}</span>
+              </>
+            )
+          }
+        </p>
+        <h1 class="text-5xl leading-tight font-semibold mb-6">
+          {entry.data.title}
+        </h1>
+        <Image
+          src={entry.data.image}
+          alt={entry.data.imageAlt}
+          class="w-full h-full object-cover mb-4"
+        />
+        <Content />
+      </article>
+    </div>
+  </div>
 </Layout>
