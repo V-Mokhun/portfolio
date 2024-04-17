@@ -1,10 +1,10 @@
 ---
 import Layout from "@/layouts/layout.astro";
-import { getEntryBySlug } from "astro:content";
 import { formatDate } from "@/lib";
 import { Container, Title } from "@/ui/react";
-import { Layers3 } from "lucide-react";
 import { Image } from "astro:assets";
+import { getEntryBySlug } from "astro:content";
+import { X } from "lucide-react";
 
 const { slug } = Astro.params;
 
@@ -17,28 +17,120 @@ if (entry === undefined) {
 const { Content } = await entry.render();
 ---
 
+<style is:global>
+  article {
+    h2,
+    h3,
+    h4 {
+      position: relative;
+      line-height: 1.5;
+      font-weight: 600;
+
+      &::after {
+        content: "";
+        position: absolute;
+        bottom: -0.5rem;
+        left: 0;
+        width: 5rem;
+        height: 4px;
+        background-color: hsl(var(--primary));
+      }
+    }
+
+    h2 {
+      margin: 2rem 0;
+      font-size: 2.25rem;
+    }
+
+    h3 {
+      margin: 1.875rem 0;
+      font-size: 1.875rem;
+    }
+
+    h4 {
+      margin: 1.75rem 0;
+      font-size: 1.5rem;
+    }
+
+    ul,
+    ol,
+    blockquote,
+    p,
+    pre {
+      margin: 1rem 0;
+    }
+
+    p {
+      font-size: 1.25rem;
+      line-height: 1.65;
+      font-weight: 400;
+    }
+
+    a {
+      color: hsl(var(--primary));
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+
+    ul,
+    ol {
+      font-weight: 400;
+      padding-left: 2rem;
+    }
+
+    ul li {
+      list-style-type: square;
+
+      &::marker {
+        color: hsl(var(--primary));
+      }
+    }
+
+    ol li {
+      list-style-type: decimal;
+    }
+
+    li {
+      margin: 0.25rem 0;
+      font-size: 1.25rem;
+      line-height: 1.65;
+
+      ul,
+      ol {
+        margin: 0;
+      }
+    }
+  }
+</style>
+
 <Layout>
-  <Container>
-    <article class="py-8">
-      <Title tag="h1" size="lg" className="md:mb-4">{entry.data.title}</Title>
-      <h3 class="text-md italic inline-flex items-center gap-4 mb-2">
-        <time datetime={entry.data.date.toLocaleDateString()}>
-          {formatDate(entry.data.date)}
-        </time>
+  <Container className="max-w-[70ch]">
+    <article class="py-8 text-justify">
+      <p class="text-zinc-500 dark:text-zinc-400 flex items-center gap-3">
+        <span>
+          Published {" "}
+          <time class="italic" datetime={entry.data.date.toLocaleDateString()}>
+            {formatDate(entry.data.date)}
+          </time>
+        </span>
         {
           entry.data.category && (
-            <span class="inline-flex items-center gap-1">
-              <Layers3 className="h-4 w-4 text-primary" />
-              {entry.data.category}
-              <Layers3 className="h-4 w-4 text-primary" />
-            </span>
+            <>
+              <X className="h-5 w-5 text-primary stroke-[4px]" />
+              <span class="">{entry.data.category}</span>
+            </>
           )
         }
-      </h3>
+      </p>
+      <h1 class="text-5xl leading-tight font-semibold mb-6">
+        {entry.data.title}
+      </h1>
       <Image
         src={entry.data.image}
         alt={entry.data.imageAlt}
-        class="w-full h-96 object-cover mb-4"
+        class="w-full h-full object-cover mb-4"
       />
       <Content />
     </article>
