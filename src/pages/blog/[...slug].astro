@@ -1,7 +1,7 @@
 ---
 import Layout from "@/layouts/layout.astro";
 import { formatDate } from "@/lib";
-import { Container, Icon, Title } from "@/ui/react";
+import { Icon } from "@/ui/react";
 import { Image } from "astro:assets";
 import { getEntryBySlug } from "astro:content";
 import { ArrowLeft, X } from "lucide-react";
@@ -147,7 +147,6 @@ const { Content } = await entry.render();
 </style>
 
 <!-- 
-  - Add "Found an issue" block at the bottom of the page
   - Style blockquotes
   - Add meta tags for SEO
   - Add View Transitions
@@ -227,13 +226,17 @@ const { Content } = await entry.render();
             </li>
           </ul>
         </div>
-        <h1 class="text-4xl sm:text-5xl leading-tight font-semibold mb-6">
+        <h1
+          transition:name={`${entry.slug} title`}
+          class="text-4xl sm:text-5xl leading-tight font-semibold mb-6"
+        >
           {entry.data.title}
         </h1>
         <Image
           src={entry.data.image}
           alt={entry.data.imageAlt}
           class="w-full h-full object-cover mb-4"
+          transition:name={`${entry.slug} image`}
         />
         <Content />
       </article>
