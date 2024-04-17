@@ -46,7 +46,7 @@ const postsForPage = allBlogPosts.slice(
       {
         postsForPage.length > 0 ? (
           <>
-            <div class="grid grid-cols-1 gap-6 md:gap-4 md:grid-cols-2 -mt-12 md:-mt-48 lg:-mt-72 mb-10">
+            <div class="grid grid-cols-1 gap-6 md:gap-x-4 md:grid-cols-2 -mt-12 md:-mt-48 lg:-mt-72 mb-10">
               {postsForPage.map((post) => (
                 <PostCard post={post} />
               ))}

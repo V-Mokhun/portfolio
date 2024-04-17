@@ -89,11 +89,11 @@
     line-height: 1.5;
     border-radius: 0.5rem;
     box-shadow: 0 0 2px 0 #0003;
-    width: 110%;
-    margin-left: -5%;
     white-space: break-spaces;
+    margin: 0.75rem -0.75rem;
     overflow-x: auto;
     hyphens: none;
+    text-align: start;
   }
 
   :not(pre) > code {

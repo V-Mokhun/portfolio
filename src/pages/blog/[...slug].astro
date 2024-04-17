@@ -55,8 +55,7 @@ const { Content } = await entry.render();
     ul,
     ol,
     blockquote,
-    p,
-    pre {
+    p {
       margin: 1rem 0;
     }
 
@@ -113,8 +112,7 @@ const { Content } = await entry.render();
       ul,
       ol,
       blockquote,
-      p,
-      pre {
+      p {
         margin: 0.75rem 0;
       }
 
@@ -239,6 +237,31 @@ const { Content } = await entry.render();
         />
         <Content />
       </article>
+      <div
+        class="mt-6 md:mt-8 space-y-3 py-3 md:py-4 px-4 md:px-8 border-l-4 border-primary leading-relaxed bg-slate-200 dark:bg-zinc-800 text-justify font-mono text-sm md:text-base"
+      >
+        <p>
+          Do you notice any problems with this post? Do you have suggestions for
+          clarifying, updating, or adding to it?
+        </p>
+        <p>
+          Feel free to make edits on Github, as any improvement, no matter how
+          minor, is welcomed!
+        </p>
+        <p>
+          <!-- TODO: change href -->
+          <a
+            aria-label="GitHub"
+            target="_blank"
+            rel="noopener noreferrer"
+            href="https://github.com/V-Mokhun"
+            class="inline-flex items-center gap-1 underline text-foreground dark:text-white hover:underline"
+          >
+            <Icon className="w-5 h-5" name="github" />
+            <span>Edit</span>
+          </a>
+        </p>
+      </div>
     </div>
   </div>
 </Layout>
