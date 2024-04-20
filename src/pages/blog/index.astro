@@ -6,8 +6,6 @@ import { Container, Pagination, buttonVariants } from "@/ui/react";
 import type { CollectionEntry } from "astro:content";
 import { getCollection } from "astro:content";
 
-export const prerender = true;
-
 const currentPage = +Astro.url.searchParams.get("page")! || 1;
 
 const allBlogPosts: CollectionEntry<"blog">[] = (

@@ -6,6 +6,12 @@ import { Icon } from "@/ui/react";
 import { getCollection, type CollectionEntry } from "astro:content";
 import { ArrowLeft } from "lucide-react";
 
+export async function getStaticPaths() {
+  const posts: CollectionEntry<"blog">[] = await getCollection("blog");
+
+  return posts.map(({ slug }) => ({ params: { slug } }));
+}
+
 const { slug } = Astro.params;
 
 if (!slug) {
@@ -15,6 +21,7 @@ if (!slug) {
 const blogPosts: CollectionEntry<"blog">[] = (await getCollection("blog")).sort(
   (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
 );
+
 const entryIdx = blogPosts.findIndex((post) => post.slug === slug);
 
 if (entryIdx === -1) {
@@ -29,130 +36,106 @@ const { Content } = await entry.render();
 ---
 
 <style is:global>
-  article {
-    h2,
-    h3,
-    h4 {
-      position: relative;
-      line-height: 1.5;
-      font-weight: 600;
-
-      &::after {
-        content: "";
-        position: absolute;
-        bottom: -0.5rem;
-        left: 0;
-        width: 5rem;
-        height: 4px;
-        background-color: hsl(var(--primary));
-      }
+  article h2,
+  article h3,
+  article h4 {
+    position: relative;
+    line-height: 1.5;
+    font-weight: 600;
+  }
+  article h2::after,
+  article h3::after,
+  article h4::after {
+    content: "";
+    position: absolute;
+    bottom: -0.5rem;
+    left: 0;
+    width: 5rem;
+    height: 4px;
+    background-color: hsl(var(--primary));
+  }
+  article h2 {
+    margin: 2rem 0;
+    font-size: 2.25rem;
+  }
+  article h3 {
+    margin: 1.875rem 0;
+    font-size: 1.875rem;
+  }
+  article h4 {
+    margin: 1.75rem 0;
+    font-size: 1.5rem;
+  }
+  article ul,
+  article ol,
+  article blockquote,
+  article p {
+    margin: 1rem 0;
+  }
+  article p {
+    font-size: 1.25rem;
+    line-height: 1.65;
+    font-weight: 400;
+  }
+  article a {
+    color: hsl(var(--primary));
+  }
+  article a:hover {
+    text-decoration: underline;
+  }
+  article .socials a:hover {
+    color: hsl(var(--primary-hover));
+  }
+  article ul,
+  article ol {
+    font-weight: 400;
+    padding-left: 2rem;
+  }
+  article ul li {
+    list-style-type: square;
+  }
+  article ul li::marker {
+    color: hsl(var(--primary));
+  }
+  article ol li {
+    list-style-type: decimal;
+  }
+  article li {
+    margin: 0.25rem 0;
+    font-size: 1.25rem;
+    line-height: 1.65;
+  }
+  article li ul,
+  article li ol {
+    margin: 0;
+  }
+  @media (max-width: 768px) {
+    article ul,
+    article ol,
+    article blockquote,
+    article p {
+      margin: 0.75rem 0;
     }
-
-    h2 {
-      margin: 2rem 0;
-      font-size: 2.25rem;
+    article ul,
+    article ol {
+      padding-left: 1rem;
     }
-
-    h3 {
-      margin: 1.875rem 0;
-      font-size: 1.875rem;
+    article p,
+    article li {
+      font-size: 1.125rem;
     }
-
-    h4 {
+    article h2,
+    article h3 {
       margin: 1.75rem 0;
+    }
+    article h2 {
+      font-size: 1.75rem;
+    }
+    article h3 {
       font-size: 1.5rem;
     }
-
-    ul,
-    ol,
-    blockquote,
-    p {
-      margin: 1rem 0;
-    }
-
-    p {
-      font-size: 1.25rem;
-      line-height: 1.65;
-      font-weight: 400;
-    }
-
-    a {
-      color: hsl(var(--primary));
-    }
-
-    a:hover {
-      text-decoration: underline;
-    }
-
-    .socials a:hover {
-      color: hsl(var(--primary-hover));
-    }
-
-    ul,
-    ol {
-      font-weight: 400;
-      padding-left: 2rem;
-    }
-
-    ul li {
-      list-style-type: square;
-
-      &::marker {
-        color: hsl(var(--primary));
-      }
-    }
-
-    ol li {
-      list-style-type: decimal;
-    }
-
-    li {
-      margin: 0.25rem 0;
-      font-size: 1.25rem;
-      line-height: 1.65;
-
-      ul,
-      ol {
-        margin: 0;
-      }
-    }
-  }
-
-  @media (max-width: 768px) {
-    article {
-      ul,
-      ol,
-      blockquote,
-      p {
-        margin: 0.75rem 0;
-      }
-
-      ul,
-      ol {
-        padding-left: 1rem;
-      }
-
-      p,
-      li {
-        font-size: 1.125rem;
-      }
-
-      h2,
-      h3 {
-        margin: 1.75rem 0;
-      }
-
-      h2 {
-        font-size: 1.75rem;
-      }
-
-      h3 {
-        font-size: 1.5rem;
-      }
-
-      h4 {
-        font-size: 1.375rem;
-      }
+    article h4 {
+      font-size: 1.375rem;
     }
   }
 </style>
