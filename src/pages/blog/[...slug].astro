@@ -1,18 +1,29 @@
 ---
 import Layout from "@/layouts/layout.astro";
-import { formatDate } from "@/lib";
+import NextPrevPosts from "@/ui/astro/pages/blog-post/next-prev-posts.astro";
+import PostHeader from "@/ui/astro/pages/blog-post/post-header.astro";
 import { Icon } from "@/ui/react";
-import { Image } from "astro:assets";
-import { getEntryBySlug } from "astro:content";
-import { ArrowLeft, X } from "lucide-react";
+import { getCollection, type CollectionEntry } from "astro:content";
+import { ArrowLeft } from "lucide-react";
 
 const { slug } = Astro.params;
 
-const entry = await getEntryBySlug("blog", slug || "");
-
-if (entry === undefined) {
+if (!slug) {
   return Astro.redirect("/404");
 }
+
+const blogPosts: CollectionEntry<"blog">[] = (await getCollection("blog")).sort(
+  (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
+);
+const entryIdx = blogPosts.findIndex((post) => post.slug === slug);
+
+if (entryIdx === -1) {
+  return Astro.redirect("/404");
+}
+
+const entry = blogPosts[entryIdx];
+const prevPost = blogPosts[entryIdx + 1];
+const nextPost = blogPosts[entryIdx - 1];
 
 const { Content } = await entry.render();
 ---
@@ -149,8 +160,7 @@ const { Content } = await entry.render();
 <!-- 
   - Style blockquotes
   - Add meta tags for SEO
-  - Add View Transitions
-  - Figure out next and prev blog posts
+  - Not found page
  -->
 
 <Layout title={`${entry.data.title} - Volodymyr Mokhun`}>
@@ -166,87 +176,13 @@ const { Content } = await entry.render();
     </a>
     <div class="max-w-[70ch] mx-auto">
       <article class="text-justify">
-        <div
-          class="flex flex-col md:flex-row md:items-center md:justify-between gap-2 md:gap-4 mb-3 md:mb-0"
-        >
-          <p
-            class="text-zinc-500 dark:text-zinc-400 flex items-center gap-3 my-0 text-base"
-          >
-            <span>
-              Published {" "}
-              <time
-                class="italic"
-                datetime={entry.data.date.toLocaleDateString()}
-              >
-                {formatDate(entry.data.date)}
-              </time>
-            </span>
-            {
-              entry.data.category && (
-                <>
-                  <X className="h-5 w-5 text-primary stroke-[4px]" />
-                  <span class="">{entry.data.category}</span>
-                </>
-              )
-            }
-          </p>
-          <ul class="socials flex items-center gap-5 md:gap-3 my-0 p-0">
-            <li class="list-none my-0">
-              <a
-                aria-label="GitHub"
-                target="_blank"
-                rel="noopener noreferrer"
-                href="https://github.com/V-Mokhun"
-                class="text-foreground dark:text-white transition-colors"
-              >
-                <Icon name="github" />
-              </a>
-            </li>
-            <li class="list-none my-0">
-              <a
-                aria-label="LinkedIn"
-                target="_blank"
-                rel="noopener noreferrer"
-                href="https://www.linkedin.com/in/v-mokhun"
-                class="text-foreground dark:text-white transition-colors"
-              >
-                <Icon name="linkedin" />
-              </a>
-            </li>
-            <li class="list-none my-0">
-              <a
-                aria-label="Twitter (X)"
-                target="_blank"
-                rel="noopener noreferrer"
-                href="https://twitter.com/v_mokhun"
-                class="text-foreground dark:text-white transition-colors"
-              >
-                <Icon name="twitter" />
-              </a>
-            </li>
-          </ul>
-        </div>
-        <h1
-          transition:name={`${entry.slug} title`}
-          class="text-4xl sm:text-5xl leading-tight font-semibold mb-6"
-        >
-          {entry.data.title}
-        </h1>
-        <Image
-          src={entry.data.image}
-          alt={entry.data.imageAlt}
-          class="w-full h-full object-cover mb-4"
-          transition:name={`${entry.slug} image`}
-        />
+        <PostHeader post={entry} />
         <Content />
       </article>
       <div
-        class="mt-6 md:mt-8 space-y-3 py-3 md:py-4 px-4 md:px-8 border-l-4 border-primary leading-relaxed bg-slate-200 dark:bg-zinc-800 text-justify font-mono text-sm md:text-base"
+        class="my-6 md:my-8 space-y-3 py-3 md:py-4 px-4 md:px-8 border-l-4 border-primary leading-relaxed bg-slate-200 dark:bg-zinc-800 text-justify font-mono text-sm md:text-base"
       >
-        <p>
-          Do you notice any problems with this post? Do you have suggestions for
-          clarifying, updating, or adding to it?
-        </p>
+        <p>Do you notice any problems with this post?</p>
         <p>
           Feel free to make edits on Github, as any improvement, no matter how
           minor, is welcomed!
@@ -265,6 +201,7 @@ const { Content } = await entry.render();
           </a>
         </p>
       </div>
+      <NextPrevPosts prevPost={prevPost} nextPost={nextPost} />
     </div>
   </div>
 </Layout>

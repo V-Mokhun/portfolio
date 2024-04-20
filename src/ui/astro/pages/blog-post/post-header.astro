@@ -1,0 +1,83 @@
+---
+import { formatDate } from "@/lib";
+import { Icon } from "@/ui/react";
+import { Image } from "astro:assets";
+import type { CollectionEntry } from "astro:content";
+import { X } from "lucide-react";
+
+interface Props {
+  post: CollectionEntry<"blog">;
+}
+
+const { post } = Astro.props;
+---
+
+<div
+  class="flex flex-col md:flex-row md:items-center md:justify-between gap-2 md:gap-4 mb-3 md:mb-0"
+>
+  <p
+    class="text-zinc-500 dark:text-zinc-400 flex items-center gap-3 my-0 text-base"
+  >
+    <span>
+      Published {" "}
+      <time class="italic" datetime={post.data.date.toLocaleDateString()}>
+        {formatDate(post.data.date)}
+      </time>
+    </span>
+    {
+      post.data.category && (
+        <>
+          <X className="h-5 w-5 text-primary stroke-[4px]" />
+          <span class="">{post.data.category}</span>
+        </>
+      )
+    }
+  </p>
+  <ul class="socials flex items-center gap-5 md:gap-3 my-0 p-0">
+    <li class="list-none my-0">
+      <a
+        aria-label="GitHub"
+        target="_blank"
+        rel="noopener noreferrer"
+        href="https://github.com/V-Mokhun"
+        class="text-foreground dark:text-white transition-colors"
+      >
+        <Icon name="github" />
+      </a>
+    </li>
+    <li class="list-none my-0">
+      <a
+        aria-label="LinkedIn"
+        target="_blank"
+        rel="noopener noreferrer"
+        href="https://www.linkedin.com/in/v-mokhun"
+        class="text-foreground dark:text-white transition-colors"
+      >
+        <Icon name="linkedin" />
+      </a>
+    </li>
+    <li class="list-none my-0">
+      <a
+        aria-label="Twitter (X)"
+        target="_blank"
+        rel="noopener noreferrer"
+        href="https://twitter.com/v_mokhun"
+        class="text-foreground dark:text-white transition-colors"
+      >
+        <Icon name="twitter" />
+      </a>
+    </li>
+  </ul>
+</div>
+<h1
+  transition:name={`${post.slug} title`}
+  class="text-4xl sm:text-5xl leading-tight font-semibold mb-6"
+>
+  {post.data.title}
+</h1>
+<Image
+  src={post.data.image}
+  alt={post.data.imageAlt}
+  class="w-full h-full object-cover mb-4"
+  transition:name={`${post.slug} image`}
+/>
