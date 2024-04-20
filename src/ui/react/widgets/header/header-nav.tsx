@@ -1,4 +1,4 @@
-import { cn } from "@/lib";
+import { cn, translatePath } from "@/lib";
 import { ExternalLink } from "lucide-react";
 import { useTranslation } from "react-i18next";
 
@@ -7,6 +7,7 @@ interface HeaderNavProps {
   listClassName?: string;
   linkClassName?: string;
   onLinkClick?: () => void;
+  currentLang: string;
 }
 
 export const HeaderNav = ({
@@ -14,6 +15,7 @@ export const HeaderNav = ({
   linkClassName,
   listClassName,
   onLinkClick,
+  currentLang,
 }: HeaderNavProps) => {
   const { t } = useTranslation();
 
@@ -34,7 +36,7 @@ export const HeaderNav = ({
               "transition-colors hover:text-primary p-2",
               linkClassName
             )}
-            href="/#"
+            href={translatePath("/#", currentLang)}
           >
             {t("nav.home")}
           </a>
@@ -46,7 +48,7 @@ export const HeaderNav = ({
               "transition-colors hover:text-primary p-2",
               linkClassName
             )}
-            href="/#about"
+            href={translatePath("/#about", currentLang)}
           >
             {t("nav.about")}
           </a>
@@ -58,7 +60,7 @@ export const HeaderNav = ({
               "transition-colors hover:text-primary p-2",
               linkClassName
             )}
-            href="/#technologies"
+            href={translatePath("/#technologies", currentLang)}
           >
             {t("nav.technologies")}
           </a>
@@ -70,7 +72,7 @@ export const HeaderNav = ({
               "transition-colors hover:text-primary p-2",
               linkClassName
             )}
-            href="/#projects"
+            href={translatePath("/#projects", currentLang)}
           >
             {t("nav.projects")}
           </a>
@@ -82,7 +84,7 @@ export const HeaderNav = ({
               "transition-colors hover:text-primary p-2",
               linkClassName
             )}
-            href="/#contact"
+            href={translatePath("/#contact", currentLang)}
           >
             {t("nav.contact")}
           </a>

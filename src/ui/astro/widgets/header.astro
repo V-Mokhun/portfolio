@@ -9,6 +9,10 @@ import {
 } from "@/ui/react";
 import Logo from "../shared/logo.astro";
 import { t } from "i18next";
+import i18next from "i18next";
+import { defaultLang } from "@/lib";
+
+const currentLang = i18next.resolvedLanguage || defaultLang;
 ---
 
 <header
@@ -22,7 +26,7 @@ import { t } from "i18next";
           className="w-full flex justify-center lg:w-auto lg:inline-block"
         />
       </div>
-      <HeaderNav navClassName="hidden lg:flex" />
+      <HeaderNav navClassName="hidden lg:flex" {currentLang} />
       <div class="flex items-center gap-2 lg:gap-3">
         <a
           class={buttonVariants({
@@ -30,7 +34,7 @@ import { t } from "i18next";
           })}
           href="/#contact">{t("nav.contact")}</a
         >
-        <LangPicker client:load />
+        <LangPicker currentLang={currentLang} client:load />
         <ThemeToggle client:load />
       </div>
     </div>

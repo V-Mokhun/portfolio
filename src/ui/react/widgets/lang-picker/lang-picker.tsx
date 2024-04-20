@@ -1,17 +1,18 @@
-import { cn, defaultLang, languages, translatePath } from "@/lib";
+import { cn, languages, translatePath } from "@/lib";
 import { ChevronDown } from "lucide-react";
-import { useTranslation } from "react-i18next";
 import { Popover, PopoverContent, PopoverTrigger } from "../..";
 
-interface LangPickerProps {}
+interface LangPickerProps {
+  currentLang: string;
+}
 
-export const LangPicker = ({}: LangPickerProps) => {
-  const { i18n } = useTranslation();
-  const currentLang = i18n.resolvedLanguage ?? defaultLang;
-
+export const LangPicker = ({ currentLang }: LangPickerProps) => {
   return (
     <Popover>
-      <PopoverTrigger data-testid="lang-picker-trigger" className="hidden lg:flex items-center text-lg text-white dark:text-foreground hover:text-primary-hover dark:hover:text-primary-hover transition-colors data-[state='open']:text-primary-hover">
+      <PopoverTrigger
+        data-testid="lang-picker-trigger"
+        className="hidden lg:flex items-center text-lg text-white dark:text-foreground hover:text-primary-hover dark:hover:text-primary-hover transition-colors data-[state='open']:text-primary-hover"
+      >
         <span className="uppercase font-medium">{currentLang}</span>
         <ChevronDown />
       </PopoverTrigger>
@@ -31,7 +32,11 @@ export const LangPicker = ({}: LangPickerProps) => {
               )}
               key={lang}
             >
-              <a className="block" href={translatePath("/", lang)}>
+              <a
+                className="block"
+                href={translatePath("/", lang)}
+                data-astro-reload
+              >
                 {label}
               </a>
             </li>
