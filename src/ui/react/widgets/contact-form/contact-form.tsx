@@ -12,7 +12,7 @@ import {
   useToast,
 } from "@/ui/react";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import { contactFormSchema, type ContactFormValues } from "./model";

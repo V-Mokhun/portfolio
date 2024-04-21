@@ -21,7 +21,7 @@ const currentLang = i18next.resolvedLanguage || defaultLang;
   <Container>
     <div class="flex items-center justify-between gap-3 lg:gap-4">
       <div class="flex flex-1 items-center gap-2 lg:flex-initial">
-        <HeaderMobileMenu client:load />
+        <HeaderMobileMenu {currentLang} client:load />
         <Logo
           className="w-full flex justify-center lg:w-auto lg:inline-block"
         />

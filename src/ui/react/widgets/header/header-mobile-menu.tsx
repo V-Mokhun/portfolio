@@ -10,9 +10,11 @@ import { HeaderNav } from "./header-nav";
 import { useTranslation } from "react-i18next";
 import { FileSymlinkIcon } from "lucide-react";
 
-interface HeaderMobileMenuProps {}
+interface HeaderMobileMenuProps {
+  currentLang: string;
+}
 
-export const HeaderMobileMenu = ({}: HeaderMobileMenuProps) => {
+export const HeaderMobileMenu = ({ currentLang }: HeaderMobileMenuProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const { t } = useTranslation();
 
@@ -26,6 +28,7 @@ export const HeaderMobileMenu = ({}: HeaderMobileMenuProps) => {
           onLinkClick={() => {
             setIsOpen(false);
           }}
+          currentLang={currentLang}
         />
         <MobileLangPicker />
         <a
