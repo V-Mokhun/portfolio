@@ -6,13 +6,6 @@ export default {
   darkMode: ["class"],
   content: ["./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}"],
   theme: {
-    container: {
-      center: true,
-      padding: "2rem",
-      screens: {
-        "2xl": "1400px",
-      },
-    },
     extend: {
       colors: {
         border: "hsl(var(--border))",
@@ -20,17 +13,17 @@ export default {
         ring: "hsl(var(--ring))",
         background: {
           DEFAULT: "hsl(var(--background))",
-          secondary: "hsl(var(--background-secondary))",
         },
-        foreground: "hsl(var(--foreground))",
+        foreground: {
+          DEFAULT: "hsl(var(--foreground))",
+          light: "hsl(var(--foreground-light))",
+        },
         primary: {
           DEFAULT: "hsl(var(--primary))",
           foreground: "hsl(var(--primary-foreground))",
-          hover: "hsl(var(--primary-hover))",
         },
-        secondary: {
-          DEFAULT: "hsl(var(--secondary))",
-          foreground: "hsl(var(--secondary-foreground))",
+        title: {
+          DEFAULT: "hsl(var(--title))",
         },
         destructive: {
           DEFAULT: "hsl(var(--destructive))",
@@ -44,10 +37,6 @@ export default {
           DEFAULT: "hsl(var(--muted))",
           foreground: "hsl(var(--muted-foreground))",
         },
-        accent: {
-          DEFAULT: "hsl(var(--accent))",
-          foreground: "hsl(var(--accent-foreground))",
-        },
         popover: {
           DEFAULT: "hsl(var(--popover))",
           foreground: "hsl(var(--popover-foreground))",
@@ -56,6 +45,10 @@ export default {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+      },
+      spacing: {
+        "header-height": "var(--header-height)",
+        "header-scroll-height": "var(--header-scroll-height)",
       },
       borderRadius: {
         lg: "var(--radius)",
@@ -79,6 +72,14 @@ export default {
       screens: {
         xxs: "360px",
         xs: "479px",
+      },
+      fontSize: {
+        "heading-sm": "1.75rem",
+        heading: "2rem",
+      },
+      boxShadow: {
+        "card-sm": "0 20px 30px -15px var(--card);",
+        "card-md": "0 10px 30px -10px var(--card)",
       },
       keyframes: {
         "horizontal-bounce": {

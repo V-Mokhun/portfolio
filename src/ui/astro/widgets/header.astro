@@ -16,16 +16,12 @@ const currentLang = i18next.resolvedLanguage || defaultLang;
 ---
 
 <header
-  class="bg-background-secondary shadow-lg py-2 lg:py-4 fixed left-0 right-0 top-0 z-10"
+  class="bg-background h-header-height backdrop-blur-md fixed left-0 right-0 top-0 z-10"
 >
-  <Container>
-    <div class="flex items-center justify-between gap-3 lg:gap-4">
-      <div class="flex flex-1 items-center gap-2 lg:flex-initial">
-        <HeaderMobileMenu {currentLang} client:load />
-        <Logo
-          className="w-full flex justify-center lg:w-auto lg:inline-block"
-        />
-      </div>
+  <Container className="h-full md:px-10">
+    <div class="flex items-center justify-between gap-5 h-full">
+      <!-- <HeaderMobileMenu {currentLang} client:load /> -->
+      <Logo className="" />
       <HeaderNav navClassName="hidden lg:flex" {currentLang} />
       <div class="flex items-center gap-2 lg:gap-3">
         <a

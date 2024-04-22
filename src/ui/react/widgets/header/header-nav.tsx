@@ -21,11 +21,14 @@ export const HeaderNav = ({
 
   return (
     <nav
-      className={cn("flex lg:justify-center flex-1 py-4 lg:py-0", navClassName)}
+      className={cn(
+        "flex lg:justify-center text-foreground-light flex-1 py-4 lg:py-0",
+        navClassName
+      )}
     >
       <ul
         className={cn(
-          "flex flex-col lg:flex-row lg:items-center gap-6 lg:gap-2 text-white dark:text-foreground font-medium text-xl",
+          "flex flex-col lg:flex-row lg:items-center gap-6 lg:gap-2 text-sm",
           listClassName
         )}
       >
@@ -60,24 +63,12 @@ export const HeaderNav = ({
               "transition-colors hover:text-primary p-2",
               linkClassName
             )}
-            href={translatePath("/#technologies", currentLang)}
-          >
-            {t("nav.technologies")}
-          </a>
-        </li>
-        <li>
-          <a
-            onClick={onLinkClick}
-            className={cn(
-              "transition-colors hover:text-primary p-2",
-              linkClassName
-            )}
             href={translatePath("/#projects", currentLang)}
           >
             {t("nav.projects")}
           </a>
         </li>
-        <li className="lg:hidden">
+        <li>
           <a
             onClick={onLinkClick}
             className={cn(
@@ -99,7 +90,7 @@ export const HeaderNav = ({
             href="/blog"
           >
             <span>{t("nav.blog")}</span>
-            <ExternalLink className="w-5 h-5" />
+            <ExternalLink className="w-4 h-4" />
           </a>
         </li>
       </ul>

@@ -33,9 +33,9 @@ export const ThemeToggle = ({}) => {
   return (
     <button data-testid="dark-mode-toggle" onClick={handleClick}>
       {theme === "light" ? (
-        <MoonIcon className="text-white w-6 h-6 transition-colors hover:text-primary-hover" />
+        <MoonIcon className="text-foreground-light w-6 h-6 transition-colors hover:text-primary" />
       ) : (
-        <SunIcon className="text-white w-6 h-6 transition-colors hover:text-primary-hover" />
+        <SunIcon className="text-foreground-light w-6 h-6 transition-colors hover:text-primary" />
       )}
     </button>
   );
