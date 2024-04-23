@@ -11,14 +11,14 @@ export const LangPicker = ({ currentLang }: LangPickerProps) => {
     <Popover>
       <PopoverTrigger
         data-testid="lang-picker-trigger"
-        className="hidden lg:flex items-center text-foreground-light hover:text-primary transition-colors data-[state='open']:text-primary"
+        className="hidden md:flex p-1 lg:p-2 items-center text-foreground-light hover:text-primary transition-colors data-[state='open']:text-primary"
       >
         <span className="uppercase">{currentLang}</span>
         <ChevronDown className="w-6 h-6" />
       </PopoverTrigger>
       <PopoverContent
         triangleSide="top"
-        className="hidden lg:block w-32 py-2"
+        className="hidden md:block w-32 py-2"
         side="bottom"
         sideOffset={10}
       >

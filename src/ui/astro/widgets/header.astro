@@ -20,15 +20,16 @@ const currentLang = i18next.resolvedLanguage || defaultLang;
 >
   <Container className="h-full px-5 md:px-10">
     <div class="flex items-center justify-between gap-5 h-full">
-      <!-- <HeaderMobileMenu {currentLang} client:load /> -->
       <Logo className="" />
-      <HeaderNav navClassName="hidden lg:flex" {currentLang} />
-      <div class="flex items-center gap-2 lg:gap-3">
+      <HeaderMobileMenu {currentLang} client:load />
+      <HeaderNav navClassName="hidden md:flex" {currentLang} />
+      <div class="hidden md:flex items-center gap-2">
         <a
           class={buttonVariants({
-            className: "md:text-lg h-9 lg:h-10 px-4 sm:px-6",
+            variant: "ghost",
+            className: "mr-2",
           })}
-          href="/#contact">{t("nav.contact")}</a
+          href="/resume.pdf">Resume</a
         >
         <LangPicker currentLang={currentLang} client:load />
         <ThemeToggle client:load />
