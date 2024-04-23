@@ -2,7 +2,6 @@ export const languages = {
   en: "English",
   pl: "Polski",
   ua: "Українська",
-  ru: "Русский",
 };
 export const defaultLang = "en";
 

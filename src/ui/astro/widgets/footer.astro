@@ -5,20 +5,17 @@ import Logo from "../shared/logo.astro";
 const year = new Date().getFullYear();
 ---
 
-<footer class="bg-background-secondary py-8">
+<footer class="py-5">
   <Container>
     <div class="flex flex-col items-center gap-8">
-      <div class="flex flex-col items-center gap-4">
-        <Logo />
-      </div>
-      <ul class="flex items-center gap-6">
+      <ul class="flex items-center gap-6 md:hidden">
         <li>
           <a
             aria-label="GitHub"
             target="_blank"
             rel="noopener noreferrer"
             href="https://github.com/V-Mokhun"
-            class="text-white hover:text-primary transition-colors"
+            class="text-foreground-light hover:text-primary transition-colors"
           >
             <Icon name="github" />
           </a>
@@ -29,7 +26,7 @@ const year = new Date().getFullYear();
             target="_blank"
             rel="noopener noreferrer"
             href="https://www.linkedin.com/in/v-mokhun"
-            class="text-white hover:text-primary transition-colors"
+            class="text-foreground-light hover:text-primary transition-colors"
           >
             <Icon name="linkedin" />
           </a>
@@ -40,14 +37,14 @@ const year = new Date().getFullYear();
             target="_blank"
             rel="noopener noreferrer"
             href="https://twitter.com/v_mokhun"
-            class="text-white hover:text-primary transition-colors"
+            class="text-foreground-light hover:text-primary transition-colors"
           >
             <Icon name="twitter" />
           </a>
         </li>
       </ul>
-      <p class="font-light text-zinc-400 text-center">
-        &copy; {year}<span class="font-medium"> Volodymyr Mokhun</span>
+      <p class="font-light text-center text-base">
+        &copy; {year} Volodymyr Mokhun
       </p>
     </div>
   </Container>

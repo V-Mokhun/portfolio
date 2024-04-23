@@ -76,6 +76,9 @@ export default {
       fontSize: {
         "heading-sm": "1.75rem",
         heading: "2rem",
+        "clamp-heading-big": "clamp(2.25rem, 8vw, 4.5rem)",
+        "clamp-heading": "clamp(1.625rem, 5vw, 2rem)",
+        "clamp-heading-sm": "clamp(1.5rem, 5vw, 1.75rem)",
       },
       boxShadow: {
         "card-sm": "0 20px 30px -15px var(--card);",
