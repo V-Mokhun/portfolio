@@ -1,5 +1,5 @@
 ---
-import { Container, buttonVariants } from "@/ui/react";
+import { Container, RippleButton } from "@/ui/react";
 ---
 
 <section
@@ -22,13 +22,8 @@ import { Container, buttonVariants } from "@/ui/react";
         superb user experiences. I love exploring new technologies and creating
         useful products. industry
       </p>
-      <a
-        href="#contact"
-        class={buttonVariants({
-          className: "",
-          variant: "ghost",
-          size: "lg",
-        })}>Contact Me</a
+      <RippleButton size="lg" tag="a" href="/#contact" client:load
+        >Contact Me</RippleButton
       >
     </div>
   </Container>

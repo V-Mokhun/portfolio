@@ -54,7 +54,8 @@
     --popover-foreground: 225 31% 74%;
 
     --primary: 166 100% 70%;
-    --primary-foreground: 0 0% 98%;
+    --primary-dark: 166 60% 40%;
+    --primary-foreground: 226 14% 95%;
 
     --title: 226 70% 88%;
 
