@@ -1,9 +1,10 @@
 import { cn } from "@/lib";
+import clsx from "clsx";
 import type { HTMLAttributes } from "react";
 
 interface TitleProps extends HTMLAttributes<HTMLHeadingElement> {
   tag?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
-  size?: "sm" | "md" | "lg";
+  size?: "sm" | "md";
 }
 
 export const Title = ({
@@ -14,14 +15,14 @@ export const Title = ({
   ...props
 }: TitleProps) => {
   const Component = tag;
+
   return (
     <Component
-      className={cn(
-        "font-bold mb-4 md:mb-6 dark:text-foreground",
-        size === "sm" && "text-xl sm:text-2xl md:text-3xl",
+      className={clsx(
+        "font-semibold text-title leading-tight",
+        size === "sm" && "text-clamp-heading-sm",
         size === "md" &&
-          "text-4xl xl:text-5xl pb-3 md:pb-5 relative after:block after:h-0.5 after:bg-primary after:w-20 after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2",
-        size === "lg" && "text-4xl md:text-5xl xl:text-6xl",
+          "text-clamp-heading relative pl-4 after:block after:h-full after:bg-primary after:w-0.5 after:absolute after:left-0 after:top-1/2 after:-translate-y-1/2",
         className
       )}
       {...props}

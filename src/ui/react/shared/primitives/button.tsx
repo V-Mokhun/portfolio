@@ -5,7 +5,7 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib";
 
 const buttonVariants = cva(
-  "inline-flex items-center justify-center whitespace-nowrap  font-normal transition-colors disabled:pointer-events-none disabled:opacity-50",
+  "inline-flex items-center justify-center whitespace-nowrap font-normal transition-colors disabled:pointer-events-none disabled:opacity-50",
   {
     variants: {
       variant: {
@@ -14,7 +14,7 @@ const buttonVariants = cva(
           "border border-input bg-background dark:bg-background-secondary hover:bg-accent dark:hover:bg-accent hover:text-accent-foreground",
         ghost:
           "bg-transparent text-primary border border-primary hover:bg-primary hover:text-primary-foreground hover:border-transparent",
-        link: "text-primary underline-offset-4 hover:underline",
+        link: "text-primary hover:underline",
       },
       size: {
         default: "h-10 px-4 py-2 text-sm rounded-md",
@@ -29,6 +29,18 @@ const buttonVariants = cva(
     },
   }
 );
+
+const linkVariants = cva("text-primary", {
+  variants: {
+    variant: {
+      default:
+        "relative after:absolute after:block after:h-0.5 after:w-full after:rounded-sm after:bg-primary after:bottom-0 after:left-0 after:origin-right after:scale-x-0 after:transition-transform after:duration-300 after:ease-in-out hover:after:origin-left hover:after:scale-x-100",
+    },
+  },
+  defaultVariants: {
+    variant: "default",
+  },
+});
 
 export interface ButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement>,
@@ -50,4 +62,4 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
 );
 Button.displayName = "Button";
 
-export { Button, buttonVariants };
+export { Button, buttonVariants, linkVariants };
