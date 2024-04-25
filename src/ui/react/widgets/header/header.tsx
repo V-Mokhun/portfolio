@@ -47,7 +47,7 @@ export const HeaderClient = ({ currentLang, children }: HeaderClientProps) => {
   return (
     <header
       className={cn(
-        "header bg-background/80 backdrop-blur-md fixed left-0 right-0 z-10 transition-all duration-300",
+        "header bg-background/80 backdrop-blur-md fixed left-0 right-0 z-50 transition-all duration-300",
         options.visible ? "top-0" : "-top-header-height",
         options.inStartingPosition
           ? "h-header-height"
