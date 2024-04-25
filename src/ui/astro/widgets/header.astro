@@ -1,39 +1,12 @@
 ---
-import {
-  Container,
-  HeaderMobileMenu,
-  buttonVariants,
-  HeaderNav,
-  LangPicker,
-  ThemeToggle,
-} from "@/ui/react";
-import Logo from "../shared/logo.astro";
-import { t } from "i18next";
-import i18next from "i18next";
 import { defaultLang } from "@/lib";
+import { HeaderClient } from "@/ui/react";
+import i18next from "i18next";
+import Logo from "../shared/logo.astro";
 
 const currentLang = i18next.resolvedLanguage || defaultLang;
 ---
 
-<header
-  class="bg-background h-header-height backdrop-blur-md fixed left-0 right-0 top-0 z-10"
->
-  <Container className="h-full px-5 md:px-10">
-    <div class="flex items-center justify-between gap-5 h-full">
-      <Logo className="" />
-      <HeaderMobileMenu {currentLang} client:load />
-      <HeaderNav navClassName="hidden md:flex" {currentLang} />
-      <div class="hidden md:flex items-center gap-2">
-        <a
-          class={buttonVariants({
-            variant: "ghost",
-            className: "mr-2",
-          })}
-          href="/resume.pdf">Resume</a
-        >
-        <LangPicker currentLang={currentLang} client:load />
-        <ThemeToggle client:load />
-      </div>
-    </div>
-  </Container>
-</header>
+<HeaderClient {currentLang} client:load>
+  <Logo />
+</HeaderClient>
