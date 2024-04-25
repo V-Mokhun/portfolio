@@ -13,10 +13,14 @@ interface RippleButtonProps extends Omit<ButtonProps, "asChild"> {
   href?: string;
   target?: string;
   rel?: string;
+  isDynamic?: boolean;
 }
 
 export const RippleButton = forwardRef<HTMLElement, RippleButtonProps>(
-  ({ className, children, size, tag = "button", ...props }, ref) => {
+  (
+    { className, children, size, tag = "button", isDynamic = false, ...props },
+    ref
+  ) => {
     const buttonRef = useRef<HTMLElement | null>(null);
     const spanRef = useRef<HTMLSpanElement | null>(null);
     const Comp = tag;
@@ -25,8 +29,9 @@ export const RippleButton = forwardRef<HTMLElement, RippleButtonProps>(
       if (!spanRef.current || !buttonRef.current) return;
 
       spanRef.current.style.left =
-        e.pageX - buttonRef.current.offsetLeft + "px";
-      spanRef.current.style.top = e.pageY - buttonRef.current.offsetTop + "px";
+        (isDynamic ? e.clientX : e.pageX) - buttonRef.current.offsetLeft + "px";
+      spanRef.current.style.top =
+        (isDynamic ? e.clientY : e.pageY) - buttonRef.current.offsetTop + "px";
     };
 
     return (

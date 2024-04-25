@@ -65,6 +65,7 @@ export const HeaderClient = ({ currentLang, children }: HeaderClientProps) => {
               tag="a"
               href="/resume.pdf"
               target="_blank"
+              isDynamic
             >
               Resume
             </RippleButton>
