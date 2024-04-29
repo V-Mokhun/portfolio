@@ -1,5 +1,5 @@
 ---
-import { Container, Title, Particles, Icon } from "@/ui/react";
+import { Container, Title, SkillsItem } from "@/ui/react";
 
 const SKILLS = [
   {
@@ -45,45 +45,11 @@ const SKILLS = [
 ];
 ---
 
-<!-- 
-  Skills:
-  - React.js
-  - TypeScript
-  - Next.js
-  - HTML
-  - CSS
-  - Tailwind CSS
-  - Playwright
-  - Git
- -->
 <section class="py-12 xs:py-16 md:py-20" id="skills">
-  <Container className="">
+  <Container>
     <Title className="mb-8 xs:mb-10">Skills</Title>
     <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 group">
-      {
-        SKILLS.map((skill, i) => (
-          <div class="bg-card group/item overflow-hidden rounded-md">
-            <div class="relative h-full rounded-[inherit] z-10 overflow-hidden">
-              <Particles
-                client:visible
-                className="absolute rounded-md inset-0 -z-10 opacity-20 group-hover/item:opacity-100 transition-opacity duration-1000 ease-in-out"
-                quantity={40}
-                color={skill.color}
-                vy={-0.2}
-              />
-              <div class="p-4 text-center">
-                <h3 class="font-semibold text-xl lg:text-2xl text-title mb-4">
-                  {skill.name}
-                </h3>
-                <Icon
-                  name={skill.icon}
-                  className={`w-12 h-12 fill-white mx-auto`}
-                />
-              </div>
-            </div>
-          </div>
-        ))
-      }
+      {SKILLS.map((skill) => <SkillsItem client:visible {...skill} />)}
     </div>
   </Container>
 </section>
