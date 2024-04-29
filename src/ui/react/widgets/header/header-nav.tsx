@@ -90,7 +90,7 @@ export const HeaderNav = ({
             href="/blog"
           >
             <span>{t("nav.blog")}</span>
-            <ExternalLink className="w-4 h-4" />
+            {/* <ExternalLink className="w-4 h-4" /> */}
           </a>
         </li>
       </ul>

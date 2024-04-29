@@ -15,7 +15,6 @@ interface HeaderClientProps {
 }
 
 const HEADER_HEIGHT = 80;
-const HEADER_SCROLL_HEIGHT = 64;
 
 export const HeaderClient = ({ currentLang, children }: HeaderClientProps) => {
   const [position, setPosition] = useState(
@@ -47,14 +46,14 @@ export const HeaderClient = ({ currentLang, children }: HeaderClientProps) => {
   return (
     <header
       className={cn(
-        "header bg-background/80 backdrop-blur-md fixed left-0 right-0 z-50 transition-all duration-300",
+        "bg-background/80 backdrop-blur-md fixed left-0 right-0 z-50 px-5 md:px-10 transition-all duration-300",
         options.visible ? "top-0" : "-top-header-height",
         options.inStartingPosition
           ? "h-header-height"
           : "h-header-scroll-height shadow-card-md"
       )}
     >
-      <Container className="h-full px-5 md:px-10">
+      <Container className="h-full">
         <div className="flex items-center justify-between gap-5 h-full">
           {children}
           <HeaderMobileMenu currentLang={currentLang} />

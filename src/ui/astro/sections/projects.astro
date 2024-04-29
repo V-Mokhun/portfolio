@@ -1,132 +1,33 @@
 ---
-import { Image } from "astro:assets";
-import { Container, Title, buttonVariants } from "@/ui/react";
+import { Container, Separator, Title } from "@/ui/react";
 import { getCollection } from "astro:content";
-import i18next, { t } from "i18next";
+import i18next from "i18next";
+import ProjectCard from "../widgets/project-card.astro";
+import { cn } from "@/lib";
 
 const allProjects = await getCollection("projects", ({ id }) => {
   return id.startsWith(i18next.language);
 });
+
+console.log(allProjects.length)
 ---
 
-<section class="relative py-16 md:py-20 bg-background-secondary" id="projects">
-  <div class="curve">
-    <svg
-      data-name="Layer 1"
-      xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 1200 120"
-      preserveAspectRatio="none"
-    >
-      <path
-        d="M1200 120L0 16.48 0 0 1200 0 1200 120z"
-        class="fill-slate-100 dark:fill-background"></path>
-    </svg>
-  </div>
+<section class="py-12 xs:py-16 md:py-20" id="projects">
   <Container>
-    <Title className="text-center text-white">{t("projects.title")}</Title>
-    <ul class="flex gap-4 md:gap-6 flex-wrap flex-col md:flex-row">
+    <Title className="mb-10 xs:mb-12">Projects</Title>
+    <ul class="space-y-12 md:space-y-16">
       {
-        allProjects.map((proj) => (
-          <li class="flex flex-1 md:flex-[0_1_calc(50%-12px)] flex-col rounded-lg gap-2 bg-background">
-            <a
-              class="flex justify-center group"
-              href={proj.data.projectLink}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <Image
-                src={proj.data.image}
-                alt={proj.data.title}
-                height={288}
-                class="object-cover rounded-t-lg w-full transition-opacity group-hover:opacity-75"
+        allProjects.map((project, i) => (
+          <>
+            <ProjectCard {project} isEven={i % 2 != 0} />
+            {i < allProjects.length - 1 && (
+              <div
+                class={cn("w-40 h-0.5 bg-primary", i % 2 != 0 && "lg:ml-auto")}
               />
-            </a>
-            <div class="flex flex-col h-full p-2 pb-4 md:p-4 md:pt-2">
-              <div class="flex-auto">
-                <a
-                  href={proj.data.projectLink}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="hover:text-primary-hover transition-colors"
-                >
-                  <Title
-                    tag="h3"
-                    size="sm"
-                    className="mb-0 md:mb-2 dark:text-inherit"
-                  >
-                    {proj.data.title}
-                  </Title>
-                </a>
-                <p class="text-zinc-500 dark:text-zinc-400 font-medium mb-2 md:mb-4 text-xl md:text-2xl">
-                  {proj.data.type}
-                </p>
-                <p class="mb-2 md:mb-4 text-sm md:text-base text-justify">
-                  {proj.data.description}
-                </p>
-              </div>
-              <div class="mb-4">
-                <p class="text-zinc-500 dark:text-zinc-400 font-medium text-xl md:text-2xl mb-2">
-                  {t("projects.technologies")}
-                </p>
-                <ul class="flex flex-wrap gap-x-4 gap-y-2">
-                  {proj.data.technologies.map((technology) => (
-                    <li class="inline-flex items-center rounded-sm px-2.5 py-0.5 text-sm md:text-base font-medium bg-background-secondary text-primary-foreground shadow">
-                      {technology}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-              <div class="flex items-center gap-4">
-                <a
-                  class={buttonVariants({
-                    variant: "outline",
-                    className: "shadow-md",
-                  })}
-                  href={proj.data.projectLink}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  {t("projects.liveDemo")}
-                </a>
-                {proj.data.sourceCodeLink && (
-                  <a
-                    class={buttonVariants()}
-                    href={proj.data.sourceCodeLink}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    {t("projects.sourceCode")}
-                  </a>
-                )}
-              </div>
-            </div>
-          </li>
+            )}
+          </>
         ))
       }
     </ul>
   </Container>
 </section>
-
-<style>
-  .curve {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    overflow: hidden;
-    line-height: 0;
-  }
-
-  .curve svg {
-    position: relative;
-    display: block;
-    width: calc(130% + 1.3px);
-    height: 35px;
-  }
-
-  @media (min-width: 768px) {
-    .curve svg {
-      height: 70px;
-    }
-  }
-</style>

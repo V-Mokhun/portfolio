@@ -146,7 +146,6 @@ export const ContactForm = ({}: ContactFormProps) => {
           <div className="flex justify-center">
             <RippleButton
               disabled={isLoading}
-              className="uppercase"
               size="lg"
               type="submit"
             >
