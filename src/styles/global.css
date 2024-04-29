@@ -65,7 +65,8 @@
     --success: 117 80% 31%;
     --success-foreground: 0, 0%, 96%;
 
-    --destructive: 0 75% 50%;
+    --destructive: 355 85% 55%;
+    --destructive-light: 350 95% 75%;
     --destructive-foreground: 0 0% 98%;
 
     --border: 218 41% 23%;
