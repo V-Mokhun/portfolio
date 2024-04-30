@@ -12,7 +12,7 @@ const allProjects = await getCollection("projects", ({ id }) => {
 console.log(allProjects.length)
 ---
 
-<section class="py-12 xs:py-16 md:py-20" id="projects">
+<section class="py-12 xs:py-16 md:py-20 overflow-x-hidden" id="projects">
   <Container>
     <Title className="mb-10 xs:mb-12">Projects</Title>
     <ul class="space-y-12 md:space-y-16">

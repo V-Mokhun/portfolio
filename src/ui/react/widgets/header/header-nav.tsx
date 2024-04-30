@@ -22,7 +22,7 @@ export const HeaderNav = ({
   return (
     <nav
       className={cn(
-        "flex md:justify-center text-foreground-light flex-1 py-4 md:py-0",
+        "flex md:justify-center text-foreground-light flex-1 py-4 mb-4 md:mb-0 md:py-0",
         navClassName
       )}
     >
@@ -97,7 +97,7 @@ export const HeaderNav = ({
           <a
             onClick={onLinkClick}
             className={cn(
-              "inline-flex items-center gap-1 transition-colors hover:text-primary p-2",
+              "transition-colors hover:text-primary p-2",
               linkClassName
             )}
             href="/blog"
