@@ -1,6 +1,6 @@
 ---
 import { Image } from "astro:assets";
-import logoImage from "@/assets/logo.png";
+import logoImage from "@/assets/logo.svg";
 
 interface Props {
   className?: string;
@@ -11,10 +11,10 @@ const { className = "" } = Astro.props;
 
 <a href="/#" class:list={[className]} data-astro-reload>
   <Image
-    class="w-32 md:w-36"
+    class="w-24 max-h-16 h-full"
     src={logoImage}
     alt="Logo"
-    width="144"
-    height="40"
+    width="96"
+    height="64"
   />
 </a>
