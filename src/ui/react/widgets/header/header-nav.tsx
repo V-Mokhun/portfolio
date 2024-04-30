@@ -63,6 +63,19 @@ export const HeaderNav = ({
               "transition-colors hover:text-primary p-2",
               linkClassName
             )}
+            href={translatePath("/#skills", currentLang)}
+          >
+            {/* {t("nav.skills")} */}
+            Skills
+          </a>
+        </li>
+        <li>
+          <a
+            onClick={onLinkClick}
+            className={cn(
+              "transition-colors hover:text-primary p-2",
+              linkClassName
+            )}
             href={translatePath("/#projects", currentLang)}
           >
             {t("nav.projects")}
@@ -90,7 +103,6 @@ export const HeaderNav = ({
             href="/blog"
           >
             <span>{t("nav.blog")}</span>
-            {/* <ExternalLink className="w-4 h-4" /> */}
           </a>
         </li>
       </ul>
