@@ -9,12 +9,117 @@ interface Props {
 const { className = "" } = Astro.props;
 ---
 
-<a href="/#" class:list={[className]} data-astro-reload>
-  <Image
-    class="w-24 max-h-16 h-full"
+<a
+  aria-label="Logo"
+  href="/#"
+  class:list={["text-primary", className]}
+  data-astro-reload
+>
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    version="1.1"
+    width="2000"
+    height="1500"
+    viewBox="0 0 2000 1500"
+    class="w-24 max-h-16 h-full text-primary"
+  >
+    <rect width="2000" height="1500" fill="transparent"></rect>
+    <g transform="matrix(0.75,0,0,0.75,249.090909090909,282.7536437246963)"
+      ><svg
+        viewBox="0 0 396 247"
+        data-background-color="transparent"
+        preserveAspectRatio="xMidYMid meet"
+        height="1247"
+        width="2000"
+        xmlns="http://www.w3.org/2000/svg"
+        xmlns:xlink="http://www.w3.org/1999/xlink"
+        ><g
+          id="tight-bounds"
+          transform="matrix(1,0,0,1,0.2400000000000091,-0.09999999999999432)"
+          ><svg viewBox="0 0 395.52 247.2" height="247.2" width="395.52"
+            ><g><svg></svg></g><g
+              ><svg viewBox="0 0 395.52 247.2" height="247.2" width="395.52"
+                ><g
+                  transform="matrix(1,0,0,1,125.93548656716418,47.215199999999996)"
+                  ><svg
+                    viewBox="0 0 143.64902686567163 152.7696"
+                    height="152.7696"
+                    width="143.64902686567163"
+                    ><g
+                      ><svg
+                        viewBox="0 0 143.64902686567163 152.7696"
+                        height="152.7696"
+                        width="143.64902686567163"
+                        ><g
+                          ><svg
+                            viewBox="0 0 143.64902686567163 152.7696"
+                            height="152.7696"
+                            width="143.64902686567163"
+                            ><g
+                              ><svg
+                                viewBox="0 0 143.64902686567163 152.7696"
+                                height="152.7696"
+                                width="143.64902686567163"
+                                ><g id="textblocktransform"
+                                  ><svg
+                                    viewBox="0 0 143.64902686567163 152.7696"
+                                    height="152.7696"
+                                    width="143.64902686567163"
+                                    id="textblock"
+                                    ><g
+                                      ><svg
+                                        viewBox="0 0 143.64902686567163 152.7696"
+                                        height="152.7696"
+                                        width="143.64902686567163"
+                                        ><g transform="matrix(1,0,0,1,0,0)"
+                                          ><svg
+                                            width="143.64902686567163"
+                                            viewBox="0.49 -33.54 32.3 34.35"
+                                            height="152.7696"
+                                            data-palette-color="currentColor"
+                                            ><path
+                                              d="M32.79-33.54L32.79-31.4 29.91-30.86 18.7 0.81 14.89 0.81 3.44-30.91 0.49-31.4 0.49-33.54 12.45-33.54 12.45-31.4 9.5-31.15Q9.28-31.13 9.16-30.88 9.03-30.64 9.03-30.42L9.03-30.42Q9.03-30.3 9.06-30.25L9.06-30.25 17.85-5.54 26.29-30.15Q26.32-30.2 26.32-30.32L26.32-30.32Q26.32-30.59 26.1-30.86 25.88-31.13 25.61-31.15L25.61-31.15 22.85-31.4 22.85-33.54 32.79-33.54Z"
+                                              opacity="1"
+                                              transform="matrix(1,0,0,1,0,0)"
+                                              fill="currentColor"
+                                              class="wordmark-text-0"
+                                              data-fill-palette-color="primary"
+                                              id="text-0"></path></svg
+                                          ></g
+                                        ></svg
+                                      ></g
+                                    ></svg
+                                  ></g
+                                ></svg
+                              ></g
+                            ></svg
+                          ></g
+                        ></svg
+                      ></g
+                    ></svg
+                  ></g
+                ><path
+                  d="M308.237 41.215L308.237 0 61.037 0 61.037 247.2 308.237 247.2 308.237 205.985 294.46 205.985 294.46 233.423 74.814 233.423 74.814 13.777 294.46 13.777 294.46 41.215Z"
+                  fill="currentColor"
+                  stroke="transparent"
+                  data-fill-palette-color="tertiary"></path></svg
+              ></g
+            ><defs></defs></svg
+          ><rect
+            width="395.52"
+            height="247.2"
+            fill="none"
+            stroke="none"
+            visibility="hidden"></rect></g
+        ></svg
+      ></g
+    >
+  </svg>
+  <!-- <Image
+    class="w-24 max-h-16 h-full text-primary"
     src={logoImage}
     alt="Logo"
     width="96"
     height="64"
-  />
+  /> -->
 </a>

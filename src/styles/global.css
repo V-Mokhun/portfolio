@@ -6,40 +6,42 @@
 
 @layer base {
   :root {
-    --background: 220 53% 97%;
-    --foreground: 240 10% 3.9%;
-    --background-secondary: 0 0% 18%;
-    --primary: 177 70% 41%;
-    --primary-hover: 176 72% 35%;
+    --background: 0 0% 98%;
+    --foreground: 248 23% 30%;
+    --foreground-light: 249 22% 39%;
 
-    --card: 0 0% 100%;
-    --card-foreground: 240 10% 3.9%;
+    --card: 0 0% 93%;
+    --card-foreground: 248 23% 30%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 240 10% 3.9%;
+    --popover: 0 0% 93%;
+    --popover-foreground: 248 23% 30%;
 
-    --primary-foreground: 0 0% 98%;
+    --primary: 232 79% 62%;
+    --primary-dark: 232 55% 52%;
+    --primary-foreground: 0 0 97%;
 
-    --secondary: 240 4.8% 95.9%;
-    --secondary-foreground: 240 5.9% 10%;
+    --title: 0 6% 10%;
 
-    --muted: 240 4.8% 95.9%;
-    --muted-foreground: 240 3.8% 46.1%;
+    --border: 0 0% 92%;
+    --input: 0 0% 92%;
 
-    --accent: 240 4.8% 95.9%;
-    --accent-foreground: 240 5.9% 10%;
+    /* --------------------- */
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 0 0% 98%;
+    --muted: 240 3.7% 15.9%;
+    --muted-foreground: 240 5% 64.9%;
 
     --success: 117 80% 31%;
     --success-foreground: 0, 0%, 96%;
 
-    --border: 240 5.9% 90%;
-    --input: 240 5.9% 90%;
-    --ring: 240 10% 3.9%;
+    --destructive: 355 85% 55%;
+    --destructive-light: 350 95% 75%;
+    --destructive-foreground: 0 0% 98%;
+
+    --ring: 240 4.9% 83.9%;
 
     --radius: 0.5rem;
+    --header-height: 5rem;
+    --header-scroll-height: 4rem;
   }
 
   :root.dark {
@@ -103,12 +105,6 @@
     --destructive: 355 85% 55%;
     --destructive-light: 350 95% 75%;
     --destructive-foreground: 0 0% 98%;
-
-    --ring: 240 4.9% 83.9%;
-
-    --radius: 0.5rem;
-    --header-height: 5rem;
-    --header-scroll-height: 4rem;
   }
 }
 

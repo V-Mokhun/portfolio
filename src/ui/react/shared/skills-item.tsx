@@ -42,7 +42,7 @@ export const SkillsItem = ({ color, icon, name }: SkillsItemProps) => {
                 : null),
             }}
             name={icon}
-            className={`w-12 h-12 fill-white text-white mx-auto transition-colors duration-500`}
+            className={`w-12 h-12 text-black fill-black dark:text-white dark:fill-white mx-auto transition-colors duration-500`}
           />
         </div>
       </div>

@@ -2,17 +2,15 @@ import { LOCAL_STORAGE_THEME_KEY } from "@/consts";
 import { MoonIcon, SunIcon } from "lucide-react";
 import { useEffect, useState } from "react";
 import { Skeleton } from "../..";
+import { useStore } from "@nanostores/react";
+import { $theme } from "@/lib/stores";
 
 export const ThemeToggle = ({}) => {
-  const [theme, setTheme] = useState(
-    typeof localStorage !== "undefined"
-      ? localStorage.getItem(LOCAL_STORAGE_THEME_KEY) ?? "light"
-      : "light"
-  );
+  const theme = useStore($theme);
   const [isMounted, setIsMounted] = useState(false);
 
   const handleClick = () => {
-    setTheme((prev) => (prev === "light" ? "dark" : "light"));
+    $theme.set(theme === "light" ? "dark" : "light");
   };
 
   useEffect(() => {
@@ -31,7 +29,11 @@ export const ThemeToggle = ({}) => {
   if (!isMounted) return <Skeleton className="w-6 h-6 rounded-md" />;
 
   return (
-    <button className="p-1 lg:p-2" data-testid="dark-mode-toggle" onClick={handleClick}>
+    <button
+      className="p-1 lg:p-2"
+      data-testid="dark-mode-toggle"
+      onClick={handleClick}
+    >
       {theme === "light" ? (
         <MoonIcon className="text-foreground-light w-6 h-6 transition-colors hover:text-primary" />
       ) : (

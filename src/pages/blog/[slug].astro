@@ -43,7 +43,7 @@ const { Content } = await entry.render();
     line-height: 1.5;
     font-weight: 600;
     color: hsl(var(--title));
-    text-align: left
+    text-align: left;
   }
   article h2::after,
   article h3::after,
@@ -86,7 +86,8 @@ const { Content } = await entry.render();
     text-decoration: underline;
   }
   article .socials a:hover {
-    color: hsl(var(--primary-hover));
+    transition: color 0.3s linear;
+    color: hsl(var(--primary));
   }
   article ul,
   article ol {
@@ -180,7 +181,7 @@ const { Content } = await entry.render();
             href="https://github.com/V-Mokhun"
             class="inline-flex items-center gap-2 text-primary hover:underline"
           >
-            <Icon className="w-6 h-6 text-white" name="github" />
+            <Icon className="w-6 h-6 text-foreground dark:text-white" name="github" />
             <span>Edit</span>
           </a>
         </p>

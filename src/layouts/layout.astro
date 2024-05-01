@@ -79,15 +79,14 @@ const { title } = Astro.props;
 
       const theme = (() => {
         if (
-          typeof localStorage !== "undefined" &&
-          localStorage.getItem(LOCAL_STORAGE_THEME_KEY)
+          localStorage.getItem(LOCAL_STORAGE_THEME_KEY) === "dark" ||
+          (!(LOCAL_STORAGE_THEME_KEY in localStorage) &&
+            window.matchMedia("(prefers-color-scheme: dark)").matches)
         ) {
-          return localStorage.getItem(LOCAL_STORAGE_THEME_KEY);
-        }
-        if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
           return "dark";
+        } else {
+          return "light";
         }
-        return "light";
       })();
 
       if (theme === "light") {
@@ -95,7 +94,7 @@ const { title } = Astro.props;
       } else {
         document.documentElement.classList.add("dark");
       }
-      window.localStorage.setItem(LOCAL_STORAGE_THEME_KEY, theme);
+      localStorage.setItem(LOCAL_STORAGE_THEME_KEY, theme);
     </script>
   </head>
 

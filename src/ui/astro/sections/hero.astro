@@ -1,12 +1,12 @@
 ---
-import { Container, Particles, RippleButton } from "@/ui/react";
+import { Container, HeroParticles, Particles, RippleButton } from "@/ui/react";
 ---
 
 <section
   id="hero"
   class="py-6 md:py-10 min-h-[calc(100vh-var(--header-height))] h-[calc(100vh-var(--header-height))]"
 >
-  <Particles client:load className="absolute inset-0 -z-10" />
+  <HeroParticles client:only />
   <Container className="h-full">
     <div class="flex justify-center items-start text-left flex-col h-full">
       <h1 class="text-primary mb-3">Hi, I&apos;m</h1>

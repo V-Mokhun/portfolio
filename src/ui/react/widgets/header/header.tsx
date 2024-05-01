@@ -50,7 +50,7 @@ export const HeaderClient = ({ currentLang, children }: HeaderClientProps) => {
         options.visible ? "top-0" : "-top-header-height",
         options.inStartingPosition
           ? "h-header-height"
-          : "h-header-scroll-height shadow-card-md"
+          : "h-header-scroll-height shadow-card-md-light dark:shadow-card-md-dark"
       )}
     >
       <Container className="h-full">

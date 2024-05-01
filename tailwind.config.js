@@ -84,8 +84,10 @@ export default {
         "clamp-heading-sm": "clamp(1.375rem, 5vw, 1.75rem)",
       },
       boxShadow: {
-        "card-sm": "0 20px 30px -15px rgba(17, 34, 64, 0.7)",
-        "card-md": "0 10px 30px -10px rgba(17, 34, 64, 0.7)",
+        "card-sm-light": "0 20px 30px -15px rgba(146, 171, 216, 0.7)",
+        "card-md-light": "0 10px 30px -10px rgba(146, 171, 216, 0.7)",
+        "card-sm-dark": "0 20px 30px -15px rgba(17, 34, 64, 0.7)",
+        "card-md-dark": "0 10px 30px -10px rgba(17, 34, 64, 0.7)",
       },
       keyframes: {
         "horizontal-bounce": {
