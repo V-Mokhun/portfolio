@@ -64,10 +64,7 @@ export const Particles: React.FC<ParticlesProps> = ({
   }, [mousePosition.x, mousePosition.y]);
 
   useEffect(() => {
-    console.log("refresh", refresh);
-
     initCanvas();
-    animate();
   }, [refresh]);
 
   const initCanvas = () => {

@@ -23,7 +23,7 @@ export const SkillsItem = ({ color, icon, name }: SkillsItemProps) => {
     >
       <div className="relative h-full rounded-[inherit] z-10 overflow-hidden">
         <Particles
-          className="absolute rounded-md inset-0 -z-10 opacity-20 group-hover/item:opacity-100 transition-opacity duration-1000 ease-in-out"
+          className="absolute rounded-md inset-0 -z-10 opacity-40 group-hover/item:opacity-100 transition-opacity duration-1000 ease-in-out"
           quantity={50}
           color={color}
           vy={-0.2}

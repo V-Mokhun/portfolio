@@ -8,7 +8,9 @@
   :root {
     --background: 0 0% 98%;
     --foreground: 248 23% 30%;
-    --foreground-light: 249 22% 39%;
+    --foreground-light: 249 25% 30%;
+
+    --title: 0 6% 10%;
 
     --card: 0 0% 93%;
     --card-foreground: 248 23% 30%;
@@ -20,7 +22,8 @@
     --primary-dark: 232 55% 52%;
     --primary-foreground: 0 0 97%;
 
-    --title: 0 6% 10%;
+    --success: 117 80% 31%;
+    --success-foreground: 0 0% 90%;
 
     --border: 0 0% 92%;
     --input: 0 0% 92%;
@@ -29,9 +32,6 @@
 
     --muted: 240 3.7% 15.9%;
     --muted-foreground: 240 5% 64.9%;
-
-    --success: 117 80% 31%;
-    --success-foreground: 0, 0%, 96%;
 
     --destructive: 355 85% 55%;
     --destructive-light: 350 95% 75%;
@@ -82,6 +82,8 @@
     --card: 218 71% 17%;
     --card-foreground: 225 60% 78%;
 
+    --title: 226 70% 88%;
+
     --popover: 218 71% 17%;
     --popover-foreground: 225 60% 78%;
 
@@ -89,22 +91,11 @@
     --primary-dark: 166 79% 30%;
     --primary-foreground: 225 21% 85%;
 
-    --title: 226 70% 88%;
+    --success: 117 70% 25%;
+    --success-foreground: 0 0% 90%;
 
     --border: 218 54% 25%;
     --input: 218 54% 25%;
-
-    /* --------------------- */
-
-    --muted: 240 3.7% 15.9%;
-    --muted-foreground: 240 5% 64.9%;
-
-    --success: 117 80% 31%;
-    --success-foreground: 0, 0%, 96%;
-
-    --destructive: 355 85% 55%;
-    --destructive-light: 350 95% 75%;
-    --destructive-foreground: 0 0% 98%;
   }
 }
 
