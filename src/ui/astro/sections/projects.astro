@@ -1,15 +1,13 @@
 ---
-import { Container, Separator, Title } from "@/ui/react";
+import { cn } from "@/lib";
+import { Container, Title } from "@/ui/react";
 import { getCollection } from "astro:content";
 import i18next from "i18next";
 import ProjectCard from "../widgets/project-card.astro";
-import { cn } from "@/lib";
 
 const allProjects = await getCollection("projects", ({ id }) => {
   return id.startsWith(i18next.language);
 });
-
-console.log(allProjects.length)
 ---
 
 <section class="py-12 xs:py-16 md:py-20 overflow-x-hidden" id="projects">

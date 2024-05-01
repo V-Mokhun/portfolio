@@ -43,7 +43,7 @@
   }
 
   :root.dark {
-    --background: 216 65% 11%;
+    /* --background: 216 65% 11%;
     --foreground: 225 20% 61%;
     --foreground-light: 225 31% 74%;
 
@@ -71,6 +71,39 @@
 
     --border: 218 41% 23%;
     --input: 218 41% 23%;
+    --ring: 240 4.9% 83.9%; */
+
+    --background: 216 74% 11%;
+    --foreground: 227 37% 68%;
+    --foreground-light: 225 60% 78%;
+
+    --card: 218 71% 17%;
+    --card-foreground: 225 60% 78%;
+
+    --popover: 218 71% 17%;
+    --popover-foreground: 225 60% 78%;
+
+    --primary: 176 80% 48%;
+    --primary-dark: 166 79% 30%;
+    --primary-foreground: 225 21% 85%;
+
+    --title: 226 70% 88%;
+
+    --border: 218 54% 25%;
+    --input: 218 54% 25%;
+
+    /* --------------------- */
+
+    --muted: 240 3.7% 15.9%;
+    --muted-foreground: 240 5% 64.9%;
+
+    --success: 117 80% 31%;
+    --success-foreground: 0, 0%, 96%;
+
+    --destructive: 355 85% 55%;
+    --destructive-light: 350 95% 75%;
+    --destructive-foreground: 0 0% 98%;
+
     --ring: 240 4.9% 83.9%;
 
     --radius: 0.5rem;

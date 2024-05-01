@@ -1,5 +1,4 @@
 import { cn, translatePath } from "@/lib";
-import { ExternalLink } from "lucide-react";
 import { useTranslation } from "react-i18next";
 
 interface HeaderNavProps {

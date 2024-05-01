@@ -1,5 +1,4 @@
 import {
-  Button,
   Form,
   FormControl,
   FormField,
@@ -144,11 +143,7 @@ export const ContactForm = ({}: ContactFormProps) => {
             )}
           />
           <div className="flex justify-center">
-            <RippleButton
-              disabled={isLoading}
-              size="lg"
-              type="submit"
-            >
+            <RippleButton disabled={isLoading} size="lg" type="submit">
               {t("contact.sendMessage")}
             </RippleButton>
           </div>

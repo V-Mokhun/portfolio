@@ -1,5 +1,4 @@
 import { z } from "zod";
-import { t } from "i18next";
 
 export const contactFormSchema = z.object({
   name: z.string().min(2, {

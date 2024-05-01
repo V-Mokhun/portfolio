@@ -27,11 +27,9 @@
     "@radix-ui/react-separator": "^1.0.3",
     "@radix-ui/react-slot": "^1.0.2",
     "@radix-ui/react-toast": "^1.1.5",
-    "@radix-ui/react-tooltip": "^1.0.7",
+    "@react-spring/web": "^9.7.3",
     "@sendgrid/mail": "^7.7.0",
     "@sentry/astro": "^7.93.0",
-    "@types/react": "^18.2.37",
-    "@types/react-dom": "^18.2.15",
     "astro": "^4.1.2",
     "astro-i18next": "^1.0.0-beta.21",
     "class-variance-authority": "^0.7.0",
@@ -51,6 +49,8 @@
   },
   "devDependencies": {
     "@playwright/test": "^1.40.1",
-    "@types/node": "^20.11.0"
+    "@types/node": "^20.11.0",
+    "@types/react": "^18.2.37",
+    "@types/react-dom": "^18.2.15"
   }
 }
