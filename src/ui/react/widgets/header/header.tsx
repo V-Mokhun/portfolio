@@ -7,6 +7,7 @@ import {
   RippleButton,
   ThemeToggle,
 } from "@/ui/react";
+import { animated, useSpring } from "@react-spring/web";
 import { useEffect, useState, type ReactNode } from "react";
 
 interface HeaderClientProps {
@@ -23,6 +24,13 @@ export const HeaderClient = ({ currentLang, children }: HeaderClientProps) => {
   const [options, setOptions] = useState({
     visible: true,
     inStartingPosition: true,
+  });
+  const props = useSpring({
+    from: { transform: "translateY(-100%)" },
+    to: { transform: "translateY(0%)" },
+    config: {
+      duration: 500,
+    },
   });
 
   useEffect(() => {
@@ -44,7 +52,8 @@ export const HeaderClient = ({ currentLang, children }: HeaderClientProps) => {
   });
 
   return (
-    <header
+    <animated.header
+      style={props}
       className={cn(
         "bg-background/80 backdrop-blur-md fixed left-0 right-0 z-50 px-5 xs:px-12 md:px-10 transition-all duration-300",
         options.visible ? "top-0" : "-top-header-height",
@@ -73,6 +82,6 @@ export const HeaderClient = ({ currentLang, children }: HeaderClientProps) => {
           </div>
         </div>
       </Container>
-    </header>
+    </animated.header>
   );
 };

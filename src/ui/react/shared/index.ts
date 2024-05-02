@@ -1,3 +1,4 @@
+export { Animate } from "./animate";
 export { Container } from "./container";
 export { HeroParticles } from "./hero-particles";
 export { Hover } from "./hover";

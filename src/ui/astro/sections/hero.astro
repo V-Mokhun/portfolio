@@ -1,5 +1,5 @@
 ---
-import { Container, HeroParticles, Particles, RippleButton } from "@/ui/react";
+import { Animate, Container, HeroParticles, RippleButton } from "@/ui/react";
 ---
 
 <section
@@ -9,23 +9,74 @@ import { Container, HeroParticles, Particles, RippleButton } from "@/ui/react";
   <HeroParticles client:only />
   <Container className="h-full">
     <div class="flex justify-center items-start text-left flex-col h-full">
-      <h1 class="text-primary mb-3">Hi, I&apos;m</h1>
-      <h2
-        class="text-clamp-heading-big text-title leading-none font-semibold mb-1 md:mb-0"
+      <Animate
+        client:load
+        tag="h1"
+        className="text-primary mb-3"
+        config={{
+          from: {
+            opacity: 0,
+          },
+          to: { opacity: 1 },
+          delay: 1000,
+          config: { duration: 400 },
+        }}
+        >Hi, I&apos;m
+      </Animate>
+      <Animate
+        client:load
+        tag="h2"
+        className="text-clamp-heading-big text-title leading-none font-semibold mb-1 md:mb-0"
+        config={{
+          from: {
+            opacity: 0,
+            transform: "translateY(30px)",
+          },
+          to: { opacity: 1, transform: "translateY(0)" },
+          delay: 1500,
+          config: { duration: 500 },
+        }}
       >
         Volodymyr Mokhun.
-      </h2>
-      <h3 class="text-clamp-heading-big leading-none mb-5 font-semibold">
-        A web developer.
-      </h3>
-      <p class="max-w-lg leading-normal font-light mb-8">
-        I&apos;m a CS student and a web developer specializing in building
-        superb user experiences. I love exploring new technologies and creating
-        useful products.
-      </p>
-      <RippleButton size="lg" tag="a" href="/#contact" client:load
-        >Contact Me</RippleButton
+      </Animate>
+      <Animate
+        client:load
+        tag="h3"
+        className="text-clamp-heading-big leading-none mb-5 font-semibold"
+        config={{
+          from: {
+            opacity: 0,
+            transform: "translateY(-30px)",
+          },
+          to: { opacity: 1, transform: "translateY(0)" },
+          delay: 1500,
+          config: { duration: 500 },
+        }}
       >
+        A web developer.
+      </Animate>
+      <Animate
+        client:load
+        config={{
+          from: {
+            opacity: 0,
+          },
+          to: { opacity: 1 },
+          delay: 2200,
+          config: { duration: 300 },
+        }}
+      >
+        <>
+          <p class="max-w-lg leading-normal font-light mb-8">
+            I&apos;m a CS student and a web developer specializing in building
+            superb user experiences. I love exploring new technologies and
+            creating useful products.
+          </p>
+          <RippleButton size="lg" tag="a" href="/#contact" client:load
+            >Contact Me</RippleButton
+          >
+        </>
+      </Animate>
     </div>
   </Container>
 </section>
