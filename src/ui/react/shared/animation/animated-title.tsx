@@ -5,6 +5,7 @@ import {
 } from "@react-spring/web";
 import { Title } from "../primitives";
 import type { HTMLAttributes, ReactNode } from "react";
+import { defaultAnimationConfig } from "@/consts";
 
 interface AnimatedTitleProps extends HTMLAttributes<HTMLHeadingElement> {
   config?: UseSpringProps;
@@ -13,24 +14,10 @@ interface AnimatedTitleProps extends HTMLAttributes<HTMLHeadingElement> {
   children: ReactNode;
 }
 
-const defaultConfig = {
-  from: {
-    opacity: 0,
-    transform: "translateY(40px)",
-  },
-  to: {
-    opacity: 1,
-    transform: "translateY(0)",
-  },
-  delay: 300,
-  config: {
-    duration: 300,
-  },
-};
 const defaultIntersectionArgs = { once: true, rootMargin: "-50px 0px" };
 
 export const AnimatedTitle = ({
-  config = defaultConfig,
+  config = defaultAnimationConfig,
   intersectionArgs = defaultIntersectionArgs,
   tag = "h2",
   children,

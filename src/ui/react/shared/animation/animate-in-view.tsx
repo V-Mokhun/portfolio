@@ -1,3 +1,4 @@
+import { defaultAnimationConfig } from "@/consts";
 import {
   animated,
   useInView,
@@ -15,24 +16,10 @@ interface AnimateInViewProps {
   id?: string;
 }
 
-const defaultConfig = {
-  from: {
-    opacity: 0,
-    y: 100,
-  },
-  to: {
-    opacity: 1,
-    y: 0,
-  },
-  delay: 300,
-  config: {
-    duration: 500,
-  },
-};
 const defaultIntersectionArgs = { once: true, rootMargin: "-20% 0%" };
 
 export const AnimateInView = ({
-  config = defaultConfig,
+  config = defaultAnimationConfig,
   intersectionArgs = defaultIntersectionArgs,
   children,
   className,

@@ -20,18 +20,9 @@ const allProjects = await getCollection("projects", ({ id }) => {
         allProjects.map((project, i) => (
           <AnimateInView
             client:visible
-            config={{
-              from: {
-                opacity: 0,
-                transform: "translateY(20px)",
-              },
-              to: {
-                opacity: 1,
-                transform: "translateY(0)",
-              },
-              config: {
-                duration: 500,
-              },
+            intersectionArgs={{
+              once: true,
+              rootMargin: "-40% 0%",
             }}
           >
             <ProjectCard {project} isEven={i % 2 != 0} />
