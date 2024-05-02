@@ -1,5 +1,10 @@
 ---
-import { Container, Title, SkillsItem } from "@/ui/react";
+import {
+  Container,
+  AnimatedTitle,
+  SkillsItem,
+  AnimateInView,
+} from "@/ui/react";
 
 const SKILLS = [
   {
@@ -63,9 +68,33 @@ const SKILLS = [
 
 <section class="py-12 xs:py-16 md:py-20" id="skills">
   <Container>
-    <Title className="mb-8 xs:mb-10">Skills</Title>
+    <AnimatedTitle client:visible className="mb-8 xs:mb-10"
+      >Skills</AnimatedTitle
+    >
     <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 group">
-      {SKILLS.map((skill) => <SkillsItem client:visible {...skill} />)}
+      {
+        SKILLS.map((skill) => (
+          <AnimateInView
+            client:visible
+            className="bg-card group/item overflow-hidden rounded-md"
+            config={{
+              from: {
+                opacity: 0,
+                transform: "translateY(20px)",
+              },
+              to: {
+                opacity: 1,
+                transform: "translateY(0)",
+              },
+              config: {
+                duration: 500,
+              },
+            }}
+          >
+            <SkillsItem client:visible {...skill} />
+          </AnimateInView>
+        ))
+      }
     </div>
   </Container>
 </section>

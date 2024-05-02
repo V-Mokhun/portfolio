@@ -1,10 +1,15 @@
 ---
-import { ContactForm, Container, Title } from "@/ui/react";
+import { AnimateInView, ContactForm, Container, Title } from "@/ui/react";
 ---
 
-<section class="py-12 xs:py-16 md:py-20" id="contact">
+<AnimateInView
+  client:visible
+  tag="section"
+  id="contact"
+  className="py-12 xs:py-16 md:py-20"
+>
   <Container className="max-w-5xl text-center">
     <Title className="inline-block mb-8 xs:mb-10">Get in Touch</Title>
     <ContactForm client:visible />
   </Container>
-</section>
+</AnimateInView>

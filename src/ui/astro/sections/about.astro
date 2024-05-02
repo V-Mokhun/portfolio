@@ -1,10 +1,21 @@
 ---
-import { Container, Hover, Title, linkVariants } from "@/ui/react";
+import {
+  AnimateInView,
+  Container,
+  Hover,
+  Title,
+  linkVariants,
+} from "@/ui/react";
 import { Image } from "astro:assets";
 import aboutImage from "@/assets/images/about.jpg";
 ---
 
-<section class="py-12 xs:py-16 md:py-20" id="about">
+<AnimateInView
+  client:visible
+  tag="section"
+  id="about"
+  className="py-12 xs:py-16 md:py-20"
+>
   <Container className="max-w-5xl">
     <Title className="mb-8 xs:mb-10">About Me</Title>
     <div class="md:grid md:grid-cols-5 md:items-start md:gap-10">
@@ -42,7 +53,7 @@ import aboutImage from "@/assets/images/about.jpg";
           transform:
             "perspective(1000px) rotateX(-6deg) rotateY(-6deg) scale3d(1, 1, 1)",
         }}
-        className="max-w-[16rem] xs:max-w-xs mx-auto md:mx-0 col-span-2 opacity-80 dark:opacity-60 hover:opacity-100 transition-opacity"
+        className="max-w-[16rem] xs:max-w-xs mx-auto md:mx-0 col-span-2 opacity-80 dark:opacity-60 hover:opacity-100 dark:hover:opacity-100 transition-opacity"
         max={15}
         client:visible
       >
@@ -54,4 +65,4 @@ import aboutImage from "@/assets/images/about.jpg";
       </Hover>
     </div>
   </Container>
-</section>
+</AnimateInView>

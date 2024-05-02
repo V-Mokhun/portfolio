@@ -6,6 +6,7 @@ interface AnimateProps {
   children: ReactNode;
   tag?: keyof JSX.IntrinsicElements;
   className?: string;
+  id?: string;
 }
 
 export const Animate = ({

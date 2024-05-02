@@ -13,7 +13,7 @@ interface Props {
 const { project, isEven } = Astro.props;
 ---
 
-<li class={cn("flex-col gap-2 lg:max-w-[70%]", isEven && "ml-auto")}>
+<article class={cn("flex-col gap-2 lg:max-w-[70%]", isEven && "ml-auto")}>
   <a
     class="flex justify-start group mb-6"
     href={project.data.projectLink}
@@ -80,4 +80,4 @@ const { project, isEven } = Astro.props;
       }
     </ul>
   </div>
-</li>
+</article>
