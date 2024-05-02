@@ -3,7 +3,7 @@ import { changeLanguage } from "i18next";
 import Layout from "@/layouts/layout.astro";
 import About from "@/ui/astro/sections/about.astro";
 import Hero from "@/ui/astro/sections/hero.astro";
-import Socials from "@/ui/astro/widgets/socials.astro";
+import Socials from "@/ui/astro/widgets/socials/socials.astro";
 import Skills from "@/ui/astro/sections/skills.astro";
 import Contact from "@/ui/astro/sections/contact.astro";
 import Projects from "@/ui/astro/sections/projects.astro";
@@ -11,11 +11,11 @@ import Projects from "@/ui/astro/sections/projects.astro";
 changeLanguage("en");
 ---
 
-<Layout>
+<Layout animateHeader>
   <Hero />
   <About />
   <Skills />
   <Projects />
   <Contact />
-  <Socials />
+  <Socials animate />
 </Layout>

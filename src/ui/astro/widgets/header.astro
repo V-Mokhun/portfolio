@@ -1,12 +1,26 @@
 ---
 import { defaultLang } from "@/lib";
-import { HeaderClient } from "@/ui/react";
+import { AnimatedHeader, HeaderClient } from "@/ui/react";
 import i18next from "i18next";
 import Logo from "../shared/logo.astro";
 
 const currentLang = i18next.resolvedLanguage || defaultLang;
+
+interface Props {
+  animate?: boolean;
+}
+
+const { animate = false } = Astro.props;
 ---
 
-<HeaderClient {currentLang} client:load>
-  <Logo className="-ml-[26px] md:ml-0" />
-</HeaderClient>
+{
+  animate ? (
+    <AnimatedHeader {currentLang} client:load>
+      <Logo className="-ml-[26px] md:ml-0" />
+    </AnimatedHeader>
+  ) : (
+    <HeaderClient {currentLang} client:load>
+      <Logo className="-ml-[26px] md:ml-0" />
+    </HeaderClient>
+  )
+}
