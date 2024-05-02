@@ -5,6 +5,7 @@ import Footer from "@/ui/astro/widgets/footer.astro";
 import Header from "@/ui/astro/widgets/header.astro";
 import i18next, { t } from "i18next";
 import { ViewTransitions } from "astro:transitions";
+import { AnimationPreference } from "@/ui/react";
 
 const currentUrl = Astro.url.origin;
 
@@ -113,13 +114,17 @@ const { title, animateHeader = false } = Astro.props;
     </script>
   </head>
 
-  <body
-    class="relative flex flex-col h-full text-base xs:text-lg leading-normal"
-  >
-    <Header animate={animateHeader} />
-    <main class="flex-1 px-5 xs:px-12 md:px-24 lg:px-36 pt-header-height">
-      <slot />
-    </main>
-    <Footer />
-  </body>
+  <AnimationPreference client:load>
+    <body
+      class="relative flex flex-col h-full text-base xs:text-lg leading-normal"
+    >
+      <Header animate={animateHeader} />
+      <main class="flex-1 px-5 xs:px-12 md:px-24 lg:px-36 pt-header-height">
+        <slot />
+      </main>
+      <Footer />
+    </body>
+  </AnimationPreference>
+
+
 </html>
