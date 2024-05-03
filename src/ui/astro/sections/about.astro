@@ -1,129 +1,78 @@
 ---
-import { Container, Title, Hover, Separator } from "@/ui/react";
+import {
+  AnimateInView,
+  Container,
+  Hover,
+  Title,
+  linkVariants,
+} from "@/ui/react";
 import { Image } from "astro:assets";
-import aboutFirstImage from "@/assets/images/about-1.jpg";
-import aboutSecondImage from "@/assets/images/about-2.jpg";
-import { Dumbbell, Laptop } from "lucide-react";
-import { t } from "i18next";
+import aboutImage from "@/assets/images/about.jpg";
 import { Trans } from "astro-i18next/components";
+import { t } from "i18next";
 ---
 
-<section
-  class="relative py-16 md:py-20 bg-background-secondary text-white"
+<AnimateInView
+  client:visible
+  tag="section"
   id="about"
+  className="py-12 xs:py-16 md:py-20"
 >
-  <Container className="relative">
-    <Laptop
-      className="hidden md:block absolute right-[10%] top-12 animate-zoom text-primary"
-    />
-    <Dumbbell
-      className="absolute left-[5%] top-16 md:top-24 animate-zoom animation-delay-[1500ms] text-primary"
-    />
-    <Title className="text-center">{t("about.title")}</Title>
-    <div class="flex flex-col md:flex-row justify-between gap-4 md:gap-6 pt-4">
-      <div
-        class="relative z-[1] flex-[0_0_calc(50%-12px)] shrink-0 mb-6 md:mb-0"
+  <Container className="max-w-5xl">
+    <Title className="mb-8 xs:mb-10">{t("about.title")}</Title>
+    <div class="md:grid md:grid-cols-5 md:items-start md:gap-10">
+      <div class="mb-8 md:mb-0 space-y-2 col-span-3 font-light">
+        <p>
+          <Trans i18nKey="about.description1">
+            My name is Volodymyr, I'm a second-year Computer Science student at
+            the <a
+              href="https://uwm.edu.pl/"
+              class={linkVariants({})}
+              target="_blank"
+              rel="noreferrer noopener">University of Warmia and Mazury</a
+            >. My journey with programming began at the age of 15, starting with
+            simple websites and gradually diving into more complex projects,
+            alongside mastering Data Structures and Algorithms.
+          </Trans>
+        </p>
+        <p>
+          <Trans i18nKey="about.description2">
+            <span class="text-primary">For a year</span> I worked as a Freelance
+            Front-End developer, where I gained invaluable experience in client communication
+            and collaborated with fellow developers and designers. Nowadays,
+            I'm into building awesome stuff with <span class="text-primary">
+              React</span
+            > and Next.js. I've also embarked on a journey to master Golang, enriching
+            my expertise in backend development.
+          </Trans>
+        </p>
+        <p>
+          <Trans i18nKey="about.description3">
+            I also recently obtained the <a
+              href="https://www.cambridgeenglish.org/exams-and-tests/advanced/"
+              class={linkVariants({})}
+              target="_blank"
+              rel="noreferrer noopener">Cambridge C1 Advanced Certificate</a
+            >, which basically says I can handle myself just fine in
+            English-speaking settings.
+          </Trans>
+        </p>
+      </div>
+      <Hover
+        style={{
+          transform:
+            "perspective(1000px) rotateX(-6deg) rotateY(-6deg) scale3d(1, 1, 1)",
+        }}
+        className="max-w-[16rem] xs:max-w-xs mx-auto md:mx-0 col-span-2 opacity-80 dark:opacity-60 hover:opacity-100 dark:hover:opacity-100 transition-opacity"
+        max={15}
+        client:visible
       >
-        <Hover
-          className="w-full h-[280px] xxs:h-[340px] xs:h-[400px]"
-          max={15}
-          client:visible
-        >
-          <div class="flex flex-row-reverse justify-center">
-            <Image
-              width={256}
-              class="rounded-md relative z-[1] md:absolute top-0 right-4 md:right-0 lg:right-12 w-40 xxs:w-48 xs:w-56 lg:w-64 aspect-[4/7]"
-              src={aboutFirstImage}
-              alt="Volodymyr Mokhun near the sea"
-            />
-            <Image
-              width={288}
-              class="rounded-md relative z-[2] md:absolute top-10 xxs:top-6 md:top-16 left-4 md:left-0 max-h-64 xxs:max-h-72 xs:max-h-none w-40 xxs:w-48 xs:w-64 lg:w-72 aspect-[5/7]"
-              src={aboutSecondImage}
-              alt="Volodymyr Mokhun"
-            />
-          </div>
-        </Hover>
-      </div>
-      <div class="flex-auto relative">
-        <Laptop
-          className="md:hidden absolute right-[10%] -top-6 animate-zoom text-primary"
+        <Image
+          class="object-cover max-w-full h-auto rounded-md"
+          src={aboutImage}
+          alt="Volodymyr Mokhun"
         />
-        <Title size="sm" tag="h3">{t("about.subtitle")}</Title>
-        <div class="text-zinc-200 space-y-2 md:text-lg text-justify">
-          <p>
-            <Trans i18nKey="about.description1">
-              I'm a second-year Computer Science student at the <a
-                class="text-primary hover:text-primary-hover transition-colors font-medium"
-                href="https://uwm.edu.pl/"
-                target="_blank"
-                rel="noreferrer noopener">University of Warmia and Mazury</a
-              >. I have experience in developing websites, from simple landing
-              pages to complex web applications. I have also recently obtained <a
-                class="text-primary hover:text-primary-hover transition-colors font-medium"
-                href="https://www.cambridgeenglish.org/exams-and-tests/advanced/"
-                target="_blank"
-                rel="noreferrer noopener">Cambridge C1 Advanced Certification</a
-              >.
-            </Trans>
-          </p>
-          <p>
-            <Trans i18nKey="about.description2">
-              Being exposed to the world of programming at a <span
-                class="font-bold">young age</span
-              >, I don't imagine myself doing anything else as seriously. I'm
-              passionate about web development, especially <span
-                class="font-bold">Front-End</span
-              >. I'm always looking for new challenges and opportunities to
-              learn.
-            </Trans>
-          </p>
-          <p>
-            <Trans i18nKey="about.description3">
-              When I'm not in front of the computer, I like to spend my time <span
-                class="font-bold">working out</span
-              >, <span class="font-bold">watching TV shows and movies</span>, <span
-                class="font-bold">reading</span
-              >, or <span class="font-bold">playing volleyball</span>.
-            </Trans>
-          </p>
-        </div>
-        <Separator className="my-3 opacity-50" />
-        <ul
-          class="flex flex-wrap justify-between flex-col lg:flex-row gap-2 md:text-lg text-zinc-200"
-        >
-          <li
-            class="flex-1 lg:flex-[0_0_calc(50%-8px)] flex items-center gap-2"
-          >
-            <Trans i18nKey="about.name">
-              Name: <span class="font-medium text-zinc-400"
-                >Volodymyr Mokhun</span
-              >
-            </Trans>
-          </li>
-          <li
-            class="flex-1 lg:flex-[0_0_calc(50%-8px)] flex items-center gap-2"
-          >
-            Specialty: <span class="font-medium text-zinc-400"
-              >Front-End</span
-            >
-          </li>
-          <li
-            class="flex-1 lg:flex-[0_0_calc(50%-8px)] flex items-center gap-2"
-          >
-            <Trans i18nKey="about.age">
-              Age: <span class="font-medium text-zinc-400">18</span>
-            </Trans>
-          </li>
-          <li
-            class="flex-1 lg:flex-[0_0_calc(50%-8px)] flex items-center gap-2"
-          >
-            <Trans i18nKey="about.location">
-              Location: <span class="font-medium text-zinc-400">Olsztyn</span>
-            </Trans>
-          </li>
-        </ul>
-      </div>
+      </Hover>
     </div>
   </Container>
-</section>
+</AnimateInView>

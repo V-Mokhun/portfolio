@@ -1,57 +1,81 @@
 ---
-import heroImage from "@/assets/images/hero.jpg";
-import { Container, HeroTitle, Icon, buttonVariants } from "@/ui/react";
-import { Image } from "astro:assets";
-import { Trans } from "astro-i18next/components";
+import { Animate, Container, HeroParticles, RippleButton } from "@/ui/react";
 import { t } from "i18next";
 ---
 
-<section id="hero" class="pb-12 pt-8 md:py-16 xl:py-20">
-  <Container className="relative h-full">
-    <Icon
-      name="curved-arrow"
-      className="hidden md:block absolute left-0 -bottom-24 lg:bottom-0 w-28 h-20 fill-zinc-400 animate-horizontal-bounce z-[1]"
-      aria-hidden="true"
-    />
-    <div
-      class="flex items-center justify-center text-center md:text-left md:justify-between flex-col md:flex-row gap-6 md:gap-10 h-full"
-    >
-      <div class="flex flex-col flex-auto">
-        <HeroTitle client:load />
-        <h2 class="mb-4 font-medium text-3xl md:text-4xl">
-          <Trans i18nKey="hero.subtitle">
-            a passionate <span class="text-primary">Front-End Developer</span>
-          </Trans>
-        </h2>
-        <h3
-          class="text-xl xl:text-2xl text-zinc-700 dark:text-zinc-400 mb-4 md:mb-6"
-        >
-          {t("hero.description")}
-        </h3>
-        <div
-          class="flex items-center justify-center md:justify-start gap-3 md:gap-4"
-        >
-          <a
-            href="#contact"
-            class={buttonVariants({
-              className: "font-bold text-lg md:text-xl md:h-12 px-6 md:px-8",
-            })}>{t("nav.contact")}</a
-          >
-          <a
-            href="#projects"
-            class="font-bold text-lg sm:text-xl md:text-2xl text-primary hover:text-primary-hover transition-colors"
-            >{t("seePortfolio")}</a
-          >
-        </div>
-      </div>
-      <div class="shrink-0 dark:opacity-80">
-        <Image
-          class="rounded-full w-[300px] lg:w-[450px]"
-          alt="Volodymyr Mokhun"
-          width={450}
-          src={heroImage}
-        />
-      </div>
+<section
+  id="hero"
+  class="py-6 md:py-10 min-h-[calc(100vh-var(--header-height))] h-[calc(100vh-var(--header-height))]"
+>
+  <HeroParticles client:only />
+  <Container className="h-full">
+    <div class="flex justify-center items-start text-left flex-col h-full">
+      <Animate
+        client:load
+        tag="h1"
+        className="text-primary mb-3"
+        config={{
+          from: {
+            opacity: 0,
+          },
+          to: { opacity: 1 },
+          delay: 900,
+          config: { duration: 300 },
+        }}
+        >{t("hero.greeting")}
+      </Animate>
+      <Animate
+        client:load
+        tag="h2"
+        className="text-clamp-heading-big text-title leading-none font-semibold mb-1 md:mb-0"
+        config={{
+          from: {
+            opacity: 0,
+            transform: "translateY(30px)",
+          },
+          to: { opacity: 1, transform: "translateY(0)" },
+          delay: 1300,
+          config: { duration: 400 },
+        }}
+      >
+        {t("hero.title")}
+      </Animate>
+      <Animate
+        client:load
+        tag="h3"
+        className="text-clamp-heading-big leading-tight mb-5 font-semibold"
+        config={{
+          from: {
+            opacity: 0,
+            transform: "translateY(-30px)",
+          },
+          to: { opacity: 1, transform: "translateY(0)" },
+          delay: 1300,
+          config: { duration: 400 },
+        }}
+      >
+        {t("hero.subtitle")}
+      </Animate>
+      <Animate
+        client:load
+        config={{
+          from: {
+            opacity: 0,
+          },
+          to: { opacity: 1 },
+          delay: 1800,
+          config: { duration: 300 },
+        }}
+      >
+        <>
+          <p class="max-w-lg leading-normal font-light mb-8">
+            {t("hero.description")}
+          </p>
+          <RippleButton size="lg" tag="a" href="/#contact" client:load>
+            {t("contactMe")}
+          </RippleButton>
+        </>
+      </Animate>
     </div>
   </Container>
 </section>

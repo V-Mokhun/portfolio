@@ -1,0 +1,101 @@
+---
+import {
+  Container,
+  AnimatedTitle,
+  SkillsItem,
+  AnimateInView,
+} from "@/ui/react";
+import { t } from "i18next";
+
+const SKILLS = [
+  {
+    name: "JavaScript",
+    icon: "javascript",
+    color: "#dbaf0f",
+  },
+  {
+    name: "React.js",
+    icon: "react",
+    color: "#61dbfb",
+  },
+  {
+    name: "TypeScript",
+    icon: "typescript",
+    color: "#007acc",
+  },
+  {
+    name: "Next.js",
+    icon: "nextdotjs",
+    color: "#fffffff",
+  },
+  {
+    name: "HTML",
+    icon: "html",
+    color: "#e34f26",
+  },
+  {
+    name: "CSS",
+    icon: "css",
+    color: "#264de4",
+  },
+  {
+    name: "Tailwind",
+    icon: "tailwindcss",
+    color: "#38b2ac",
+  },
+  {
+    name: "Playwright",
+    icon: "playwright",
+    color: "#29b869",
+  },
+  { name: "Golang", icon: "golang", color: "#00add8" },
+  {
+    name: "Vim",
+    icon: "vim",
+    color: "#019733",
+  },
+  {
+    name: "Figma",
+    icon: "figma",
+    color: "#a259ff",
+  },
+  {
+    name: "Git",
+    icon: "git",
+    color: "#f05032",
+  },
+];
+---
+
+<section class="py-12 xs:py-16 md:py-20" id="skills">
+  <Container>
+    <AnimatedTitle client:visible className="mb-8 xs:mb-10"
+      >{t("skills.title")}</AnimatedTitle
+    >
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 group">
+      {
+        SKILLS.map((skill) => (
+          <AnimateInView
+            client:visible
+            className="bg-card group/item overflow-hidden rounded-md"
+            config={{
+              from: {
+                opacity: 0,
+                transform: "translateY(20px)",
+              },
+              to: {
+                opacity: 1,
+                transform: "translateY(0)",
+              },
+              config: {
+                duration: 500,
+              },
+            }}
+          >
+            <SkillsItem client:visible {...skill} />
+          </AnimateInView>
+        ))
+      }
+    </div>
+  </Container>
+</section>

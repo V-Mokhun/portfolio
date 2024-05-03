@@ -1,18 +1,12 @@
 /** @type {import('tailwindcss').Config} */
 
 const plugin = require("tailwindcss/plugin");
+import defaultTheme from "tailwindcss/defaultTheme";
 
 export default {
   darkMode: ["class"],
   content: ["./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}"],
   theme: {
-    container: {
-      center: true,
-      padding: "2rem",
-      screens: {
-        "2xl": "1400px",
-      },
-    },
     extend: {
       colors: {
         border: "hsl(var(--border))",
@@ -20,20 +14,22 @@ export default {
         ring: "hsl(var(--ring))",
         background: {
           DEFAULT: "hsl(var(--background))",
-          secondary: "hsl(var(--background-secondary))",
         },
-        foreground: "hsl(var(--foreground))",
+        foreground: {
+          DEFAULT: "hsl(var(--foreground))",
+          light: "hsl(var(--foreground-light))",
+        },
         primary: {
           DEFAULT: "hsl(var(--primary))",
+          dark: "hsl(var(--primary-dark))",
           foreground: "hsl(var(--primary-foreground))",
-          hover: "hsl(var(--primary-hover))",
         },
-        secondary: {
-          DEFAULT: "hsl(var(--secondary))",
-          foreground: "hsl(var(--secondary-foreground))",
+        title: {
+          DEFAULT: "hsl(var(--title))",
         },
         destructive: {
           DEFAULT: "hsl(var(--destructive))",
+          light: "hsl(var(--destructive-light))",
           foreground: "hsl(var(--destructive-foreground))",
         },
         success: {
@@ -44,10 +40,6 @@ export default {
           DEFAULT: "hsl(var(--muted))",
           foreground: "hsl(var(--muted-foreground))",
         },
-        accent: {
-          DEFAULT: "hsl(var(--accent))",
-          foreground: "hsl(var(--accent-foreground))",
-        },
         popover: {
           DEFAULT: "hsl(var(--popover))",
           foreground: "hsl(var(--popover-foreground))",
@@ -56,6 +48,10 @@ export default {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+      },
+      spacing: {
+        "header-height": "var(--header-height)",
+        "header-scroll-height": "var(--header-scroll-height)",
       },
       borderRadius: {
         lg: "var(--radius)",
@@ -80,6 +76,19 @@ export default {
         xxs: "360px",
         xs: "479px",
       },
+      fontSize: {
+        "heading-sm": "1.75rem",
+        heading: "2rem",
+        "clamp-heading-big": "clamp(2.25rem, 8vw, 4.5rem)",
+        "clamp-heading": "clamp(1.75rem, 5vw, 2.25rem)",
+        "clamp-heading-sm": "clamp(1.375rem, 5vw, 1.75rem)",
+      },
+      boxShadow: {
+        "card-sm-light": "0 20px 30px -15px rgba(146, 171, 216, 0.7)",
+        "card-md-light": "0 10px 30px -10px rgba(146, 171, 216, 0.7)",
+        "card-sm-dark": "0 20px 30px -15px rgba(17, 34, 64, 0.7)",
+        "card-md-dark": "0 10px 30px -10px rgba(17, 34, 64, 0.7)",
+      },
       keyframes: {
         "horizontal-bounce": {
           "0%, 100%": { transform: "translateX(0px)" },
@@ -103,6 +112,9 @@ export default {
         zoom: "zoom 5s ease-in-out infinite",
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+      },
+      fontFamily: {
+        sans: ["Inter", ...defaultTheme.fontFamily.sans],
       },
     },
   },

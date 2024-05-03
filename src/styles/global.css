@@ -1,75 +1,81 @@
+@import "./fonts.css";
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
   :root {
-    --background: 220 53% 97%;
-    --foreground: 240 10% 3.9%;
-    --background-secondary: 0 0% 18%;
-    --primary: 177 70% 41%;
-    --primary-hover: 176 72% 35%;
+    --background: 0 0% 98%;
+    --foreground: 248 23% 30%;
+    --foreground-light: 249 25% 30%;
 
-    --card: 0 0% 100%;
-    --card-foreground: 240 10% 3.9%;
+    --title: 0 6% 10%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 240 10% 3.9%;
+    --card: 0 0% 93%;
+    --card-foreground: 248 23% 30%;
 
-    --primary-foreground: 0 0% 98%;
+    --popover: 0 0% 93%;
+    --popover-foreground: 248 23% 30%;
 
-    --secondary: 240 4.8% 95.9%;
-    --secondary-foreground: 240 5.9% 10%;
-
-    --muted: 240 4.8% 95.9%;
-    --muted-foreground: 240 3.8% 46.1%;
-
-    --accent: 240 4.8% 95.9%;
-    --accent-foreground: 240 5.9% 10%;
-
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 0 0% 98%;
+    --primary: 232 79% 62%;
+    --primary-dark: 232 55% 52%;
+    --primary-foreground: 0 0 97%;
 
     --success: 117 80% 31%;
-    --success-foreground: 0, 0%, 96%;
+    --success-foreground: 0 0% 90%;
 
-    --border: 240 5.9% 90%;
-    --input: 240 5.9% 90%;
-    --ring: 240 10% 3.9%;
+    --border: 0 0% 92%;
+    --input: 0 0% 92%;
 
-    --radius: 0.5rem;
-  }
+    --selection: 214 100% 85%;
 
-  :root.dark {
-    --background: 25 5% 12%;
-    --foreground: 0 0% 85%;
-    --background-secondary: 0 0% 18%;
-    --primary-hover: 177 70% 41%;
-    --primary: 176 72% 35%;
+    --scrollbar-track: 0 0% 65%;
+    --scrollbar-thumb: 0 0% 95%;
 
-    --card: 0 0% 24%;
-    --card-foreground: 0 0% 98%;
-
-    --popover: 0 0% 24%;
-    --popover-foreground: 0 0% 98%;
-
-    --primary-foreground: 0 0% 98%;
-
-    --secondary: 240 3.7% 15.9%;
-    --secondary-foreground: 0 0% 98%;
+    /* --------------------- */
 
     --muted: 240 3.7% 15.9%;
     --muted-foreground: 240 5% 64.9%;
 
-    --accent: 0 0% 24%;
-    --accent-foreground: 0 0% 98%;
-
-    --destructive: 0 75% 50%;
+    --destructive: 355 85% 55%;
+    --destructive-light: 350 95% 75%;
     --destructive-foreground: 0 0% 98%;
 
-    --border: 240 3.7% 15.9%;
-    --input: 240 3.7% 15.9%;
     --ring: 240 4.9% 83.9%;
+
+    --radius: 0.5rem;
+    --header-height: 5rem;
+    --header-scroll-height: 4rem;
+  }
+
+  :root.dark {
+    --background: 216 74% 11%;
+    --foreground: 227 37% 68%;
+    --foreground-light: 225 60% 78%;
+
+    --card: 218 71% 17%;
+    --card-foreground: 225 60% 78%;
+
+    --title: 226 70% 88%;
+
+    --popover: 218 71% 17%;
+    --popover-foreground: 225 60% 78%;
+
+    --primary: 176 80% 48%;
+    --primary-dark: 166 79% 30%;
+    --primary-foreground: 225 21% 85%;
+
+    --success: 117 70% 25%;
+    --success-foreground: 0 0% 90%;
+
+    --border: 218 54% 25%;
+    --input: 218 54% 25%;
+
+    --selection: 218 45% 28%;
+
+    --scrollbar-track: 227 25% 50%;
+    --scrollbar-thumb: 218 70% 13%;
   }
 }
 
@@ -78,10 +84,40 @@
     @apply border-border;
   }
   html {
-    @apply scroll-smooth;
+    @apply scroll-smooth scroll-mt-16;
+    scrollbar-width: thin;
+    scrollbar-color: hsl(var(--scrollbar-track)) hsl(var(--scrollbar-thumb));
   }
   body {
     @apply bg-background text-foreground;
+  }
+
+  ::selection {
+    background: hsl(var(--selection));
+    color: hsl(var(--title));
+  }
+
+  :focus,
+  :focus-visible {
+    outline: 0.125rem dashed hsl(var(--primary));
+    outline-offset: 0.25rem;
+  }
+
+  :focus:not(:focus-visible) {
+    outline: none;
+    outline-offset: 0px;
+  }
+
+  ::-webkit-scrollbar {
+    width: 0.75rem;
+  }
+  ::-webkit-scrollbar-track {
+    background: hsl(var(--scrollbar-track));
+  }
+  ::-webkit-scrollbar-thumb {
+    background-color: hsl(var(--scrollbar-track));
+    border: 0.25rem solid hsl(var(--scrollbar-thumb));
+    border-radius: 0.5rem;
   }
 
   pre {

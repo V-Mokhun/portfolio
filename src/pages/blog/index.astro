@@ -2,6 +2,7 @@
 import { POSTS_PER_PAGE } from "@/consts";
 import Layout from "@/layouts/layout.astro";
 import PostCard from "@/ui/astro/widgets/post-card.astro";
+import Socials from "@/ui/astro/widgets/socials/socials.astro";
 import { Container, Pagination, buttonVariants } from "@/ui/react";
 import type { CollectionEntry } from "astro:content";
 import { getCollection } from "astro:content";
@@ -24,27 +25,22 @@ const postsForPage = allBlogPosts.slice(
 ---
 
 <Layout title="Volodymyr Mokhun - Blog">
-  <section class="h-full pb-10 md:pb-12 -mt-6 lg:mt-0">
-    <div class="bg-background-secondary py-10 md:pt-12 md:pb-48 lg:pb-72">
-      <Container className="mb-20">
-        <h1
-          class="text-6xl md:text-7xl leading-none font-semibold mb-4 md:mb-3 text-white dark:text-foreground"
-        >
-          Blog
-        </h1>
-        <h2
-          class="text-xl xs:text-2xl md:text-3xl leading-tight font-medium text-zinc-300 dark:text-zinc-400 max-w-xl"
-        >
-          Just describing some of my thoughts, sharing things I find
-          interesting, and documenting my journey as a developer
-        </h2>
-      </Container>
-    </div>
+  <Socials />
+  <section class="h-full py-12 xs:py-16 md:py-20">
     <Container>
+      <h1
+        class="text-clamp-heading-big text-title leading-none font-semibold mb-4"
+      >
+        Blog
+      </h1>
+      <p class="max-w-lg leading-normal font-medium mb-12">
+        Just describing some of my thoughts, sharing things I find interesting,
+        and documenting my journey as a developer
+      </p>
       {
         postsForPage.length > 0 ? (
           <>
-            <div class="grid grid-cols-1 gap-6 md:gap-x-4 md:grid-cols-2 -mt-12 md:-mt-48 lg:-mt-72 mb-10">
+            <div class="grid grid-cols-1 gap-6 md:gap-x-4 md:grid-cols-2 mb-10">
               {postsForPage.map((post) => (
                 <PostCard post={post} />
               ))}

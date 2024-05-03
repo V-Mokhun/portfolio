@@ -20,10 +20,10 @@ export const HeaderMobileMenu = ({ currentLang }: HeaderMobileMenuProps) => {
 
   return (
     <Sheet open={isOpen} onOpenChange={(open) => setIsOpen(open)}>
-      <SheetTrigger data-testid="mobile-menu-trigger" className="lg:hidden">
+      <SheetTrigger data-testid="mobile-menu-trigger" className="md:hidden">
         <Icon name="hamburger" className="fill-primary" />
       </SheetTrigger>
-      <SheetContent className="lg:hidden overflow-y-auto" side="left">
+      <SheetContent className="md:hidden overflow-y-auto" side="right">
         <HeaderNav
           onLinkClick={() => {
             setIsOpen(false);
@@ -38,7 +38,7 @@ export const HeaderMobileMenu = ({ currentLang }: HeaderMobileMenuProps) => {
           className="font-medium text-xl flex items-center gap-2 mt-4 text-primary"
         >
           <FileSymlinkIcon className="w-6 h-6 text-primary" />
-          <span>{t("seeResume")}</span>
+          <span>{t("resume")}</span>
         </a>
       </SheetContent>
     </Sheet>

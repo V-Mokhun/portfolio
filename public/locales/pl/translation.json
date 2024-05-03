@@ -2,55 +2,43 @@
   "name": "Volodymyr",
   "site": {
     "title": "Volodymyr Mokhun - Front-End Developer",
-    "description": "Zapoznaj się z moim portfolio jako Front-End Developera React i TypeScript. Zobacz projekty, które prezentują praktyczne, skuteczne rozwiązania internetowe."
+    "description": "Volodymyr Mokhun, Front-End Developer specjalizujący się w React.js, TypeScript, Next.js."
   },
+  "resume": "Resume",
+  "contactMe": "Skontaktuj się",
   "nav": {
     "home": "Strona Główna",
     "about": "O mnie",
-    "technologies": "Technologie",
+    "skills": "Umiejętności",
     "projects": "Projekty",
     "contact": "Kontakt",
     "blog": "Blog"
   },
   "hero": {
-    "title": "Hej, jestem",
-    "titleTooltip": "Właściwie wolę imię <1>Vova</1>, ponieważ jest łatwiejsza do wymówienia i nie brzmi zbyt formalnie.",
-    "subtitle": "<0>Front-End Developer</0> z pasją",
-    "description": "Dążę do tworzenia najlepszych produktów dla sieci i odkrywania nowych możliwości nowoczesnych technologii. Uczę się przez całe życie i mam też lekką obsesję na punkcie kalisteniki"
+    "greeting": "Cześć, jestem",
+    "title": "Volodymyr Mokhun",
+    "subtitle": "Front-End Developer",
+    "description": "Jestem studentem Informatyki i web developerem specjalizującym się w tworzeniu wydajnych i responsywnych stron internetowych. Dążę do tworzenia praktycznych rozwiązań, odkrywania nowych możliwości i czerpania radości z programowania."
   },
-  "hireMe": "Kontakt",
-  "seePortfolio": "Zobacz portfolio",
   "about": {
     "title": "O mnie",
-    "subtitle": "Poznaj mnie",
-    "description1": "Jestem studentem drugiego roku Informatyki na <0>Uniwersytecie Warmińsko-Mazurskim</0>. Mam doświadczenie w tworzeniu stron internetowych, od prostych landing page'y po rozbudowane aplikacje webowe. Niedawno uzyskałem również <1>Cambridge C1 Advanced Certification</1>.",
-    "description2": "Będąc wystawionym na świat programowania w <0>młodym wieku</0>, nie wyobrażam sobie siebie robiącego cokolwiek innego równie poważnie. Pasjonuję się tworzeniem stron internetowych, szczególnie <0>Front-End'em</0>. Zawsze szukam nowych wyzwań i możliwości nauki.",
-    "description3": "Kiedy nie siedzę przed komputerem, lubię spędzać czas <0>ćwicząc</0>, <1>oglądając seriale i filmy</1>, <2>czytając</2>, lub <3>grając w siatkówkę</3>.",
-    "name": "Imie: <0>Volodymyr Mokhun</0>",
-    "age": "Wiek: <0>18</0>",
-    "location": "Miasto: <0>Olsztyn</0>"
+    "description1": "Nazywam się Volodymyr, jestem studentem drugiego roku informatyki na <0>Uniwersytecie Warmińsko-Mazurskim</0>. Moja przygoda z programowaniem rozpoczęła się w wieku 15 lat, zaczynając od prostych stron internetowych i stopniowo zagłębiając się w bardziej złożone projekty, a także opanowując struktury danych i algorytmy.",
+    "description2": "<0>Przez rok</0> pracowałem jako programista Front-End na freelancie, gdzie zdobyłem bezcenne doświadczenie w komunikacji z klientem i współpracowałem z innymi programistami i designerami. Obecnie zajmuję się tworzeniem róznych produktów za pomocą <1>React</1> i Next.js. Także podjąłem się podróży w kierunku opanowania Golang, wzbogacając moją wiedzę z zakresu tworzenia backendu.",
+    "description3": "Niedawno uzyskałem również <0>Cambridge C1 Advanced Certificate</0>, który zasadniczo mówi, że potrafię dobrze radzić sobie w środowisku anglojęzycznym."
   },
-  "technologies": {
-    "title": "Technologie",
-    "subtitle": "Czego używam",
-    "description": "Kwalifikuję siebie jako programistę <0>React</0>, dlatego jest to moje główne narzędzie do budowania aplikacji webowych. Głównie używam <1>TypeScript</1> kiedy tylko mogę, ale czuję się również komfortowo z <2>JavaScript</2>. <3>Pełna lista używanych przeze mnie technologii znajduje się na <4>liście po prawej stronie</4>, a po najechaniu kursorem na ikony można zobaczyć nazwę technologii. </3>",
-    "resume": "Zachęcam również do zapoznania się z moim CV"
+  "skills": {
+    "title": "Umiejętności"
   },
-  "seeResume": "Zobacz CV",
   "projects": {
     "title": "Projekty",
-    "technologies": "Technologie",
-    "liveDemo": "Demo",
-    "sourceCode": "Kod"
+    "sourceCode": "Wyświetl kod źródłowy na GitHub",
+    "liveDemo": "Odwiedź stronę projektu"
   },
   "contact": {
     "title": "Skontaktuj się",
     "name": "Imię",
-    "namePlaceholder": "Wprowadź swoje imię",
     "email": "Email",
-    "emailPlaceholder": "Wprowadź swój adres e-mail",
     "message": "Wiadomość",
-    "messagePlaceholder": "Wprowadź swoją wiadomość",
     "sendMessage": "Wyślij wiadomość",
 
     "nameLengthError": "Nazwa musi mieć co najmniej 2 znaki",

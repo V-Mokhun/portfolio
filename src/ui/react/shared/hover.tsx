@@ -5,7 +5,7 @@ import { useRef, useState } from "react";
 
 const defaultStyles = {
   transformStyle: "preserve-3d",
-  display: "inline-block",
+  display: "block",
 };
 
 export function Hover({

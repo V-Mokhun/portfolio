@@ -1,0 +1,86 @@
+---
+import { cn } from "@/lib";
+import { Title } from "@/ui/react";
+import { Image } from "astro:assets";
+import { type CollectionEntry } from "astro:content";
+import { t } from "i18next";
+import { ExternalLink, Github } from "lucide-react";
+
+interface Props {
+  project: CollectionEntry<"projects">;
+  isEven: boolean;
+}
+
+const { project, isEven } = Astro.props;
+---
+
+<article class={cn("flex-col gap-2 lg:max-w-[70%]", isEven && "ml-auto")}>
+  <a
+    class="flex justify-start group mb-6"
+    href={project.data.projectLink}
+    target="_blank"
+    rel="noopener noreferrer"
+  >
+    <Image
+      src={project.data.image}
+      alt={project.data.title}
+      height={384}
+      class="object-cover rounded-md w-full shadow-lg transition-opacity group-hover:opacity-75"
+    />
+  </a>
+  <div>
+    <div class="flex items-center justify-between gap-8 mb-3">
+      <a
+        href={project.data.projectLink}
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <Title
+          className="hover:text-primary transition-colors"
+          tag="h3"
+          size="sm"
+        >
+          {project.data.title}
+        </Title>
+      </a>
+      <div class="flex items-center gap-6">
+        {
+          project.data.sourceCodeLink && (
+            <a
+              aria-label={t("projects.sourceCode")}
+              href={project.data.sourceCodeLink}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Github className="w-7 h-7 md:w-8 md:h-8 text-foreground-light hover:text-primary transition-colors" />
+            </a>
+          )
+        }
+        <a
+          aria-label={t("projects.liveDemo")}
+          href={project.data.projectLink}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <ExternalLink
+            className="w-7 h-7 md:w-8 md:h-8 text-foreground-light hover:text-primary transition-colors"
+          />
+        </a>
+      </div>
+    </div>
+    <p class="mb-4 text-sm md:text-base">
+      {project.data.description}
+    </p>
+    <ul
+      class={cn("flex flex-wrap gap-x-4 gap-y-3", isEven && "lg:justify-end")}
+    >
+      {
+        project.data.technologies.map((technology) => (
+          <li class="inline-flex items-center rounded-sm px-2.5 py-0.5 text-sm bg-card text-card-foreground font-mono">
+            {technology}
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</article>

@@ -20,7 +20,7 @@ export const Pagination = ({
         <PaginationPrimitive.PaginationItem>
           <PaginationPrimitive.PaginationPrevious
             className={cn({
-              "xs:mr-3": true,
+              "mr-3": true,
               "opacity-50 pointer-events-none": disablePrevious,
             })}
             href={`/blog?page=${currentPage - 1}`}
@@ -86,7 +86,7 @@ export const Pagination = ({
         <PaginationPrimitive.PaginationItem>
           <PaginationPrimitive.PaginationNext
             className={cn({
-              "xs:ml-3": true,
+              "ml-3": true,
               "opacity-50 pointer-events-none": disableNext,
             })}
             href={`/blog?page=${currentPage + 1}`}

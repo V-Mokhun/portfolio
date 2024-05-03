@@ -11,14 +11,14 @@ export const LangPicker = ({ currentLang }: LangPickerProps) => {
     <Popover>
       <PopoverTrigger
         data-testid="lang-picker-trigger"
-        className="hidden lg:flex items-center text-lg text-white dark:text-foreground hover:text-primary-hover dark:hover:text-primary-hover transition-colors data-[state='open']:text-primary-hover"
+        className="hidden md:flex p-1 lg:p-2 items-center text-foreground-light hover:text-primary transition-colors data-[state='open']:text-primary"
       >
-        <span className="uppercase font-medium">{currentLang}</span>
-        <ChevronDown />
+        <span className="uppercase">{currentLang}</span>
+        <ChevronDown className="w-6 h-6" />
       </PopoverTrigger>
       <PopoverContent
         triangleSide="top"
-        className="hidden lg:block w-32 py-2"
+        className="hidden md:block w-32 py-2"
         side="bottom"
         sideOffset={10}
       >
@@ -26,9 +26,9 @@ export const LangPicker = ({ currentLang }: LangPickerProps) => {
           {Object.entries(languages).map(([lang, label]) => (
             <li
               className={cn(
-                "text-lg hover:text-primary-hover transition-colors",
+                "text-lg hover:text-primary transition-colors",
                 lang === currentLang &&
-                  "text-primary font-bold hover:text-primary"
+                  "text-primary font-semibold hover:text-primary"
               )}
               key={lang}
             >

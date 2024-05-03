@@ -1,42 +1,26 @@
 ---
-import {
-  Container,
-  HeaderMobileMenu,
-  buttonVariants,
-  HeaderNav,
-  LangPicker,
-  ThemeToggle,
-} from "@/ui/react";
-import Logo from "../shared/logo.astro";
-import { t } from "i18next";
-import i18next from "i18next";
 import { defaultLang } from "@/lib";
+import { AnimatedHeader, HeaderClient } from "@/ui/react";
+import i18next from "i18next";
+import Logo from "../shared/logo.astro";
 
 const currentLang = i18next.resolvedLanguage || defaultLang;
+
+interface Props {
+  animate?: boolean;
+}
+
+const { animate = false } = Astro.props;
 ---
 
-<header
-  class="bg-background-secondary shadow-lg py-2 lg:py-4 fixed left-0 right-0 top-0 z-10"
->
-  <Container>
-    <div class="flex items-center justify-between gap-3 lg:gap-4">
-      <div class="flex flex-1 items-center gap-2 lg:flex-initial">
-        <HeaderMobileMenu {currentLang} client:load />
-        <Logo
-          className="w-full flex justify-center lg:w-auto lg:inline-block"
-        />
-      </div>
-      <HeaderNav navClassName="hidden lg:flex" {currentLang} />
-      <div class="flex items-center gap-2 lg:gap-3">
-        <a
-          class={buttonVariants({
-            className: "md:text-lg h-9 lg:h-10 px-4 sm:px-6",
-          })}
-          href="/#contact">{t("nav.contact")}</a
-        >
-        <LangPicker currentLang={currentLang} client:load />
-        <ThemeToggle client:load />
-      </div>
-    </div>
-  </Container>
-</header>
+{
+  animate ? (
+    <AnimatedHeader {currentLang} client:load>
+      <Logo className="-ml-[26px] md:ml-0" />
+    </AnimatedHeader>
+  ) : (
+    <HeaderClient {currentLang} client:load>
+      <Logo className="-ml-[26px] md:ml-0" />
+    </HeaderClient>
+  )
+}

@@ -42,6 +42,8 @@ const { Content } = await entry.render();
     position: relative;
     line-height: 1.5;
     font-weight: 600;
+    color: hsl(var(--title));
+    text-align: left;
   }
   article h2::after,
   article h3::after,
@@ -73,7 +75,7 @@ const { Content } = await entry.render();
     margin: 1rem 0;
   }
   article p {
-    font-size: 1.25rem;
+    font-size: 1.125rem;
     line-height: 1.65;
     font-weight: 400;
   }
@@ -84,7 +86,8 @@ const { Content } = await entry.render();
     text-decoration: underline;
   }
   article .socials a:hover {
-    color: hsl(var(--primary-hover));
+    transition: color 0.3s linear;
+    color: hsl(var(--primary));
   }
   article ul,
   article ol {
@@ -102,7 +105,7 @@ const { Content } = await entry.render();
   }
   article li {
     margin: 0.25rem 0;
-    font-size: 1.25rem;
+    font-size: 1.125rem;
     line-height: 1.65;
   }
   article li ul,
@@ -122,7 +125,7 @@ const { Content } = await entry.render();
     }
     article p,
     article li {
-      font-size: 1.125rem;
+      font-size: 1rem;
     }
     article h2,
     article h3 {
@@ -147,10 +150,10 @@ const { Content } = await entry.render();
 
 <Layout title={`${entry.data.title} - Volodymyr Mokhun`}>
   <div
-    class="flex flex-col lg:flex-row items-start pt-6 pb-8 lg:pt-8 max-w-[70ch] lg:max-w-6xl mx-auto px-3 md:px-5"
+    class="flex flex-col lg:flex-row items-start gap-4 py-8 max-w-[70ch] lg:max-w-7xl mx-auto"
   >
     <a
-      class="lg:text-zinc-500 lg:dark:text-zinc-400 transition-colors lg:hover:text-primary-hover lg:dark:hover:text-primary-hover inline-flex items-center gap-1 bg-transparent border lg:border-0 border-zinc-500 dark:border-zinc-400 hover:bg-primary lg:hover:bg-transparent hover:text-primary-foreground hover:border-transparent px-3 py-1 rounded-sm lg:p-0 font-semibold lg:font-normal mb-8 lg:mb-0 text-lg"
+      class="whitespace-nowrap transition-colors lg:text-foreground-light lg:hover:text-primary lg:hover:bg-transparent inline-flex items-center gap-1 bg-transparent border lg:border-0 border-border hover:bg-primary-dark hover:text-primary-foreground px-3 py-1 rounded-sm lg:p-0 font-medium lg:font-normal mb-6 lg:mb-0 text-lg"
       href="/blog"
     >
       <ArrowLeft className="w-4 h-4" />
@@ -162,7 +165,7 @@ const { Content } = await entry.render();
         <Content />
       </article>
       <div
-        class="my-6 md:my-8 space-y-3 py-3 md:py-4 px-4 md:px-8 border-l-4 border-primary leading-relaxed bg-slate-200 dark:bg-zinc-800 text-justify font-mono text-sm md:text-base"
+        class="my-6 md:my-8 space-y-4 py-3 md:py-4 px-4 md:px-8 border-l-4 border-primary leading-relaxed bg-card text-justify font-mono text-sm md:text-base"
       >
         <p>Do you notice any problems with this post?</p>
         <p>
@@ -176,9 +179,9 @@ const { Content } = await entry.render();
             target="_blank"
             rel="noopener noreferrer"
             href="https://github.com/V-Mokhun"
-            class="inline-flex items-center gap-1 underline text-foreground dark:text-white hover:underline"
+            class="inline-flex items-center gap-2 text-primary hover:underline"
           >
-            <Icon className="w-5 h-5" name="github" />
+            <Icon className="w-6 h-6 text-foreground dark:text-white" name="github" />
             <span>Edit</span>
           </a>
         </p>

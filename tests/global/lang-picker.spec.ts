@@ -37,19 +37,6 @@ test.describe("Language picker", () => {
       page.getByRole("link", { name: "Переглянути портфоліо" })
     ).toBeInViewport();
 
-    // Change to Russian
-    await languagePicker.click();
-    await page.getByRole("link", { name: "Русский" }).click();
-
-    await page.waitForLoadState("networkidle");
-    await expect(page).toHaveURL(/\/ru/);
-    await expect(
-      page.getByRole("link", { name: "See My Portfolio" })
-    ).not.toBeInViewport();
-    await expect(
-      page.getByRole("link", { name: "Посмотреть портфолио" })
-    ).toBeInViewport();
-
     // Change back to English
     await languagePicker.click();
     await page.getByRole("link", { name: "English" }).click();

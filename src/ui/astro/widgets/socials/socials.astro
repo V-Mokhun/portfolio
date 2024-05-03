@@ -1,0 +1,37 @@
+---
+import { Animate } from "@/ui/react";
+import SocialsContent from "./socials-content.astro";
+
+interface Props {
+  animate?: boolean;
+}
+
+const { animate = false } = Astro.props;
+---
+
+{
+  animate ? (
+    <Animate
+      config={{
+        from: {
+          opacity: 0,
+        },
+        to: {
+          opacity: 1,
+        },
+        delay: 2300,
+        config: {
+          duration: 400,
+        },
+      }}
+      client:load
+      className="hidden md:block w-10 text-foreground-light fixed bottom-0 left-5 lg:left-10"
+    >
+      <SocialsContent />
+    </Animate>
+  ) : (
+    <div class="hidden md:block w-10 text-foreground-light fixed bottom-0 left-5 lg:left-10">
+      <SocialsContent />
+    </div>
+  )
+}

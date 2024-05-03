@@ -1,5 +1,4 @@
 import {
-  Button,
   Form,
   FormControl,
   FormField,
@@ -7,6 +6,7 @@ import {
   FormLabel,
   FormMessage,
   Input,
+  RippleButton,
   Textarea,
   Toaster,
   useToast,
@@ -85,22 +85,20 @@ export const ContactForm = ({}: ContactFormProps) => {
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
-          className="bg-card shadow-md px-4 py-6 rounded-lg space-y-6 max-w-lg mx-auto"
+          className="space-y-8 max-w-lg mx-auto text-left"
         >
           <FormField
             control={form.control}
             name="name"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>{t("contact.name")}</FormLabel>
                 <FormControl>
                   <Input
-                    placeholder={
-                      t("contact.namePlaceholder") ?? "Enter your name"
-                    }
+                    placeholder={t("contact.name") ?? "Enter your name"}
                     {...field}
                   />
                 </FormControl>
+                <FormLabel>{t("contact.name")}</FormLabel>
                 <FormMessage data-testid="contact-name-error" />
               </FormItem>
             )}
@@ -110,15 +108,13 @@ export const ContactForm = ({}: ContactFormProps) => {
             name="email"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>{t("contact.email")}</FormLabel>
                 <FormControl>
                   <Input
-                    placeholder={
-                      t("contact.emailPlaceholder") ?? "Enter your email"
-                    }
+                    placeholder={t("contact.email") ?? "Enter your email"}
                     {...field}
                   />
                 </FormControl>
+                <FormLabel>{t("contact.email")}</FormLabel>
                 <FormMessage data-testid="contact-email-error" />
               </FormItem>
             )}
@@ -128,29 +124,22 @@ export const ContactForm = ({}: ContactFormProps) => {
             name="message"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>{t("contact.message")}</FormLabel>
                 <FormControl>
                   <Textarea
-                    className="resize-none min-h-[120px]"
-                    placeholder={
-                      t("contact.messagePlaceholder") ?? "Enter your message"
-                    }
+                    className="resize-none min-h-[100px]"
+                    placeholder={t("contact.message") ?? "Enter your message"}
                     {...field}
                   />
                 </FormControl>
+                <FormLabel>{t("contact.message")}</FormLabel>
                 <FormMessage data-testid="contact-message-error" />
               </FormItem>
             )}
           />
           <div className="flex justify-center">
-            <Button
-              disabled={isLoading}
-              className="uppercase text-sm rounded-sm transition-all duration-300"
-              variant="ghost"
-              type="submit"
-            >
+            <RippleButton disabled={isLoading} size="lg" type="submit">
               {t("contact.sendMessage")}
-            </Button>
+            </RippleButton>
           </div>
         </form>
       </Form>

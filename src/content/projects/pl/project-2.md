@@ -1,7 +1,7 @@
 ---
 title: "GameHub"
 type: "Platforma Gamingowa"
-description: "To jest projekt edukacyjny. To porządna platforma do gier, gdzie możesz odkrywać i dodawać różne gry do swojej biblioteki. Nawiąż kontakt z innymi graczami, pogadaj, importuj gry ze Steam, dziel się recenzjami i sprawdzaj rankingi. Bez względu na to, czy jesteś doświadczonym graczem, czy dopiero zaczynasz swoją przygodę z grami, GameHub ma coś dla każdego. Ta strona została zbudowana przy użyciu Next.js i TypeScript jako frameworka frontendowego, Prisma jako ORM oraz PostgreSQL jako bazy danych. Stan frontendowy jest zarządzany za pomocą Zustand, a do pobierania danych używane jest React Query. Do stylizacji wykorzystano Tailwind CSS i shadcn/ui."
+description: "Platforma do gier, na której możesz odkrywać i dodawać różne gry do swojej biblioteki. Nawiąż kontakt z innymi, czatuj, importuj gry ze Steam, dziel się recenzjami gier i przeglądaj rankingi. Ta strona została zbudowana przy użyciu Next.js i TypeScript, Prisma jako ORM i PostgreSQL jako bazy danych. Stan frontendu jest zarządzany za pomocą Zustand, a React Query służy do pobierania danych."
 image: "../../images/projects-2.jpg"
 projectLink: "https://gamehub-proj.vercel.app"
 sourceCodeLink: "https://github.com/V-Mokhun/gamehub"

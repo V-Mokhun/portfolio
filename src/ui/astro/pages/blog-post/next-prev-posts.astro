@@ -15,10 +15,10 @@ const { nextPost, prevPost } = Astro.props;
   (nextPost || prevPost) && (
     <div
       class:list={[
-        "flex flex-col md:flex-row md:items-center justify-between py-2 md:py-4 md:gap-4 border rounded-md md:rounded-none md:border-0 md:border-t border-zinc-500",
+        "flex flex-col md:flex-row md:items-center justify-between py-2 md:py-4 md:gap-4 border rounded-md md:rounded-none md:border-0 md:border-t border-border",
         prevPost &&
           nextPost &&
-          "relative md:after:absolute after:w-[1px] after:h-full after:top-0 after:left-[calc(50%+0.5rem)] after:-translate-x-1/2 after:bg-zinc-500",
+          "relative md:after:absolute after:w-[1px] after:h-full after:top-0 after:left-[calc(50%+0.5rem)] after:-translate-x-1/2 after:bg-border",
       ]}
     >
       {prevPost && (
@@ -27,7 +27,7 @@ const { nextPost, prevPost } = Astro.props;
           class:list={[
             "group flex items-center gap-3 flex-1 px-2 md:px-0",
             nextPost &&
-              "border-b border-zinc-500 md:border-0 pb-2 mb-2 md:pb-0 md:mb-0",
+              "border-b border-border md:border-0 pb-2 mb-2 md:pb-0 md:mb-0",
           ]}
         >
           <Image
@@ -43,7 +43,7 @@ const { nextPost, prevPost } = Astro.props;
             </div>
             <h3
               transition:name={`${prevPost.slug} title`}
-              class="text-lg xs:text-xl font-medium leading-tight tracking-tight transition-colors group-hover:text-primary-hover"
+              class="text-lg text-title xs:text-xl font-medium leading-tight tracking-tight transition-colors group-hover:text-primary"
             >
               {prevPost.data.title}
             </h3>
@@ -69,7 +69,7 @@ const { nextPost, prevPost } = Astro.props;
             </div>
             <h3
               transition:name={`${nextPost.slug} title`}
-              class="text-lg xs:text-xl font-medium leading-tight tracking-tight transition-colors group-hover:text-primary-hover"
+              class="text-lg text-title xs:text-xl font-medium leading-tight tracking-tight transition-colors group-hover:text-primary"
             >
               {nextPost.data.title}
             </h3>

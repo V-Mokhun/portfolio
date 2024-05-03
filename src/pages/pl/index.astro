@@ -2,18 +2,20 @@
 import { changeLanguage } from "i18next";
 import Layout from "@/layouts/layout.astro";
 import About from "@/ui/astro/sections/about.astro";
-import Contact from "@/ui/astro/sections/contact.astro";
 import Hero from "@/ui/astro/sections/hero.astro";
+import Socials from "@/ui/astro/widgets/socials/socials.astro";
+import Skills from "@/ui/astro/sections/skills.astro";
+import Contact from "@/ui/astro/sections/contact.astro";
 import Projects from "@/ui/astro/sections/projects.astro";
-import Technologies from "@/ui/astro/sections/technologies.astro";
 
 changeLanguage("pl");
 ---
 
-<Layout>
+<Layout animateHeader>
   <Hero />
   <About />
-  <Technologies />
+  <Skills />
   <Projects />
   <Contact />
+  <Socials animate />
 </Layout>
