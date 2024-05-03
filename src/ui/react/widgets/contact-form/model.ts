@@ -1,21 +1,14 @@
 import { z } from "zod";
-import { t } from "i18next";
 
 export const contactFormSchema = z.object({
   name: z.string().min(2, {
-    message:
-      t("contact.nameLengthError") ??
-      "Your name must be at least 2 characters long.",
+    message: "contact.nameLengthError",
   }),
-  email: z
-    .string()
-    .email({
-      message: t("contact.emailError") ?? "Your email address is invalid.",
-    }),
+  email: z.string().email({
+    message: "contact.emailError",
+  }),
   message: z.string().min(10, {
-    message:
-      t("contact.messageLengthError") ??
-      "Your message must be at least 10 characters long.",
+    message: "contact.messageLengthError",
   }),
 });
 
