@@ -18,12 +18,12 @@
     "greeting": "Cześć, jestem",
     "title": "Volodymyr Mokhun",
     "subtitle": "Front-End Developer",
-    "description": "Jestem studentem Informatyki i web developerem specjalizującym się w tworzeniu doskonałych doświadczeń użytkownika. Kwitnę, tworząc praktyczne rozwiązania, eksplorując nowe możliwości i sprawiając, że podróż kodowania jest przyjemnością."
+    "description": "Jestem studentem Informatyki i web developerem specjalizującym się w tworzeniu wydajnych i responsywnych stron internetowych. Dążę do tworzenia praktycznych rozwiązań, odkrywania nowych możliwości i czerpania radości z programowania."
   },
   "about": {
     "title": "O mnie",
     "description1": "Nazywam się Volodymyr, jestem studentem drugiego roku informatyki na <0>Uniwersytecie Warmińsko-Mazurskim</0>. Moja przygoda z programowaniem rozpoczęła się w wieku 15 lat, zaczynając od prostych stron internetowych i stopniowo zagłębiając się w bardziej złożone projekty, a także opanowując struktury danych i algorytmy.",
-    "description2": "<0>Przez rok</0> pracowałem jako programista Front-End na freelancie, gdzie zdobyłem bezcenne doświadczenie w komunikacji z klientem i ściśle współpracowałem z innymi programistami i designerami. Obecnie zajmuję się tworzeniem róznych rzeczy za pomocą <1>React</1> i Next.js. Także podjąłem się podróży w kierunku opanowania Golang, wzbogacając moją wiedzę z zakresu tworzenia backendu.",
+    "description2": "<0>Przez rok</0> pracowałem jako programista Front-End na freelancie, gdzie zdobyłem bezcenne doświadczenie w komunikacji z klientem i współpracowałem z innymi programistami i designerami. Obecnie zajmuję się tworzeniem róznych produktów za pomocą <1>React</1> i Next.js. Także podjąłem się podróży w kierunku opanowania Golang, wzbogacając moją wiedzę z zakresu tworzenia backendu.",
     "description3": "Niedawno uzyskałem również <0>Cambridge C1 Advanced Certificate</0>, który zasadniczo mówi, że potrafię dobrze radzić sobie w środowisku anglojęzycznym."
   },
   "skills": {
