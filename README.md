@@ -5,7 +5,7 @@
 <br />
 <div align="center">
   <a href="https://v-mokhun.com">
-		<img src="readme-images/logo.png" alt="Logo" width="400" height="100">
+		<img src="readme-images/logo.png" alt="Logo" width="300" height="230">
   </a>
 
   <p align="center">
@@ -26,7 +26,7 @@ The site was created to showcase my skills and projects as well as to provide a 
 
 It was built using Astro and React.js. It uses SSR (Api routes specifically) in contact form for sending emails if you want to contact me. For styling TailwindCSS and Shadcnui are used, site is hosted on Vercel but has a custom domain.
 
-There also is a language switcher that changes the language of the site: English, Polish, Ukrainian and Russian are supported. The language is saved in the local storage and is used on the next visit.
+There also is a language switcher that changes the language of the site: English, Polish, and Ukrainian are supported. The language is saved in the local storage and is used on the next visit.
 
 The website also implements a theme switcher that changes the theme of the site: light and dark are supported.
 

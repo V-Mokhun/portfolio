@@ -26,7 +26,7 @@ test.describe("Header Mobile Menu", () => {
     await page.getByRole("button", { name: "en" }).click();
     await expect(page.getByRole("link", { name: "Polski" })).toBeInViewport();
 
-    await expect(page.getByRole("link", { name: "See Resume" })).toBeVisible();
+    await expect(page.getByRole("link", { name: "Resume" })).toBeVisible();
 
     // Close button
     await expect(page.getByRole("button", { name: "Close" })).toBeInViewport();

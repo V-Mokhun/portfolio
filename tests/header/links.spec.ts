@@ -13,9 +13,9 @@ test.describe("Header Links navigation", () => {
       page.getByRole("heading", { name: "About Me" })
     ).toBeInViewport();
 
-    await page.getByRole("link", { name: "Technologies" }).click();
+    await page.getByRole("link", { name: "Skills" }).click();
     await expect(
-      page.getByRole("heading", { name: "Technologies", exact: true })
+      page.getByRole("heading", { name: "Skills", exact: true })
     ).toBeInViewport();
 
     await page.getByRole("link", { name: "Projects" }).click();
@@ -23,16 +23,14 @@ test.describe("Header Links navigation", () => {
       page.getByRole("heading", { name: "Projects" })
     ).toBeInViewport();
 
-    await page.getByRole("link", { name: "Home" }).click();
-    await expect(
-      page.getByRole("button", { name: "Hey, I'm Volodymyr," })
-    ).toBeInViewport();
-  });
-
-  test("Contact link takes to contact section", async ({ page }) => {
     await page.getByRole("link", { name: "Contact" }).click();
     await expect(
       page.getByRole("heading", { name: "Get in Touch" })
+    ).toBeInViewport();
+
+    await page.getByRole("link", { name: "Home" }).click();
+    await expect(
+      page.getByRole("button", { name: "Hi, I'm" })
     ).toBeInViewport();
   });
 });
