@@ -94,9 +94,7 @@ export const ContactForm = ({}: ContactFormProps) => {
               <FormItem>
                 <FormControl>
                   <Input
-                    placeholder={
-                      t("contact.namePlaceholder") ?? "Enter your name"
-                    }
+                    placeholder={t("contact.name") ?? "Enter your name"}
                     {...field}
                   />
                 </FormControl>
@@ -112,9 +110,7 @@ export const ContactForm = ({}: ContactFormProps) => {
               <FormItem>
                 <FormControl>
                   <Input
-                    placeholder={
-                      t("contact.emailPlaceholder") ?? "Enter your email"
-                    }
+                    placeholder={t("contact.email") ?? "Enter your email"}
                     {...field}
                   />
                 </FormControl>
@@ -131,9 +127,7 @@ export const ContactForm = ({}: ContactFormProps) => {
                 <FormControl>
                   <Textarea
                     className="resize-none min-h-[100px]"
-                    placeholder={
-                      t("contact.messagePlaceholder") ?? "Enter your message"
-                    }
+                    placeholder={t("contact.message") ?? "Enter your message"}
                     {...field}
                   />
                 </FormControl>

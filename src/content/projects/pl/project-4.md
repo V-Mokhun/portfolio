@@ -1,7 +1,7 @@
 ---
 title: "Dobrocrov"
 type: "Strona Korporacyjna"
-description: "To wolne zlecenie skupiło się na tworzeniu korporacyjnej strony internetowej przy użyciu HTML, SCSS i JS. Współpraca była kluczowa, obejmując bliską koordynację z projektantem i innym członkiem zespołu odpowiedzialnym za przeniesienie witryny do systemu zarządzania treścią (CMS). Wyjątkowym aspektem tego przedsięwzięcia było wykorzystanie szablonu Tilda, co nadało niekonwencjonalny charakter procesowi rozwoju. Klient wyraził pełną satysfakcję z wyników projektu, potwierdzając jego sukces i wyjątkowy charakter."
+description: "Ten freelance projekt koncentrował się na tworzeniu korporacyjnej strony internetowej przy użyciu HTML, SCSS i JavaScript. Współpraca była kluczowa, obejmując ścisłą koordynację z designerem i innym członkiem zespołu odpowiedzialnym za migrację witryny do systemu zarządzania treścią (CMS). Wyróżniającym się aspektem było wykorzystanie szablonu Tilda, wnoszącego niekonwencjonalny akcent do procesu rozwoju. Klient wyraził zadowolenie z wyników projektu, potwierdzając jego sukces i wyróżniający się charakter".
 image: "../../images/projects-4.jpg"
 projectLink: "https://dobrocrov.netlify.app"
 technologies:

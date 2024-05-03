@@ -3,6 +3,7 @@ import { cn } from "@/lib";
 import { Title } from "@/ui/react";
 import { Image } from "astro:assets";
 import { type CollectionEntry } from "astro:content";
+import { t } from "i18next";
 import { ExternalLink, Github } from "lucide-react";
 
 interface Props {
@@ -46,6 +47,7 @@ const { project, isEven } = Astro.props;
         {
           project.data.sourceCodeLink && (
             <a
+              aria-label={t("projects.sourceCode")}
               href={project.data.sourceCodeLink}
               target="_blank"
               rel="noopener noreferrer"
@@ -55,6 +57,7 @@ const { project, isEven } = Astro.props;
           )
         }
         <a
+          aria-label={t("projects.liveDemo")}
           href={project.data.projectLink}
           target="_blank"
           rel="noopener noreferrer"

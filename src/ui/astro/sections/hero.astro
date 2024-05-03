@@ -1,5 +1,6 @@
 ---
 import { Animate, Container, HeroParticles, RippleButton } from "@/ui/react";
+import { t } from "i18next";
 ---
 
 <section
@@ -21,7 +22,7 @@ import { Animate, Container, HeroParticles, RippleButton } from "@/ui/react";
           delay: 900,
           config: { duration: 300 },
         }}
-        >Hi, I&apos;m
+        >{t("hero.greeting")}
       </Animate>
       <Animate
         client:load
@@ -37,7 +38,7 @@ import { Animate, Container, HeroParticles, RippleButton } from "@/ui/react";
           config: { duration: 400 },
         }}
       >
-        Volodymyr Mokhun.
+        {t("hero.title")}
       </Animate>
       <Animate
         client:load
@@ -53,7 +54,7 @@ import { Animate, Container, HeroParticles, RippleButton } from "@/ui/react";
           config: { duration: 400 },
         }}
       >
-        A web developer.
+        {t("hero.subtitle")}
       </Animate>
       <Animate
         client:load
@@ -68,13 +69,11 @@ import { Animate, Container, HeroParticles, RippleButton } from "@/ui/react";
       >
         <>
           <p class="max-w-lg leading-normal font-light mb-8">
-            I&apos;m a CS student and a web developer specializing in building
-            superb user experiences. I love exploring new technologies and
-            creating useful products.
+            {t("hero.description")}
           </p>
-          <RippleButton size="lg" tag="a" href="/#contact" client:load
-            >Contact Me</RippleButton
-          >
+          <RippleButton size="lg" tag="a" href="/#contact" client:load>
+            {t("contactMe")}
+          </RippleButton>
         </>
       </Animate>
     </div>

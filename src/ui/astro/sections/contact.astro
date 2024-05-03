@@ -1,5 +1,6 @@
 ---
 import { AnimateInView, ContactForm, Container, Title } from "@/ui/react";
+import { t } from "i18next";
 ---
 
 <AnimateInView
@@ -9,7 +10,7 @@ import { AnimateInView, ContactForm, Container, Title } from "@/ui/react";
   className="py-12 xs:py-16 md:py-20"
 >
   <Container className="max-w-5xl text-center">
-    <Title className="inline-block mb-8 xs:mb-10">Get in Touch</Title>
+    <Title className="inline-block mb-8 xs:mb-10">{t("contact.title")}</Title>
     <ContactForm client:visible />
   </Container>
 </AnimateInView>

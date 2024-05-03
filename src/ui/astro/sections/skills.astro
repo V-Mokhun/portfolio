@@ -5,6 +5,7 @@ import {
   SkillsItem,
   AnimateInView,
 } from "@/ui/react";
+import { t } from "i18next";
 
 const SKILLS = [
   {
@@ -69,7 +70,7 @@ const SKILLS = [
 <section class="py-12 xs:py-16 md:py-20" id="skills">
   <Container>
     <AnimatedTitle client:visible className="mb-8 xs:mb-10"
-      >Skills</AnimatedTitle
+      >{t("skills.title")}</AnimatedTitle
     >
     <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 group">
       {

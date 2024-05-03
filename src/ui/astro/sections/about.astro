@@ -8,6 +8,8 @@ import {
 } from "@/ui/react";
 import { Image } from "astro:assets";
 import aboutImage from "@/assets/images/about.jpg";
+import { Trans } from "astro-i18next/components";
+import { t } from "i18next";
 ---
 
 <AnimateInView
@@ -17,35 +19,43 @@ import aboutImage from "@/assets/images/about.jpg";
   className="py-12 xs:py-16 md:py-20"
 >
   <Container className="max-w-5xl">
-    <Title className="mb-8 xs:mb-10">About Me</Title>
+    <Title className="mb-8 xs:mb-10">{t("about.title")}</Title>
     <div class="md:grid md:grid-cols-5 md:items-start md:gap-10">
       <div class="mb-8 md:mb-0 space-y-2 col-span-3 font-light">
         <p>
-          My name is Volodymyr and I'm a second-year CS student at the <a
-            href="https://uwm.edu.pl/"
-            class={linkVariants({})}
-            target="_blank"
-            rel="noreferrer noopener">University of Warmia and Mazury</a
-          >. My love for programming started when I was 15 years old. I started
-          with building simple websites and then gradually moved to more complex
-          projects.
+          <Trans i18nKey="about.description1">
+            My name is Volodymyr, I'm a second-year Computer Science student at
+            the <a
+              href="https://uwm.edu.pl/"
+              class={linkVariants({})}
+              target="_blank"
+              rel="noreferrer noopener">University of Warmia and Mazury</a
+            >. My journey with programming began at the age of 15, starting with
+            simple websites and gradually diving into more complex projects,
+            alongside mastering Data Structures and Algorithms.
+          </Trans>
         </p>
         <p>
-          <span class="text-primary">For a year</span> I worked as a Freelance Front-End
-          developer, which taught me how client-developer communication works as
-          well as collaboration with other developers and designers. These days I
-          focus on building products with <span class="text-primary">
-            React</span
-          > and Next.js. I also took up learning Golang to deepen my knowledge in
-          backend development.
+          <Trans i18nKey="about.description2">
+            <span class="text-primary">For a year</span> I worked as a Freelance
+            Front-End developer, where I gained invaluable experience in client communication
+            and collaborated closely with fellow developers and designers. Nowadays,
+            I'm into building awesome stuff with <span class="text-primary">
+              React</span
+            > and Next.js. I've also embarked on a journey to master Golang, enriching
+            my expertise in backend development.
+          </Trans>
         </p>
         <p>
-          I also recently obtained a <a
-            href="https://www.cambridgeenglish.org/exams-and-tests/advanced/"
-            class={linkVariants({})}
-            target="_blank"
-            rel="noreferrer noopener">Cambridge C1 Advanced Certificate</a
-          > which allows me to work in an English-speaking environment.
+          <Trans i18nKey="about.description3">
+            I also recently obtained the <a
+              href="https://www.cambridgeenglish.org/exams-and-tests/advanced/"
+              class={linkVariants({})}
+              target="_blank"
+              rel="noreferrer noopener">Cambridge C1 Advanced Certificate</a
+            >, which basically says I can handle myself just fine in
+            English-speaking settings.
+          </Trans>
         </p>
       </div>
       <Hover

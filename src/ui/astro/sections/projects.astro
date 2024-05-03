@@ -2,7 +2,7 @@
 import { cn } from "@/lib";
 import { AnimateInView, AnimatedTitle, Container } from "@/ui/react";
 import { getCollection } from "astro:content";
-import i18next from "i18next";
+import i18next, { t } from "i18next";
 import ProjectCard from "../widgets/project-card.astro";
 
 const allProjects = await getCollection("projects", ({ id }) => {
@@ -13,7 +13,7 @@ const allProjects = await getCollection("projects", ({ id }) => {
 <section class="py-12 xs:py-16 md:py-20 overflow-x-hidden" id="projects">
   <Container>
     <AnimatedTitle client:visible className="mb-10 xs:mb-12"
-      >Projects</AnimatedTitle
+      >{t("projects.title")}</AnimatedTitle
     >
     <div class="flex flex-col gap-12 md:gap-16">
       {

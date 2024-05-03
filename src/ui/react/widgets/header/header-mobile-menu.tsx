@@ -38,7 +38,7 @@ export const HeaderMobileMenu = ({ currentLang }: HeaderMobileMenuProps) => {
           className="font-medium text-xl flex items-center gap-2 mt-4 text-primary"
         >
           <FileSymlinkIcon className="w-6 h-6 text-primary" />
-          <span>{t("seeResume")}</span>
+          <span>{t("resume")}</span>
         </a>
       </SheetContent>
     </Sheet>

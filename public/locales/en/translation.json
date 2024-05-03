@@ -2,55 +2,43 @@
   "name": "Volodymyr",
   "site": {
     "title": "Volodymyr Mokhun - Front-End Developer",
-    "description": "Explore my portfolio as a React and TypeScript Front-End Developer. See projects that showcase practical, effective web solutions."
+    "description": "Volodymyr Mokhun, Front-End Developer specializing in React.js, TypeScript, Next.js."
   },
+  "resume": "Resume",
+  "contactMe": "Contact Me",
   "nav": {
     "home": "Home",
     "about": "About",
-    "skills": "skills",
+    "skills": "Skills",
     "projects": "Projects",
     "contact": "Contact",
     "blog": "Blog"
   },
   "hero": {
-    "title": "Hey, I'm",
-    "titleTooltip": "I actually prefer the name <1>Vova </1> as it's easier to pronouce and doesn't sound too formal.",
-    "subtitle": "a passionate <0>Front-End Developer</0>",
-    "description": "I aspire to create best products for the web and explore new possibilities of modern technologies I'm a lifelong learner and I'm also a bit obsessed with calisthenics."
+    "greeting": "Hi, I'm",
+    "title": "Volodymyr Mokhun.",
+    "subtitle": "a Front-End Developer",
+    "description": "I'm a CS student and a web developer specializing in building superb user experiences. I thrive on creating practical solutions, exploring new opportunities, and keeping the coding journey enjoyable."
   },
-  "hireMe": "Hire Me",
-  "seePortfolio": "See My Portfolio",
   "about": {
     "title": "About Me",
-    "subtitle": "Get to know me",
-    "description1": "I'm a second-year Computer Science student at the <0>University of Warmia and Mazury</0>. I have experience in developing websites, from simple landing pages to complex web applications. I have also recently obtained <1>Cambridge C1 Advanced Certification</1>.",
-    "description2": "Being exposed to the world of programming at a <0>young age</0>, I don't imagine myself doing anything else as seriously. I'm passionate about web development, especially <0>Front-End</0>. I'm always looking for new challenges and opportunities to learn.",
-    "description3": "When I'm not in front of the computer, I like to spend my time <0>working out</0>, <1>watching TV shows and movies</1>, <2>reading</2>, or <3>playing volleyball</3>.",
-    "name": "Name: <0>Volodymyr Mokhun</0>",
-    "age": "Age: <0>18</0>",
-    "location": "City: <0>Olsztyn</0>"
+    "description1": "My name is Volodymyr, I'm a second-year Computer Science student at the <0>University of Warmia and Mazury</0>. My journey with programming began at the age of 15, starting with simple websites and gradually diving into more complex projects, alongside mastering Data Structures and Algorithms.",
+    "description2": "<0>For a year</0> I worked as a Freelance Front-End developer, where I gained invaluable experience in client communication and collaborated closely with fellow developers and designers. Nowadays, I'm into building awesome stuff with <1>React</1> and Next.js. I've also embarked on a journey to master Golang, enriching my expertise in backend development.",
+    "description3": "I also recently obtained the <0>Cambridge C1 Advanced Certificate</0>, which basically says I can handle myself just fine in English-speaking settings."
   },
-  "technologies": {
-    "title": "Technologies",
-    "subtitle": "What I use",
-    "description": "I qualify myself as a <0>React</0> developer, that's why it is my main tool for building web applications. Mainly I use <1>TypeScript</1> when I can, but I'm also comfortable with <2>JavaScript</2>. <3>For the full list of technologies I use, check out the <4>list to the right</4> and hover over the icons to see technology name. </3>",
-    "resume": "I also encourage you to take a look at my resume"
+  "skills": {
+    "title": "Skills"
   },
-  "seeResume": "See Resume",
   "projects": {
     "title": "Projects",
-    "technologies": "Technologies",
-    "liveDemo": "Live Demo",
-    "sourceCode": "Source Code"
+    "sourceCode": "View source code on GitHub",
+    "liveDemo": "Visit project website"
   },
   "contact": {
     "title": "Get in Touch",
     "name": "Name",
-    "namePlaceholder": "Enter your name",
     "email": "Email",
-    "emailPlaceholder": "Enter your email",
     "message": "Message",
-    "messagePlaceholder": "Enter your message",
     "sendMessage": "Send Message",
 
     "nameLengthError": "Name must be at least 2 characters long",

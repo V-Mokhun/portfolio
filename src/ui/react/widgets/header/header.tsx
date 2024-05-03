@@ -13,6 +13,7 @@ import {
   type SpringValues,
 } from "@react-spring/web";
 import { useEffect, useState, type ReactNode } from "react";
+import { useTranslation } from "react-i18next";
 
 interface HeaderClientProps {
   currentLang: string;
@@ -27,6 +28,7 @@ export const HeaderClient = ({
   children,
   animateProps,
 }: HeaderClientProps) => {
+  const { t } = useTranslation();
   const [position, setPosition] = useState(
     typeof window !== "undefined" ? window.scrollY : 0
   );
@@ -82,7 +84,7 @@ export const HeaderClient = ({
               href="/resume.pdf"
               target="_blank"
             >
-              Resume
+              {t("resume")}
             </RippleButton>
             <LangPicker currentLang={currentLang} />
             <ThemeToggle />

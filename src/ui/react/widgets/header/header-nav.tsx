@@ -64,8 +64,7 @@ export const HeaderNav = ({
             )}
             href={translatePath("/#skills", currentLang)}
           >
-            {/* {t("nav.skills")} */}
-            Skills
+            {t("nav.skills")}
           </a>
         </li>
         <li>
