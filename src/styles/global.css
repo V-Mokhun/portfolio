@@ -28,6 +28,8 @@
     --border: 0 0% 92%;
     --input: 0 0% 92%;
 
+    --selection: 214 100% 85%;
+
     --scrollbar-track: 0 0% 65%;
     --scrollbar-thumb: 0 0% 95%;
 
@@ -70,6 +72,8 @@
     --border: 218 54% 25%;
     --input: 218 54% 25%;
 
+    --selection: 218 45% 28%;
+
     --scrollbar-track: 227 25% 50%;
     --scrollbar-thumb: 218 70% 13%;
   }
@@ -86,6 +90,11 @@
   }
   body {
     @apply bg-background text-foreground;
+  }
+
+  ::selection {
+    background: hsl(var(--selection));
+    color: hsl(var(--title));
   }
 
   ::-webkit-scrollbar {

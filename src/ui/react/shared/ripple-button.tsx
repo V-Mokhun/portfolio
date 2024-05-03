@@ -7,25 +7,20 @@ interface RippleButtonProps extends Omit<ButtonProps, "asChild"> {
   href?: string;
   target?: string;
   rel?: string;
-  isDynamic?: boolean;
 }
 
 export const RippleButton = forwardRef<HTMLElement, RippleButtonProps>(
-  (
-    { className, children, size, tag = "button", isDynamic = false, ...props },
-    ref
-  ) => {
+  ({ className, children, size, tag = "button", ...props }, ref) => {
     const buttonRef = useRef<HTMLElement | null>(null);
     const spanRef = useRef<HTMLSpanElement | null>(null);
     const Comp = tag;
 
     const onMouseOver = (e: React.MouseEvent) => {
       if (!spanRef.current || !buttonRef.current) return;
+      const { x, y } = buttonRef.current.getBoundingClientRect();
 
-      spanRef.current.style.left =
-        (isDynamic ? e.clientX : e.pageX) - buttonRef.current.offsetLeft + "px";
-      spanRef.current.style.top =
-        (isDynamic ? e.clientY : e.pageY) - buttonRef.current.offsetTop + "px";
+      spanRef.current.style.left = e.clientX - x + "px";
+      spanRef.current.style.top = e.clientY - y + "px";
     };
 
     return (

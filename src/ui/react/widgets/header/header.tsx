@@ -81,7 +81,6 @@ export const HeaderClient = ({
               tag="a"
               href="/resume.pdf"
               target="_blank"
-              isDynamic
             >
               Resume
             </RippleButton>
