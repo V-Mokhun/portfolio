@@ -9,7 +9,9 @@ test.describe("Language picker", () => {
   test("Language picker works", async ({ page }) => {
     const languagePicker = await page.getByTestId("lang-picker-trigger");
     // Initially English
-    await expect(page.getByRole("link", { name: "Contact" })).toBeInViewport();
+    await expect(
+      page.getByRole("link", { name: "About", exact: true })
+    ).toBeInViewport();
 
     // Change to Polish
     await languagePicker.click();
@@ -18,11 +20,9 @@ test.describe("Language picker", () => {
     await page.waitForLoadState("networkidle");
     await expect(page).toHaveURL(/\/pl/);
     await expect(
-      page.getByRole("link", { name: "See My Portfolio" })
+      page.getByRole("link", { name: "About", exact: true })
     ).not.toBeInViewport();
-    await expect(
-      page.getByRole("link", { name: "Zobacz portfolio" })
-    ).toBeInViewport();
+    await expect(page.getByRole("link", { name: "O mnie" })).toBeInViewport();
 
     // Change to Ukrainian
     await languagePicker.click();
@@ -31,11 +31,9 @@ test.describe("Language picker", () => {
     await page.waitForLoadState("networkidle");
     await expect(page).toHaveURL(/\/ua/);
     await expect(
-      page.getByRole("link", { name: "See My Portfolio" })
+      page.getByRole("link", { name: "About", exact: true })
     ).not.toBeInViewport();
-    await expect(
-      page.getByRole("link", { name: "Переглянути портфоліо" })
-    ).toBeInViewport();
+    await expect(page.getByRole("link", { name: "Про мене" })).toBeInViewport();
 
     // Change back to English
     await languagePicker.click();
@@ -43,8 +41,6 @@ test.describe("Language picker", () => {
 
     await page.waitForLoadState("networkidle");
     await expect(page).toHaveURL("/");
-    await expect(
-      page.getByRole("link", { name: "See My Portfolio" })
-    ).toBeInViewport();
+    await expect(page.getByRole("link", { name: "About" })).toBeInViewport();
   });
 });

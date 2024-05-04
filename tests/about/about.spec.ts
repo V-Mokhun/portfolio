@@ -11,15 +11,18 @@ test.describe("About Section", () => {
       page.getByRole("heading", { name: "About Me" })
     ).not.toBeInViewport();
     await page.getByRole("link", { name: "About" }).click();
+    await page.waitForLoadState("networkidle");
 
     await expect(
       page.getByRole("heading", { name: "About Me" })
     ).toBeInViewport();
     await expect(
-      page.locator("#about").getByText("Volodymyr Mokhun")
+      page.locator("#about").getByText("Volodymyr")
     ).toBeInViewport();
     await expect(
-      page.locator("#about").getByRole("link", { name: "v.mokhun@gmail.com" })
+      page
+        .locator("#about")
+        .getByRole("link", { name: "University of Warmia and Mazury" })
     ).toBeInViewport();
   });
 
@@ -34,7 +37,7 @@ test.describe("About Section", () => {
 
     const caePagePromise = page.waitForEvent("popup");
     await page
-      .getByRole("link", { name: "Cambridge C1 Advanced Certification" })
+      .getByRole("link", { name: "Cambridge C1 Advanced Certificate" })
       .click();
     const caePage = await caePagePromise;
     await expect(caePage).toHaveURL(/cambridgeenglish/);
