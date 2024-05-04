@@ -1,6 +1,6 @@
 import { expect, test } from "@playwright/test";
 
-test.describe("Technologies Section", () => {
+test.describe("Projects Section", () => {
   test.beforeEach(async ({ page }) => {
     await page.goto("/");
     await page.waitForLoadState("networkidle");
@@ -9,6 +9,7 @@ test.describe("Technologies Section", () => {
       page.getByRole("heading", { name: "Projects", exact: true })
     ).not.toBeInViewport();
     await page.getByRole("link", { name: "Projects" }).click();
+    await page.waitForLoadState("networkidle");
 
     await expect(
       page.getByRole("heading", { name: "Projects", exact: true })
@@ -25,7 +26,7 @@ test.describe("Technologies Section", () => {
 
   test("Live Demo link works", async ({ page }) => {
     const projectPagePromise = page.waitForEvent("popup");
-    await page.getByRole("link", { name: "Live Demo" }).first().click();
+    await page.getByLabel("Visit project website").first().click();
     const projectPage = await projectPagePromise;
     await expect(projectPage).toHaveURL(/ecommerce/);
     await projectPage.close();
@@ -33,7 +34,7 @@ test.describe("Technologies Section", () => {
 
   test("Source Code link works", async ({ page }) => {
     const projectPagePromise = page.waitForEvent("popup");
-    await page.getByRole("link", { name: "Source Code" }).first().click();
+    await page.getByLabel("View source code on GitHub").first().click();
     const projectPage = await projectPagePromise;
     await expect(projectPage).toHaveURL(/github.com/);
     await projectPage.close();

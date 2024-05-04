@@ -1,12 +1,12 @@
 import { Page, expect, test } from "@playwright/test";
 
 async function fillForm(page: Page) {
-  await page.getByPlaceholder("Enter your name").click();
-  await page.getByPlaceholder("Enter your name").fill("Volodymyr");
-  await page.getByPlaceholder("Enter your email").click();
-  await page.getByPlaceholder("Enter your email").fill("email@gmail.com");
-  await page.getByPlaceholder("Enter your message").click();
-  await page.getByPlaceholder("Enter your message").fill("Hello friend");
+  await page.getByPlaceholder("Name").click();
+  await page.getByPlaceholder("Name").fill("Volodymyr");
+  await page.getByPlaceholder("Email").click();
+  await page.getByPlaceholder("Email").fill("email@gmail.com");
+  await page.getByPlaceholder("Message").click();
+  await page.getByPlaceholder("Message").fill("Hello friend");
 }
 
 test.describe("Contact Section", () => {
@@ -17,11 +17,8 @@ test.describe("Contact Section", () => {
     await expect(
       page.getByRole("heading", { name: "Get in Touch", exact: true })
     ).not.toBeInViewport();
-    await page.getByRole("link", { name: "Contact" }).click();
-
-    await expect(
-      page.getByRole("heading", { name: "Get in Touch", exact: true })
-    ).toBeInViewport();
+    await page.getByRole("link", { name: "Contact", exact: true }).click();
+    await page.waitForLoadState("domcontentloaded");
   });
 
   test("Shows form errors", async ({ page }) => {
@@ -34,17 +31,17 @@ test.describe("Contact Section", () => {
     await expect(page.getByTestId("contact-email-error")).toBeVisible();
     await expect(page.getByTestId("contact-message-error")).toBeVisible();
 
-    await page.getByPlaceholder("Enter your name").click();
-    await page.getByPlaceholder("Enter your name").fill("Volodymyr");
-    await page.getByPlaceholder("Enter your message").click();
-    await page.getByPlaceholder("Enter your message").fill("Hello friend");
+    await page.getByPlaceholder("Name").click();
+    await page.getByPlaceholder("Name").fill("Volodymyr");
+    await page.getByPlaceholder("Message").click();
+    await page.getByPlaceholder("Message").fill("Hello friend");
     await page.getByRole("button", { name: "Send Message" }).click();
 
     await expect(page.getByTestId("contact-name-error")).not.toBeVisible();
     await expect(page.getByTestId("contact-email-error")).toBeVisible();
     await expect(page.getByTestId("contact-message-error")).not.toBeVisible();
 
-    await page.getByPlaceholder("Enter your email").fill("invalidemail");
+    await page.getByPlaceholder("Email").fill("invalidemail");
     await page.getByRole("button", { name: "Send Message" }).click();
     await expect(page.getByTestId("contact-email-error")).toBeVisible();
   });

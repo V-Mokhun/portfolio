@@ -28,9 +28,9 @@ export const SkillsItem = ({ color, icon, name }: SkillsItemProps) => {
         vy={-0.2}
       />
       <div className="p-4 text-center">
-        <h3 className="font-semibold text-xl lg:text-2xl text-title mb-4">
+        <h4 className="font-semibold text-xl lg:text-2xl text-title mb-4">
           {name}
-        </h3>
+        </h4>
         <Icon
           style={{
             ...(hover
