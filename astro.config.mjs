@@ -6,6 +6,7 @@ import vercel from "@astrojs/vercel/serverless";
 import sentry from "@sentry/astro";
 import { loadEnv } from "vite";
 import mdx from "@astrojs/mdx";
+
 const { SENTRY_DSN, SENTRY_AUTH_TOKEN } = loadEnv(
   process.env.NODE_ENV,
   process.cwd(),
@@ -22,6 +23,8 @@ export default defineConfig({
     react(),
     astroI18next(),
     sentry({
+      environment: import.meta.env.PROD ? "production" : "development",
+      enabled: import.meta.env.PROD,
       dsn: SENTRY_DSN,
       sourceMapsUploadOptions: {
         project: "javascript-astro",

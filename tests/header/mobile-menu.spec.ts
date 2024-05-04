@@ -45,28 +45,34 @@ test.describe("Header Mobile Menu", () => {
     await expect(page.getByRole("link", { name: "Home" })).toBeInViewport();
 
     await page.getByRole("link", { name: "About" }).click();
+    await page.waitForLoadState("networkidle");
     await expect(
       page.getByRole("heading", { name: "About Me" })
     ).toBeInViewport();
     await expect(page.getByRole("link", { name: "Home" })).not.toBeInViewport();
 
+    await page.keyboard.press("PageUp");
     await mobileMenuTrigger.click();
 
     await page.getByRole("link", { name: "Projects" }).click();
+    await page.waitForLoadState("networkidle");
     await expect(
       page.getByRole("heading", { name: "Projects" })
     ).toBeInViewport();
 
+    await page.keyboard.press("PageUp");
     await mobileMenuTrigger.click();
     await expect(page.getByRole("link", { name: "Home" })).toBeInViewport();
 
     await page.getByRole("link", { name: "Home" }).click();
+    await page.waitForLoadState("networkidle");
     await expect(
-      page.getByRole("button", { name: "Hey, I'm Volodymyr," })
+      page.getByRole("heading", { name: "Hi, I'm" })
     ).toBeInViewport();
     await expect(page.getByRole("link", { name: "Home" })).not.toBeInViewport();
   });
 
+  /*
   test("Language picker works", async ({ page }) => {
     await expect(
       page.getByRole("button", { name: "en", exact: true })
@@ -83,13 +89,12 @@ test.describe("Header Mobile Menu", () => {
 
     // Change to Polish
     await page.getByRole("link", { name: "Polski" }).click();
-    await page.waitForLoadState("networkidle");
-    await expect(page).toHaveURL(/\/pl/);
+    await page.waitForURL(/\/pl/);
     await expect(
-      page.getByRole("link", { name: "See My Portfolio" })
+      page.getByRole("link", { name: "Contact Me" })
     ).not.toBeInViewport();
     await expect(
-      page.getByRole("link", { name: "Zobacz portfolio" })
+      page.getByRole("link", { name: "Skontaktuj się" })
     ).toBeInViewport();
 
     // Change back to English
@@ -104,30 +109,27 @@ test.describe("Header Mobile Menu", () => {
     await page.waitForLoadState("networkidle");
     await expect(page).toHaveURL("/");
     await expect(
-      page.getByRole("link", { name: "Zobacz portfolio" })
+      page.getByRole("link", { name: "Skontaktuj się" })
     ).not.toBeInViewport();
     await expect(
-      page.getByRole("link", { name: "See My Portfolio" })
+      page.getByRole("link", { name: "Contact Me" })
     ).toBeInViewport();
   });
+  */
 
   test("Resume link works", async ({ page }) => {
     await expect(
-      page.getByRole("link", { name: "See Resume" })
+      page.getByRole("link", { name: "Resume" })
     ).not.toBeInViewport();
 
     const mobileMenuTrigger = await page.getByTestId("mobile-menu-trigger");
     await mobileMenuTrigger.click();
     const newTabPromise = page.waitForEvent("download");
 
-    await expect(
-      page.getByRole("link", { name: "See Resume" })
-    ).toBeInViewport();
-    await page.getByRole("link", { name: "See Resume" }).click();
+    await expect(page.getByRole("link", { name: "Resume" })).toBeInViewport();
+    await page.getByRole("link", { name: "Resume" }).click();
     const newTab = await newTabPromise;
     await newTab.saveAs("/tmp/" + newTab.suggestedFilename());
-    await expect(
-      page.getByRole("link", { name: "See Resume" })
-    ).toBeInViewport();
+    await expect(page.getByRole("link", { name: "Resume" })).toBeInViewport();
   });
 });

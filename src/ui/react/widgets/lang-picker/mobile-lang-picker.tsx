@@ -16,7 +16,7 @@ export const MobileLangPicker = ({}: MobileLangPickerProps) => {
 
   return (
     <Accordion type="single" collapsible>
-      <AccordionItem value="lang" className="text-white">
+      <AccordionItem value="lang" className="text-foreground">
         <AccordionTrigger className="pb-2 mb-2 data-[state='open']:border-b">
           <div className="flex items-center gap-2 text-xl">
             <Icon name={currentLang} />
