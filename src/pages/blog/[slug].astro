@@ -150,10 +150,10 @@ const { Content } = await entry.render();
 
 <Layout title={`${entry.data.title} - Volodymyr Mokhun`}>
   <div
-    class="flex flex-col lg:flex-row items-start gap-4 py-8 max-w-[70ch] lg:max-w-7xl mx-auto"
+    class="flex flex-col lg:flex-row items-start gap-6 py-8 max-w-[70ch] lg:max-w-7xl mx-auto"
   >
     <a
-      class="whitespace-nowrap transition-colors lg:text-foreground-light lg:hover:text-primary lg:hover:bg-transparent inline-flex items-center gap-1 bg-transparent border lg:border-0 border-border hover:bg-primary-dark hover:text-primary-foreground px-3 py-1 rounded-sm lg:p-0 font-medium lg:font-normal mb-6 lg:mb-0 text-lg"
+      class="whitespace-nowrap transition-colors lg:text-foreground-light lg:hover:text-primary lg:hover:bg-transparent inline-flex items-center gap-1 bg-transparent border lg:border-0 border-border hover:bg-primary-dark hover:text-primary-foreground px-3 py-1 rounded-sm lg:p-0 font-medium lg:font-normal text-lg"
       href="/blog"
     >
       <ArrowLeft className="w-4 h-4" />
@@ -165,7 +165,7 @@ const { Content } = await entry.render();
         <Content />
       </article>
       <div
-        class="my-6 md:my-8 space-y-4 py-3 md:py-4 px-4 md:px-8 border-l-4 border-primary leading-relaxed bg-card text-justify font-mono text-sm md:text-base"
+        class="my-8 md:my-10 space-y-4 py-3 md:py-4 px-4 md:px-8 border-l-4 border-primary leading-relaxed bg-card text-justify font-mono text-sm md:text-base"
       >
         <p>Do you notice any problems with this post?</p>
         <p>
@@ -181,7 +181,10 @@ const { Content } = await entry.render();
             href="https://github.com/V-Mokhun"
             class="inline-flex items-center gap-2 text-primary hover:underline"
           >
-            <Icon className="w-6 h-6 text-foreground dark:text-white" name="github" />
+            <Icon
+              className="w-6 h-6 text-foreground dark:text-white"
+              name="github"
+            />
             <span>Edit</span>
           </a>
         </p>

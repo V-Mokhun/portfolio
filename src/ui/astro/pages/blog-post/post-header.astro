@@ -13,7 +13,7 @@ const { post } = Astro.props;
 ---
 
 <div
-  class="flex flex-col md:flex-row md:items-center md:justify-between gap-2 md:gap-4 mb-3 md:mb-1"
+  class="flex flex-col md:flex-row md:items-center md:justify-between gap-3 md:gap-4 mb-4"
 >
   <p
     class="flex items-center gap-3 my-0 text-base"
@@ -71,7 +71,7 @@ const { post } = Astro.props;
 </div>
 <h1
   transition:name={`${post.slug} title`}
-  class="text-4xl sm:text-5xl leading-tight font-semibold mb-6 text-title"
+  class="text-4xl sm:text-5xl leading-tight font-semibold mb-6 text-title text-left"
 >
   {post.data.title}
 </h1>
