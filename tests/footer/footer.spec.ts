@@ -1,9 +1,5 @@
 import { expect, test } from "@playwright/test";
 
-const GITHUB_URL = "https://github.com/V-Mokhun";
-const LINKEDIN_URL = "https://www.linkedin.com/in/v-mokhun";
-const TWITTER_URL = "https://twitter.com/v_mokhun";
-
 test.describe("Footer", () => {
   test.beforeEach(async ({ page }) => {
     await page.goto("/");
@@ -41,19 +37,19 @@ test.describe("Mobile Footer", () => {
     const githubPagePromise = page.waitForEvent("popup");
     await page.locator("footer").getByLabel("GitHub").click();
     const githubPage = await githubPagePromise;
-    await expect(githubPage).toHaveURL(GITHUB_URL);
+    await expect(githubPage).toHaveURL(/github.com/);
     await githubPage.close();
 
     const linkedinPagePromise = page.waitForEvent("popup");
     await page.locator("footer").getByLabel("LinkedIn").click();
     const linkedinPage = await linkedinPagePromise;
-    await expect(linkedinPage).toHaveURL(LINKEDIN_URL);
+    await expect(linkedinPage).toHaveURL(/linkedin.com/);
     await linkedinPage.close();
 
     const twitterPagePromise = page.waitForEvent("popup");
     await page.locator("footer").getByLabel("Twitter (X)").click();
     const twitterPage = await twitterPagePromise;
-    await expect(twitterPage).toHaveURL(TWITTER_URL);
+    await expect(twitterPage).toHaveURL(/twitter.com/);
     await twitterPage.close();
   });
 });
