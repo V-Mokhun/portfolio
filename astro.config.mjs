@@ -30,6 +30,7 @@ export default defineConfig({
         project: "javascript-astro",
         authToken: SENTRY_AUTH_TOKEN,
       },
+      tracesSampleRate: 0.1,
     }),
     mdx(),
   ],

@@ -3,6 +3,8 @@ import sendgrid from "@sendgrid/mail";
 import { isEmail } from "@/lib";
 import type { APIRoute } from "astro";
 
+export const prerender = false;
+
 sendgrid.setApiKey(import.meta.env.SENDGRID_API_KEY);
 
 export const POST: APIRoute = async ({ request }) => {
