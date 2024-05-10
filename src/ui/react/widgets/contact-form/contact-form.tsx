@@ -27,12 +27,23 @@ export const ContactForm = ({}: ContactFormProps) => {
     resolver: zodResolver(contactFormSchema),
     defaultValues: {
       name: "",
+      surname: "",
       email: "",
       message: "",
     },
   });
 
   async function onSubmit(values: ContactFormValues) {
+    if (values.surname) {
+      toast({
+        title: "You are a bot!",
+        description: "Please leave this page!",
+        variant: "destructive",
+      });
+      form.reset();
+      return;
+    }
+
     setIsLoading(true);
 
     try {
@@ -100,6 +111,20 @@ export const ContactForm = ({}: ContactFormProps) => {
                 </FormControl>
                 <FormLabel>{t("contact.name")}</FormLabel>
                 <FormMessage data-testid="contact-name-error" />
+              </FormItem>
+            )}
+          />
+          {/* Add fake surname field to deal with bots (if input value is not empty, than it's not user input) */}
+          <FormField
+            control={form.control}
+            name="surname"
+            render={({ field }) => (
+              <FormItem className="hidden">
+                <FormControl>
+                  <Input placeholder={"Enter your surname"} {...field} />
+                </FormControl>
+                <FormLabel>Surname</FormLabel>
+                <FormMessage />
               </FormItem>
             )}
           />
