@@ -126,8 +126,12 @@
     font-size: 1rem;
     border-radius: 0.5rem;
     box-shadow: 0 0 2px 0 #0003;
-    margin: 0.75rem -0.75rem;
+    margin: 0.75rem 0 0.75rem -5%;
+    width: 110%;
     overflow-x: auto;
+    white-space: break-spaces;
+    tab-size: 2;
+    font-feature-settings: normal;
     hyphens: none;
     text-align: start;
   }
@@ -143,5 +147,12 @@
   :root.dark :not(pre) > code {
     background: hsl(0, 0%, 14%);
     border-color: hsla(0, 0%, 100%, 0.1);
+  }
+
+  @media screen and (max-width: 768px) {
+    pre {
+      padding: 1.5rem 1rem;
+      font-size: 0.875rem;
+    }
   }
 }
