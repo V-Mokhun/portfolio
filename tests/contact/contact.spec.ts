@@ -31,8 +31,8 @@ test.describe("Contact Section", () => {
     await expect(page.getByTestId("contact-email-error")).toBeVisible();
     await expect(page.getByTestId("contact-message-error")).toBeVisible();
 
-    await page.getByPlaceholder("Name").click();
-    await page.getByPlaceholder("Name").fill("Volodymyr");
+    await page.getByPlaceholder("Name", { exact: true }).click();
+    await page.getByPlaceholder("Name", { exact: true }).fill("Volodymyr");
     await page.getByPlaceholder("Message").click();
     await page.getByPlaceholder("Message").fill("Hello friend");
     await page.getByRole("button", { name: "Send Message" }).click();
