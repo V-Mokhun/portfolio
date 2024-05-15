@@ -1,0 +1,113 @@
+---
+title: First experience with scraping
+slug: first-experience-with-scraping
+category: Development
+date: 2024-05-15
+image: ./image.webp
+imageAlt: Laptop with code on screen
+excerpt: Recently I started a side project where I needed quite a bit of data. I could not find a good API for it, so I decided to scrape the da...
+---
+
+Recently I started a side project where I needed quite a bit of data. I could not find a good API for it, so I decided to scrape the data myself. I had never done this before, but it turned out to be not as difficult because of my knowledge and experience with web development.
+
+First things first, I won't tell you what and where I scraped the data from, just in case :)
+
+## Resources
+
+If you aren't familiar with scraping, I'd highly recommend checking out [Syntax.fm's episode](https://syntax.fm/show/763/web-scraping-reverse-engineering-apis) on web scraping. It has some great info and tips on how to get started. Specifically, Wes recommends this [Linkedom](https://www.npmjs.com/package/linkedom) package that allows to basically _construct_ a DOM tree from a HTML string. I found it super useful, because you can use all the DOM methods as if you were working with a real DOM on the client.
+
+By the way, I used **Node.js** and not Python, which is more common for scraping. I just felt more comfortable with Node.js and JS ecosystem. If you are more comfortable with Python, I'm sure you can find a lot of resources on how to scrape with Python. Principles are the same, I believe.
+
+## So how do you scrape?
+
+From what I understood, to scrape you need to:
+
+1. **Fetch** the HTML of the page you want to scrape (basic fetch does the job, also don't forget to set headers like "User-Agent" "Accept", "Accept-Language" etc).
+2. **Parse** the HTML. As mentioned above, I used [Linkedom](https://www.npmjs.com/package/linkedom). From my research, you can also use [Cheerio](https://www.npmjs.com/package/cheerio), [Pupeeter](https://www.npmjs.com/package/puppeteer) or similar packages.
+3. **Find** the data you need. This is obviously the most difficult one. You need to know how the page is structured and where the data you need is located. This is where your knowledge of HTML, CSS and JS comes in handy.
+   - I had success with using plain querySelector and querySelectorAll, but if you have something more complex, I've heard that you can use XPath.
+   - Big tip: use **AI** to help generate selectors. Just paste the HTML structure of the website and ask what you want to scrape, and in most cases it will do the job.
+4. **Save** the data. I saved the data to a JSON file, but you can save it to a database, or whatever you need. In my case, readFileSync and writeFileSync did good.
+
+Basically this is what scraping consists of. Here is the basic structure of my code:
+
+```javascript
+import { parseHTML } from "linkedom";
+import { writeFileSync } from "fs";
+
+async function scrape() {
+  const data = [];
+
+  try {
+    const response = await fetch("URL", {
+      method: "GET",
+      headers: {}, // set headers
+    });
+
+    const text = await response.text();
+
+    const { document } = parseHTML(text);
+    const elements = document.querySelectorAll("selector");
+
+    elements.forEach((element) => {
+      const someInfo = element.querySelector("selector").textContent;
+
+      const item = {
+        info: someInfo,
+        // data
+      };
+
+      data.push(item);
+    });
+  } catch (error) {
+    console.log("Scraping failed:");
+    console.error(error);
+  }
+
+  writeFileSync("data/data.json", JSON.stringify(data, null, 2), "utf-8");
+}
+
+scrape();
+```
+
+If you are scraping a lot of data, you might want to use some kind of rate limiting, so you don't get banned from the website. Also a good idea is to change User-Agent header from time to time.
+
+When I was iterating over pages, I used this simple function to wait for a 500ms before fetching the next page. An example of how you can use it when fetching pages:
+
+```javascript
+export const timer = (ms) => new Promise((res) => setTimeout(res, ms));
+
+// And you use it like this
+
+async function scrape() {
+  const data = [];
+  let page = 1;
+
+  try {
+    while (true) {
+      const response = await fetch(`URL?page=${page}`, {
+        // options
+      });
+
+      // scrape
+
+      // need to find a way to check if there is a next page
+      if (document.querySelector(".next-page") === null) {
+        break;
+      }
+
+      page += 1;
+
+      await timer(500);
+    }
+  } catch (error) {
+    // handle error
+  }
+
+  // save data
+}
+```
+
+## Conclusion
+
+Scraping is a powerful tool, but you need to be careful when using it. Make sure you are not violating any terms of service, and if so... well, don't tell anyone and don't do it on a large scale. It's a great way to get data that you need, but you need to be careful and respectful of the website you are scraping.

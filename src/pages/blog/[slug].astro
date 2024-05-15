@@ -94,13 +94,14 @@ const { Content } = await entry.render();
     font-weight: 400;
     padding-left: 2rem;
   }
-  article ul li {
+  article ul > li {
     list-style-type: square;
   }
-  article ul li::marker {
+  article ul li::marker,
+  article ol li::marker {
     color: hsl(var(--primary));
   }
-  article ol li {
+  article ol > li {
     list-style-type: decimal;
   }
   article li {
@@ -173,12 +174,11 @@ const { Content } = await entry.render();
           minor, is welcomed!
         </p>
         <p>
-          <!-- TODO: change href -->
           <a
             aria-label="GitHub"
             target="_blank"
             rel="noopener noreferrer"
-            href="https://github.com/V-Mokhun"
+            href={`https://github.com/V-Mokhun/portfolio/blob/main/src/content/blog/${slug}/${slug}.mdx`}
             class="inline-flex items-center gap-2 text-primary hover:underline"
           >
             <Icon

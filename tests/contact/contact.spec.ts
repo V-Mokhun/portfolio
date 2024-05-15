@@ -1,8 +1,8 @@
 import { Page, expect, test } from "@playwright/test";
 
 async function fillForm(page: Page) {
-  await page.getByPlaceholder("Name").click();
-  await page.getByPlaceholder("Name").fill("Volodymyr");
+  await page.getByPlaceholder("Name", { exact: true }).click();
+  await page.getByPlaceholder("Name", { exact: true }).fill("Volodymyr");
   await page.getByPlaceholder("Email").click();
   await page.getByPlaceholder("Email").fill("email@gmail.com");
   await page.getByPlaceholder("Message").click();
