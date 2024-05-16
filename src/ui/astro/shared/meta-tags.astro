@@ -2,16 +2,7 @@
 import type { CollectionEntry } from "astro:content";
 import { join } from "path";
 
-function getBaseURL() {
-  const url = import.meta.env.SITE_URL;
-  if (!url || url === "undefined") {
-    return `http://localhost:4321`;
-  }
-
-  return url;
-}
-
-const baseURL = getBaseURL();
+const baseURL = Astro.url.origin;
 
 interface Props {
   post: CollectionEntry<"blog">["data"] & {
@@ -22,7 +13,7 @@ interface Props {
 const { post } = Astro.props;
 
 const url = join(baseURL, "blog", post.slug);
-const ogImage = join(baseURL, post.image.src);
+const ogImage = join(baseURL, post.image.src.split("?")[0]);
 ---
 
 <>
