@@ -9,13 +9,14 @@ interface Props {
 
 const { post } = Astro.props;
 
-const baseURL = Astro.url.origin;
+// const baseURL = Astro.url.origin;
+const baseURL = "https://www.v-mokhun.com";
 
 const url = `${baseURL}/blog/${post.slug}`;
 const ogImage = `${baseURL}${post.image.src.split("?")[0]}`;
 ---
 
-<>
+<Fragment>
   <title>{`${post.title} - Volodymyr Mokhun`}</title>
 
   <meta name="twitter:card" content="summary_large_image" />
@@ -44,4 +45,4 @@ const ogImage = `${baseURL}${post.image.src.split("?")[0]}`;
   <meta property="og:image:width" content="1000" />
   <meta property="og:image:height" content="667" />
   <meta property="og:locale" content="en_US" />
-</>
+</Fragment>
