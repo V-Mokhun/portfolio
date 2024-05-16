@@ -1,0 +1,27 @@
+---
+import Layout from "@/layouts/layout.astro";
+import Socials from "@/ui/astro/widgets/socials/socials.astro";
+import { Container, RippleButton } from "@/ui/react";
+---
+
+<Layout title="Not Found - Volodymyr Mokhun">
+  <section
+    class="py-12 h-full"
+  >
+    <div class="flex flex-col justify-center items-center h-full max-w-3xl mx-auto text-center">
+      <h1
+        class="text-5xl xs:text-6xl md:text-7xl text-primary leading-tight font-semibold mb-6"
+      >
+        Oops!
+      </h1>
+      <h2 class="text-3xl xs:text-4xl md:text-5xl text-title leading-tight font-semibold mb-10">
+        The page you are looking for does not exist.
+      </h2>
+      <RippleButton size="lg" tag="a" href="/#" client:load>
+        Go Back
+        <!-- {t("contactMe")} -->
+      </RippleButton>
+    </div>
+  </section>
+  <Socials />
+</Layout>
