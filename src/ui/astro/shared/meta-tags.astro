@@ -1,5 +1,4 @@
 ---
-import { getImage } from "astro:assets";
 import type { CollectionEntry } from "astro:content";
 import { join } from "path";
 
@@ -9,8 +8,7 @@ function getBaseURL() {
     return `http://localhost:4321`;
   }
 
-  return `http://localhost:4321`;
-  // return url;
+  return url;
 }
 
 const baseURL = getBaseURL();
