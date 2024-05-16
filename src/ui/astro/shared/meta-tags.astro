@@ -1,8 +1,5 @@
 ---
 import type { CollectionEntry } from "astro:content";
-import { join } from "path";
-
-const baseURL = Astro.url.origin;
 
 interface Props {
   post: CollectionEntry<"blog">["data"] & {
@@ -12,8 +9,10 @@ interface Props {
 
 const { post } = Astro.props;
 
-const url = join(baseURL, "blog", post.slug);
-const ogImage = join(baseURL, post.image.src.split("?")[0]);
+const baseURL = Astro.url.origin;
+
+const url = `${baseURL}/blog/${post.slug}`;
+const ogImage = `${baseURL}${post.image.src.split("?")[0]}`;
 ---
 
 <>
