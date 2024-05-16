@@ -22,7 +22,7 @@ interface Props {
 const { post } = Astro.props;
 
 const url = join(baseURL, "blog", post.slug);
-const ogImage = post.image.src;
+const ogImage = join(baseURL, post.image.src);
 ---
 
 <>
