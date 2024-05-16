@@ -128,11 +128,12 @@
     box-shadow: 0 0 2px 0 #0003;
     margin: 0.75rem 0 0.75rem -5%;
     width: 110%;
-    overflow-x: auto;
+
+    overflow: auto;
+    position: relative;
     white-space: break-spaces;
     tab-size: 2;
     font-feature-settings: normal;
-    hyphens: none;
     text-align: start;
   }
 
@@ -153,6 +154,13 @@
     pre {
       padding: 1.5rem 1rem;
       font-size: 0.875rem;
+    }
+  }
+
+  @media screen and (max-width: 479px) {
+    pre {
+      margin-left: -0.75rem;
+      width: calc(100vw - 1rem);
     }
   }
 }

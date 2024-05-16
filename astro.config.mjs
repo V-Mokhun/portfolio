@@ -32,7 +32,9 @@ export default defineConfig({
       },
       tracesSampleRate: 0.1,
     }),
-    mdx(),
+    mdx({
+      
+    }),
   ],
   image: {
     service: passthroughImageService(),
