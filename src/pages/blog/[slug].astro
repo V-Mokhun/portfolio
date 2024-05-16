@@ -2,6 +2,7 @@
 import Layout from "@/layouts/layout.astro";
 import NextPrevPosts from "@/ui/astro/pages/blog-post/next-prev-posts.astro";
 import PostHeader from "@/ui/astro/pages/blog-post/post-header.astro";
+import MetaTags from "@/ui/astro/shared/meta-tags.astro";
 import { Icon } from "@/ui/react";
 import { getCollection, type CollectionEntry } from "astro:content";
 import { ArrowLeft } from "lucide-react";
@@ -144,12 +145,8 @@ const { Content } = await entry.render();
   }
 </style>
 
-<!-- 
-  TODO:
-  - Add meta tags for SEO
- -->
-
-<Layout title={`${entry.data.title} - Volodymyr Mokhun`}>
+<Layout>
+  <MetaTags slot="head" post={{ ...entry.data, slug: entry.slug }} />
   <div
     class="flex flex-col lg:flex-row items-start gap-6 py-8 max-w-[70ch] lg:max-w-7xl mx-auto"
   >

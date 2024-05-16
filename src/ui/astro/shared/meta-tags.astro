@@ -1,0 +1,59 @@
+---
+import { getImage } from "astro:assets";
+import type { CollectionEntry } from "astro:content";
+import { join } from "path";
+
+function getBaseURL() {
+  const url = import.meta.env.SITE_URL;
+  if (!url || url === "undefined") {
+    return `http://localhost:4321`;
+  }
+
+  return `http://localhost:4321`;
+  // return url;
+}
+
+const baseURL = getBaseURL();
+
+interface Props {
+  post: CollectionEntry<"blog">["data"] & {
+    slug: CollectionEntry<"blog">["slug"];
+  };
+}
+
+const { post } = Astro.props;
+
+const url = join(baseURL, "blog", post.slug);
+const ogImage = post.image.src;
+---
+
+<>
+  <title>{`${post.title} - Volodymyr Mokhun`}</title>
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:site" content="@v_mokhun" />
+  <meta name="twitter:creator" content="@v_mokhun" />
+  <meta name="twitter:url" content={url} />
+  <meta name="twitter:title" content={post.title} />
+  <meta name="twitter:description" content={post.excerpt} />
+  <meta name="twitter:image" content={ogImage} />
+
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content={post.title} />
+  <meta property="og:url" content={url} />
+  <meta property="og:description" content={post.excerpt} />
+  {
+    post.date ? (
+      <meta
+        property="article:published_time"
+        content={new Date(post.date).toISOString()}
+      />
+    ) : null
+  }
+
+  <meta property="og:site_name" content="Volodymyr Mokhun" />
+  <meta property="og:image" content={ogImage} />
+  <meta property="og:image:width" content="1000" />
+  <meta property="og:image:height" content="667" />
+  <meta property="og:locale" content="en_US" />
+</>

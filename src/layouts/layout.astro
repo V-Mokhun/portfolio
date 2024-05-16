@@ -31,7 +31,6 @@ const { title, animateHeader = false } = Astro.props;
         />
       ))
     }
-    <title>{title || t("site.title")}</title>
     <meta name="description" content={t("site.description")} />
 
     <meta
@@ -56,39 +55,45 @@ const { title, animateHeader = false } = Astro.props;
 
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 
-    <!-- Facebook Meta Tags -->
-    <meta
-      property="og:title"
-      content="Volodymyr Mokhun - Front-End developer"
-    />
-    <meta
-      property="og:site_name"
-      content="Volodymyr Mokhun - Front-End developer"
-    />
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://www.v-mokhun.com/" />
-    <meta property="og:image" content="https://www.v-mokhun.com/og-image.png" />
-    <meta
-      property="og:description"
-      content="Volodymyr Mokhun, Front-End Developer specializing in React.js, TypeScript, Next.js."
-    />
+    <slot name="head">
+      <title>{title || t("site.title")}</title>
+      <!-- Facebook Meta Tags -->
+      <meta
+        property="og:title"
+        content="Volodymyr Mokhun - Front-End developer"
+      />
+      <meta property="og:site_name" content="Volodymyr Mokhun" />
+      <meta property="og:type" content="website" />
+      <meta property="og:url" content="https://www.v-mokhun.com/" />
+      <meta
+        property="og:image"
+        content="https://www.v-mokhun.com/og-image.png"
+      />
+      <meta property="og:image:width" content="3020" />
+      <meta property="og:image:height" content="1650" />
+      <meta
+        property="og:description"
+        content="Volodymyr Mokhun, Front-End Developer specializing in React.js, TypeScript, Next.js."
+      />
 
-    <!-- Twitter Meta Tags -->
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta property="twitter:domain" content="v-mokhun.com" />
-    <meta property="twitter:url" content="https://www.v-mokhun.com/" />
-    <meta
-      name="twitter:title"
-      content="Volodymyr Mokhun - Front-End Developer"
-    />
-    <meta
-      name="twitter:description"
-      content="Volodymyr Mokhun, Front-End Developer specializing in React.js, TypeScript, Next.js."
-    />
-    <meta
-      name="twitter:image"
-      content="https://www.v-mokhun.com/og-image.png"
-    />
+      <!-- Twitter Meta Tags -->
+      <meta name="twitter:site" content="@v_mokhun" />
+      <meta name="twitter:creator" content="@v_mokhun" />
+      <meta name="twitter:card" content="summary_large_image" />
+      <meta property="twitter:url" content="https://www.v-mokhun.com/" />
+      <meta
+        name="twitter:title"
+        content="Volodymyr Mokhun - Front-End Developer"
+      />
+      <meta
+        name="twitter:description"
+        content="Volodymyr Mokhun, Front-End Developer specializing in React.js, TypeScript, Next.js."
+      />
+      <meta
+        name="twitter:image"
+        content="https://www.v-mokhun.com/og-image.png"
+      />
+    </slot>
 
     <script is:inline>
       const LOCAL_STORAGE_THEME_KEY = "v-mokhun-portfolio-theme";
