@@ -16,11 +16,11 @@ const { post } = Astro.props;
       transition:name={`${post.slug} image`}
       src={post.data.image}
       alt={post.data.imageAlt}
-      class="rounded-t-md max-w-full h-full max-h-72 object-cover transition-opacity md:group-hover:opacity-75"
+      class="rounded-t-md max-w-full max-h-72 md:h-56 lg:h-64 xl:h-72 object-cover transition-opacity md:group-hover:opacity-75"
     />
   </a>
   <div
-    class="rounded-b-md p-4 xs:pt-6 flex flex-col h-full bg-card text-card-foreground"
+    class="rounded-b-md p-4 xs:pt-6 flex flex-col bg-card text-card-foreground h-full"
   >
     <h3
       class="text-xl xs:text-2xl lg:text-3xl font-semibold leading-none tracking-tight mb-2 xs:mb-3 transition-colors hover:text-primary text-title"
