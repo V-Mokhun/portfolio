@@ -150,6 +150,18 @@
     border-color: hsla(0, 0%, 100%, 0.1);
   }
 
+  .visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+  }
+
   @media screen and (max-width: 768px) {
     pre {
       padding: 1.5rem 1rem;

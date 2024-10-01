@@ -4,3 +4,4 @@ export * from "./lang-picker";
 export * from "./theme-toggle";
 export * from "./pagination";
 export * from "./animation-preference";
+export * from "./thumbnail-carousel";
