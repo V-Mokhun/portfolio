@@ -1,6 +1,13 @@
 {
   "extends": "astro/tsconfigs/strict",
-  "include": ["src/**/*.tsx", "src/**/*.ts", "src/**/*.d.ts", "src/**/*.astro"],
+  "include": [
+    "src/**/*.tsx",
+    "src/**/*.ts",
+    "src/**/*.d.ts",
+    "src/**/*.astro",
+    ".astro/types.d.ts"
+  ],
+  "exclude": ["dist"],
   "compilerOptions": {
     "strict": true,
     "baseUrl": ".",

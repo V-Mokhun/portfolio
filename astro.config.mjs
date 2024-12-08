@@ -8,7 +8,7 @@ import mdx from "@astrojs/mdx";
 // https://astro.build/config
 export default defineConfig({
   site: "https://www.v-mokhun.com",
-  output: "hybrid",
+  output: "static",
   integrations: [
     tailwind({
       applyBaseStyles: false,

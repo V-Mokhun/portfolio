@@ -4,7 +4,7 @@ import "@/styles/global.css";
 import Footer from "@/ui/astro/widgets/footer.astro";
 import Header from "@/ui/astro/widgets/header.astro";
 import i18next, { t } from "i18next";
-import { ViewTransitions } from "astro:transitions";
+import { ClientRouter } from "astro:transitions";
 import { AnimationPreference } from "@/ui/react";
 
 const currentUrl = Astro.url.origin;
@@ -20,7 +20,7 @@ const { title, animateHeader = false } = Astro.props;
 <!doctype html>
 <html lang={i18next.language} class="h-full">
   <head>
-    <ViewTransitions fallback="none" />
+    <ClientRouter fallback="none" />
     <meta charset="UTF-8" />
     {
       Object.keys(languages).map((supportedLanguage) => (
