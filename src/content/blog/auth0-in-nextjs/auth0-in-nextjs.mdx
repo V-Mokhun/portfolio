@@ -1,0 +1,129 @@
+---
+title: Auth0 in Next.js
+slug: auth0-in-nextjs
+category: Development
+date: 2024-12-08
+image: ./image.webp
+imageAlt: Auth0 logo
+excerpt: In a pet project I'm currently working on, I decided to go with Auth0 to tackle authentication. Well, there were (and wi...
+---
+
+import { Image } from "astro:assets";
+import actionsImage from "./actions.webp";
+import dashboardImage from "./dashboard.webp";
+import metadataImage from "./metadata.webp";
+
+In a pet project I'm currently working on, I decided to go with Auth0 to tackle authentication. Well, **there were** (_and will be, for sure_) problems I faced along the way, and I'd like to talk about them in a Next.js project.
+
+## Setup
+
+By following the [official guide](https://auth0.com/docs/quickstart/webapp/nextjs/01-login) for integrating Auth0 with Next.js, you can setup it in 5 minutes. The dashboard part can be intimidating at first, but you need to get used to it.
+
+<Image src={dashboardImage} alt="Auth0 Dashboard" />
+
+**Important note** - Auth0 recommends using already built-in login pages, but you can built a custom one ([link to discussion](https://community.auth0.com/t/how-to-make-a-custom-login-signup-ui-with-next-js-not-using-universal-flow/78093/3)). You'll need to use their API endpoints.
+
+Comment from a _Senior Solutions Architect, Auth0 Professional Services_:
+
+> Actually, building your own UI/login flow is very complex and we do not recommend doing it. When you do this, you take on all the security risks in your application, instead of passing them off to Auth0.
+> The Universal Login Page/Auth Code or Auth Code + PKCE is the best way to go.
+
+## More advanced project integration
+
+### Additional user data
+
+If in your app you need to add some user-specific data, you can do it in Auth0 with either **user_metadata** or **app_metadata**.
+
+- User Metadata: Stores user attributes such as preferences that do not impact a user's core functionality. This data can be edited by logged in users if you build a form using the Management API and should not be used as a secure data store.
+- App Metadata: Stores information such as permissions, Auth0 plan, and external IDs that can impact user access to features. This data cannot be edited by users and there are restrictions for what can be stored in this field.
+
+<Image src={metadataImage} alt="User and App metadata" />
+
+So if you need to set **units** (metric or imperial, for example) property for a user, use **user_metadata**, but if you need to store whether user has **permissions** to access Admin page, use **app_metadata**
+
+### How to update metadata?
+
+For me, there are 2 useful ways of doing this:
+
+- Actions
+- Management API
+
+#### Actions
+
+From [Auth0 documentation](https://auth0.com/docs/manage-users/user-accounts/metadata#use-actions): Actions are secure, tenant-specific, versioned functions written in Node.js that execute at certain points within the Auth0 platform. Actions are used to customize and extend Auth0's capabilities with custom logic. They can also be used to enrich the user profile.
+
+Basically they are triggers that execute on a specific user action, such as pre-registering or after login.
+
+<Image src={actionsImage} alt="Available action triggers" />
+
+I found them very useful and would prefer them to Management API.
+
+#### Management API
+
+Although actions are more pleasant to work with, if you need to be more flexible, you'll have to use [Management API](https://auth0.com/docs/api/management/v2). Here is a helpful discussion that can get you started if docs seem confusing: [link](https://community.auth0.com/t/understanding-how-to-use-the-management-api/123688/6).
+
+**The idea is:**
+
+For testing (development):
+
+1. You get an Auth0 token from your dashboard
+2. You can make requests by providing an Authorization header with your token. (CRUD users, etc.)
+
+For production:
+
+1. Instantiate a **ManagementClient** with your _domain_, _clientId_ and _clientSecret_.
+
+```javascript
+import { ManagementClient } from "auth0";
+
+const management = new ManagementClient({
+  domain: "<DOMAIN>",
+  clientId: "<CLIENT-ID>",
+  clientSecret: "<CLIENT-SECRET>",
+});
+
+await management.users.delete({ id: "auth0|658acde2e4630df71a80c324" });
+```
+
+2. Now you can delete, update users, and much more.
+
+You can't do that in development because requests from **localhost are rejected** when using ManagementClient
+
+### Syncing with Database
+
+#### Sign in/Sign up
+
+For syncing users with my DB on login, I used actions. I have a following flow:
+
+- User logins through Auth0 form and gets redirected to a `/logged-in` route.
+- There, I check whether user already exists in my DB. If so, immediately redirect him to dashboard.
+- If not, get user metadata needed for DB insert and execute a query. Also update session to sync user_metadata (via `updateSession()`)
+
+#### Update user profile
+
+When updating user profile via UI, you need to use **Management API**. Either instantiate a client, or, for development, get your token from dashboard. Then:
+
+- Do an api request to update user's data
+- if error, abort and notify
+- Update values in your DB.
+- Update current session via `updateSession()`
+
+## Drawbacks
+
+Some of the biggest drawbacks I found are:
+
+- Obviously, **dependance** on a third-party provider. More users - more money to pay
+- **Confusing docs**: either a skill issue on my part or you often have to scan entire **documentation and look for information on forums** to wrap your head around most topics. It's really time-consuming.
+- **Next.js specific**: if you try to use `getSession()` to get current session in a **server action**, your entire page rerenders because getSession updates cookies.
+
+The last part was actually a **reason** I wrote this post. As soon as I stumbled upon it, I was like - what the hell? Why my page flashes all of a sudden? After debugging for half an hour, I narrowed it down to a `const session = await getSession()` call. There is a [discussion from January 31, 2024](https://community.auth0.com/t/latest-nextjs-14-getsession-or-getaccesstoken-is-causing-re-rendering-the-entire-page-in-server-actions/126136/6) but still no response from Auth0 team (as of December 8, 2024, which is almost a year)
+
+For now, the workaround is using api endpoints instead of server actions.
+
+## Conclusion
+
+Given all of that, I'd think real hard before using Auth0 in my next project. To be honest, I'd probably pass on it. Whether I should roll my own auth (although it is complex to account for all use-cases: reset password, impersonation, magic links...) or use another provider, I doubt it will be Auth0.
+
+As for my current project that uses Auth0, well, I can't be bothered to migrate off of it. Let's see what future will bring.
+
+I hope I gave you a general idea of what Auth0 is and how to use it in your Next.js project. Whether you should use it or not is your call though.
