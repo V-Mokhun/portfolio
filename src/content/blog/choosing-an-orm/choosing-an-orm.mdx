@@ -1,0 +1,117 @@
+---
+title: Choosing an ORM
+slug: choosing-an-orm
+category: Development
+date: 2024-12-28
+image: ./image.webp
+imageAlt: Javascript ORMs
+excerpt: A few months ago I was faced with a dillema when choosing an ORM for a job project I am worki...
+---
+
+import { Image } from "astro:assets";
+import mikroorm from "./mikroorm.svg";
+import sequelize from "./sequelize.webp";
+import typeorm from "./typeorm.webp";
+import prisma from "./prisma.webp";
+
+A few months ago I was faced with a dillema when choosing an ORM for a job project I am working on. Turns out, this is not an easy task as there are a couple of options with their pros and cons. Today I'd like to discuss what ORMs I took into consideration and what I picked.
+
+## ORM vs Query Builder
+
+At first though, I wasn't even sure whether I should use an ORM or a Query Builder.
+
+Query builders are, on one hand, very straightforward to use - you write SQL via chaining methods. These are surely more comfortable than writing raw SQL, but also don't abstract as much as ORMs do. I would say that these act as a middleman between raw SQL and ORMs. Good examples of tools, as I found when researching this topic, are [Knex.js](https://knexjs.org/) and [Kysely](https://kysely.dev/) (although it is maintained by a single developer, which is quite unreliable to me).
+
+The hardest thing though, is you have to be fairly advanced in SQL to write good queries. As for me, I did not have any strong background in it and, honestly, there wasn't much time for me to learn it. Had time not been a factor, I would probably go with knex or kysely to improve my backend skills even more.
+
+ORM it was! But there are so many to choose from in a Javascript world (a blessing and a curse, I guess?). Which one should I go with?
+
+## ORM Comparison
+
+From my research, I ended up comparing 4 ORMs:
+
+- [Sequelize](https://sequelize.org)
+- [TypeORM](https://typeorm.io/)
+- [MikroORM](https://mikro-orm.io/)
+- [Prisma](https://www.prisma.io/)
+
+### Sequelize
+
+<Image src={sequelize} alt="Sequelize logo" />
+
+Out of all ORMs, this one seemed to have the steepest learning curve. It has been here the longest, and I'm not sure it survived the time test. I am no expert, and I haven't used it, but most reviews and opinions on Sequelize is that is is outdated.
+
+#### Pros
+
+- **Mature**, quite popular because there are a lot of projects dependent on it
+- **Query flexibility**: Supports both object-based query building and raw SQL queries.
+
+#### Cons
+
+- **Verbose Syntax**: Setting up models and relationships can feel boilerplate-heavy
+- **Limited TypeScript Support**: While Sequelize supports TypeScript, its implementation is less seamless and can feel clunky
+
+So, Sequelize was not my candidate anymore.
+
+### TypeORM
+
+<Image src={typeorm} alt="Typeorm logo" />
+
+Next one is TypeORM, where you define your models as classes, and columns, data types and relations with decorators. It felt very Nest js'y, and I didn't know whether I liked it very much. The github repo is actively maintained, and there is even an [announcement on the future of TypeORM](https://github.com/typeorm/typeorm/blob/master/docs/future-of-typeorm.md), where we can learn that TypeORM got new maintainers.
+
+#### Pros
+
+- **Database-First or Code-First**: Supports schema generation from existing databases or defining the schema through code,
+- **Query flexibility**: Supports both object-based query building and raw SQL queries.
+
+#### Cons
+
+- **Complexity in Large Projects**: Managing relations and migrations can become challenging as the application scales.
+- **Performance Issues**: TypeORM can be slower compared to other ORMs in certain scenarios, particularly for heavy data loads.
+
+TypeORM is a good one at first glance, (although people complain about poor documentation and weird bugs, especially migrations), but somehow the syntax didn't stick with me. Moreover, I was more interested in next tool - MikroORM.
+
+### MikroORM
+
+<Image src={mikroorm} alt="Mikroorm logo" />
+
+To tell you the truth, if I was more familliar with MikroORM and less familliar with Prisma, I'd pick Mikro for this job. It's new, actively maintained, has good migration and seed management. It definitely has a steep learning curve, but I think I will be willing to dive into that.
+
+#### Pros
+
+- **TypeScript-First**: Built with TypeScript in mind, offering good type safety and developer experience.
+- **Lightweight and Performant**: Focused on performance, it is optimized for complex queries with minimal overhead.
+
+#### Cons
+
+- **Smaller Ecosystem**: Compared to Sequelize and TypeORM, MikroORM has a smaller community and fewer resources.
+
+By reading a lot of opinions, browsing documentation I found MikroORM interesting and I most definitely want to learn it in the future. As for my pick, I chose the next ORM tool - Prisma, since I was more familliar with it and it has a strong team behind it.
+
+### Prisma
+
+<Image src={prisma} alt="Prisma logo" />
+
+I chose Prisma for a combination of things, really. I was somewhat familliar with it, I saw that it was maintained actively and it didn't have any breaking changes very often, which is important for a production app. Also, I like the schema definition and generated types that go with it.
+
+That is to say, it is not without flaws. I've been working with Prisma for almost 2 months, and I have quite a list of unpleasant stuff I ran into. I will talk more about them in a next "Prisma" blog post.
+
+#### Pros
+
+- **Modern and Developer-Friendly**: Prisma's schema definition and type-safe queries make it easy to use and integrate, especially for TypeScript projects.
+- **Powerful CLI Tools**: Automatically generates schemas, migrations, and type-safe query builders.
+
+#### Cons
+
+- **Abstraction Limitations**: For extremely complex queries or database-specific features, Prisma can feel restrictive compared to more flexible ORMs.
+- **Slow adopting of desirable features**: Dozens of pull requests and issues describing lacking somewhat basic functionality (will deep dive in next post about Prisma).
+
+All in all, I don't think I regret picking Prisma. Sure, you always have advantages and disadvantages when choosing a tool, and it's all about finding a right balance. For now, balance is met - I'll see how it will develop.
+
+### What should you choose?
+
+Well, **it depends**, right? After a bit of my research, I'd say there are 3 good options for production applications:
+
+- **Knex.js** if you are comfortable with query builders, as it will give you more fine-grained control over your models, and, when utilizing a Repository pattern, can be a strong tool.
+- **MikroORM** if you are ready to climb a somewhat steep learning curve, learn new concepts along the way and become a part of a growing community.
+- **Prisma** if you like its schema definition and CLI tool, don't chase cutting-edge features and prefer a stable, slowly improving product.
