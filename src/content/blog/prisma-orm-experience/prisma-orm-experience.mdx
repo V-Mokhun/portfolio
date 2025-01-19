@@ -1,0 +1,118 @@
+---
+title: Prisma ORM Experience
+slug: prisma-orm-experience
+category: Development
+date: 2025-01-19
+image: ./image.webp
+imageAlt: Prisma logo
+excerpt: As I promised in the last post, I am doing a deep dive into Prisma ORM, the ORM I've been continuously worki...
+---
+
+import { Image } from "astro:assets";
+import ecosystem from "./ecosystem.webp";
+import schema from "./schema.webp";
+import typeGeneration from "./type-generation.webp";
+
+As I promised in the last post, I am doing a deep dive into Prisma ORM, the ORM I've been continuously working with for the past 3 months. If you want to read my thoughts about Javascript ORMs, take a look at a [previous post](https://www.v-mokhun.com/blog/choosing-an-orm). To sum up, I believe you should pick either Knex.js, MikroORM or Prisma. But let's talk about Prisma more.
+
+## Ecosystem
+
+<Image src={ecosystem} alt="Prisma home page" />
+
+As we can see, Prisma offers not only ORM, but also products like Optimize where you can analyze your queries or Accelerate to make your db global. It shows that it is a growing product with a strong team behind it. Compared to libraries like Kysley that is being maintained by a single developer, I prefer to rely on a product with a strong foundation like Prisma.
+
+A quick overview of Prisma products, in case you are not familliar:
+
+- **ORM**: An open-source Node.js and TypeScript ORM that provides an intuitive data model, automated migrations, type-safety, and auto-completion, streamlining database workflows.
+
+- **Postgres**: A managed PostgreSQL service tailored for global applications, featuring built-in global caching, connection pooling, and real-time streaming, allowing for instant deployment and seamless scalability.
+
+- **Studio**: A visual database browser that enables users to explore and manipulate data through a simple tabular interface, offering full CRUD capabilities, filtering, sorting, and safe editing directly within the model cells.
+
+- **Optimize**: An AI-driven query analysis tool that provides deep insights and actionable recommendations to improve database queries, enhancing application performance.
+
+- **Accelerate**: A service that offers up to 1000x faster queries by setting up a global cache and connection pool for databases, delivering a responsive experience for users as applications grow.
+
+- **Pulse**: A tool that powers real-time functionality with simplified, type-safe database subscriptions, enabling workflows and actions that react to changes in the database.
+
+## ORM
+
+To familiarize with basics, Prisma has a good [getting started guide](https://www.prisma.io/docs/getting-started/setup-prisma/start-from-scratch/relational-databases-typescript-postgresql) which I recommend taking a look at. But basically, what you have is this:
+
+- A **schema.prisma** file where you add your DB connection url and declare your entire DB schema (models, enums, etc.) An example of such file:
+
+  <Image src={schema} alt="Schema.prisma example file" />
+
+- **Prisma Migrate** tool which allows for handling migrations. It works similar to this:
+  - Keeps track of migration history in the database (Also there is a thing called [shadow database](https://www.prisma.io/docs/orm/prisma-migrate/understanding-prisma-migrate/shadow-database))
+  - Generates new .sql migration files on schema changes
+  - Applies all unapplied migrations
+  - There is a [migrate dev](https://www.prisma.io/docs/orm/reference/prisma-cli-reference#migrate-dev) and [migrate deploy](https://www.prisma.io/docs/orm/reference/prisma-cli-reference#migrate-deploy) commands: you would use dev when developing and deploy when applying changes to production/stage.
+  - **migrate dev** automatically generates all types for your schema, which ensures you have a fully typed ORM interactions.
+  - There are also tools like reset, resolve, diff, all of which you can dive into by exploring the [docs](https://www.prisma.io/docs/orm/reference/prisma-cli-reference#prisma-migrate)
+- [Type generation](https://www.prisma.io/docs/getting-started/setup-prisma/start-from-scratch/relational-databases/install-prisma-client-typescript-postgresql)
+  <Image src={typeGeneration} alt="How type generation works" />
+- **create**, **createMany**, **findMany**, **findUnique**, **delete**, **update**, **upsert** and more ORM functions for interacting with your database. Underneath the hood Prisma used **application-level joins**, which meant doing separate SELECT statements, and then joining the data on the application level. However, there is a [preview feature](https://www.prisma.io/blog/prisma-orm-now-lets-you-choose-the-best-join-strategy-preview) called relationJoins, which enables you to specify to do a database-level or application-level join strategy. It is not yet fully ready, but I hope it will be soon.
+
+The last point is actually brought up often, as an argument for Prisma's lack of speed or that it is unoptimized for production ready apps. I tend to disagree: of course, it is slower than using knex.js or raw SQL for example (although, you would have to be quite good in SQL to not mess up), but instead it offers nice (best of all ORMs I've used) developer experience and gets you going. For a project I'm working on at my job, it gets things done.
+
+### Pros
+
+So, what do I like about Prisma? In short,
+
+- Good DX
+- Easy to start with
+- Fully typed
+- Has a strong team behind it
+
+### Cons
+
+However, I can't not talk about some points that I was frustrated with. During these 3 months of working with Prisma, I compiled a list of such cons:
+
+- There is no possibility of using [GENERATED AS IDENTITY](https://github.com/prisma/prisma/issues/4693) in Postgres, and this issue has been opened for 4 years.
+- There is no way to [assign values to ENUM keys](https://github.com/prisma/prisma/issues/273). What matters is the order in which you define an enum. So, for example, If you have a **Colors ENUM**, you can't do:
+
+```prisma
+enum Color {
+  Red  = "RED",
+  Blue = "BLUE"
+}
+```
+
+You can only have
+
+```prisma
+enum Color {
+  Red,
+  Blue
+}
+```
+
+And if you wanted to sort an item by color, it goes like this: Red = 0, Blue = 1, etc., so Red would be the first which is counterintuitive. You would have to **declare an ENUM already sorted** (which is what I am doing currently)
+
+- Generating **down migrations** is tricky at first, even following the [official guide](https://www.prisma.io/docs/orm/prisma-migrate/workflows/generating-down-migrations) I needed to wrap my head around it. What I do is:
+  - Change a `schema.prisma` file, generate new migration
+  - Go back to old schema.prisma file, then generate `down.sql` file via command below and put it inside migration folder
+
+```bash
+npx prisma migrate diff \
+ --from-schema-datamodel prisma/schema.prisma \
+ --to-schema-datasource prisma/schema.prisma \
+ --script > down.sql
+```
+
+If you need to rollback, run:
+
+```bash
+npx prisma db execute --file migration-folder/down.sql --schema prisma/schema.prisma
+```
+
+- No ability to have a **compound unique key with a nullable field** - [issue](https://github.com/prisma/prisma/issues/3197), [second issue](https://github.com/prisma/prisma/issues/3387). This one really hurt, because I had to treat `new Date(0)` in a Date field as a null in order to include it in the unique key, and there are quite a lot of such nuances.
+- No [nested transactions](https://github.com/prisma/prisma/issues/15212)
+- You can't do nested upserts with compound unique columns
+
+And if you take a look at [issues](https://github.com/prisma/prisma/issues/) in the Prisma repo, you would notice that there are a lot (2700 as of moment of writing this post) - most of them being feature requests.
+
+## Conclusion
+
+Despite lacking many features and not being as rapid in bringing new changes, I noticed that Prisma **continuously grows**, introduces little to no breaking changes that allows production apps to rely on this ORM. I see small improving steps, and though there are a lot I would love Prisma to introduce and adopt, I hope we'll see it implemented in future releases.
