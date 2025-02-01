@@ -1,0 +1,132 @@
+---
+title: Reverse Proxies
+slug: reverse-proxies
+category: Development
+date: 2025-02-01
+image: ./image.webp
+imageAlt: Reverse Proxies
+excerpt: Today I wanna talk a bit about reverse proxies, since recently I've been working on a project tha...
+---
+
+import { Image } from "astro:assets";
+import nginx from "./nginx.webp";
+import traefik from "./traefik.webp";
+import caddy from "./caddy.webp";
+
+Today I wanna talk a bit about reverse proxies, since recently I've been working on a project that uses one. The most struggle I had was to pick the "right" one that suited my needs. Hopefully this post will help you make a better decision.
+
+TL;DR: I used [Nginx](https://nginx.org/) on my VPS for its simple config and lot of features (Although I didn't need a lot)
+
+## What is a reverse proxy?
+
+A reverse proxy is a server that sits between the client and the application server. It receives requests from the client and forwards them to the server. The server then sends the response back to the client through the reverse proxy.
+
+## Why use a reverse proxy?
+
+There are many reasons to use a reverse proxy. Here are some of the most common ones:
+
+- **Load Balancing**: A reverse proxy can distribute the incoming requests across multiple servers.
+- **Security**: A reverse proxy can be used to add an additional layer of security to the application. For example, you can use it to block requests from known malicious IP addresses.
+- **Caching**: A reverse proxy can be used to cache static content, thus improving the performance of the application. Personally I didn't use this one, but it's a great feature to have.
+- **SSL Termination**: A reverse proxy can be used to terminate the SSL connection and forward the unencrypted request to the application server.
+
+From what I've read and seen, most popular reverse proxies are:
+
+- [Nginx](https://nginx.org/)
+- [Traefik](https://traefik.io/)
+- [Caddy](https://caddyserver.com/)
+
+I've dedicated some time to learn about them, and what I've learned is:
+
+### Nginx
+
+<Image src={nginx} alt="Nginx logo" />
+
+Nginx is probably the most popular tool among these three. It's a powerful tool, and it's not that hard to configure, although it has more to it than Caddy or Traefik. Nginx works with one config file, and `sites-available` and `sites-enabled` directories.
+
+Basically, you have a main config file, and then you have a directory for your virtual hosts. Each virtual host has its own config file.
+
+Example config (nginx.conf):
+
+```nginx
+# config for http services
+http {
+  gzip on;
+
+  include /etc/nginx/conf.d/*.conf;
+  include /etc/nginx/sites-enabled/*;
+}
+```
+
+Example config (sites-available/example.com):
+
+```nginx
+server {
+    listen 80;
+    server_name example.com;
+
+    location / {
+        proxy_pass http://localhost:9005;
+    }
+}
+```
+
+You could say there are better and more modern alternatives to Nginx, and it's probably true. But I needed something long-term tested, and my eyes were on Nginx. In future I want to definitely try other tools, in which I'll talk next.
+
+### Traefik
+
+Traefik is a modern open-source tool that is easy to configure, and also it has automatic SSL certificate generation out of the box. Main feature is it automatically discovers the right configuration for your services. The magic happens when Traefik inspects your infrastructure, where it finds relevant information and discovers which service serves which request.
+
+<Image src={traefik} alt="Traefik configuration explained" />
+
+When using Traefik with Docker (It was my case), you have Traefik service inside your Docker container, and you config routes via [container labels](https://doc.traefik.io/traefik/routing/providers/docker/). Example from Traefik docs:
+
+```yaml
+version: "3"
+services:
+  my-container:
+    # ...
+    labels:
+      - traefik.http.routers.my-container.rule=Host(`example.com`)
+```
+
+Forward requests for `http://example.com` to `my-container` service.
+
+Personally I didn't fall in love with it because I wanted to have a config outside of my Docker Compose file, living on my VPS. Also, I already had SSL certificates, so no use for that also ;(
+
+### Caddy
+
+<Image src={caddy} alt="Caddy logo" />
+
+Caddy, on the other hand, has, what most would call, a very simple config syntax. It also has automatic SSL certificate generation out of the box as Traefik does. Caddy community is not that big, so it could sometimes be hard to find what you're looking for.
+
+Example Caddyfile:
+
+```caddyfile
+example.com
+
+# Templates give static sites some dynamic features
+templates
+
+# Compress responses according to Accept-Encoding headers
+encode gzip zstd
+
+# Make HTML file extension optional
+try_files {path}.html {path}
+
+# Send API requests to backend
+reverse_proxy /api/* localhost:9005
+
+# Serve everything else from the file system
+file_server
+```
+
+[Caddy docker proxy](https://github.com/jcchavezs/caddy-docker-proxy) works similarly to nginx-proxy by automatically creating the Caddyfile based on some container configurations. Instead of using environment variables, it uses labels, similar to traefik. It's not necessary to use it, but it's good to know it exists.
+
+Caddy is much more than a reverse proxy, and I honestly didn't have enough time to explore it. I would love to dive more into it in the future.
+
+## Conclusion
+
+If it were up to me, I would probably go with either Nginx or Caddy. Traefik just doesn't seem to align with me for some reason. I use Nginx mostly because of its popularity, but I would love to try Caddy for its simplicity. Maybe I will compare them in future.
+
+To be honest, if you just use it as a reverse proxy and you don't have immense amounts of traffic, you can't go wrong with any of these. Benchmarks start to show differences on huge amounts of requests, so keep that in mind and go with what you feel more comfortable with.
