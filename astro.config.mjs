@@ -1,4 +1,4 @@
-import tailwind from "@astrojs/tailwind";
+import tailwindcss from "@tailwindcss/vite";
 import react from "@astrojs/react";
 import astroI18next from "astro-i18next";
 import { defineConfig, passthroughImageService } from "astro/config";
@@ -9,14 +9,8 @@ import mdx from "@astrojs/mdx";
 export default defineConfig({
   site: "https://www.v-mokhun.com",
   output: "static",
-  integrations: [
-    tailwind({
-      applyBaseStyles: false,
-    }),
-    react(),
-    astroI18next(),
-    mdx({}),
-  ],
+  vite: { plugins: [tailwindcss()] },
+  integrations: [react(), astroI18next(), mdx({})],
   image: {
     service: passthroughImageService(),
   },
