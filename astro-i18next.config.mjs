@@ -2,7 +2,7 @@
 export default {
   defaultLocale: "en",
   locales: ["en", "pl", "ua"],
-  load: ["server", "client"], // load i18next server and client side
+  load: ["server", "client"], 
   i18nextServerPlugins: {
     "{initReactI18next}": "react-i18next",
   },

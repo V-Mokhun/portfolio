@@ -22,9 +22,9 @@
   },
   "about": {
     "title": "About Me",
-    "description1": "My name is Volodymyr, I'm a second-year Computer Science student at the <0>University of Warmia and Mazury</0>. My journey with programming began at the age of 15, starting with simple websites and gradually diving into more complex projects, alongside mastering Data Structures and Algorithms.",
-    "description2": "<0>For a year</0> I worked as a Freelance Front-End developer, where I gained invaluable experience in client communication and collaborated with fellow developers and designers. Nowadays, I'm into building awesome stuff with <1>React</1> and Next.js. I've also embarked on a journey to master Golang, enriching my expertise in backend development.",
-    "description3": "I also recently obtained the <0>Cambridge C1 Advanced Certificate</0>, which basically says I can handle myself just fine in English-speaking settings."
+    "description1": "My name is Volodymyr, I'm a third-year Computer Science student at the <0>University of Warmia and Mazury</0>. My journey with programming began at the age of 15, starting with simple websites and gradually diving into more complex projects, alongside mastering Data Structures and Algorithms.",
+    "description2": "<0>For a year</0> I worked as a Freelance Front-End developer, where I gained invaluable experience in client communication and collaborated with developers and designers. Since August 2024 I work as a frontend developer in PaloAlto Group. I also gained experience in backend development, managing VPS and devops along the way.",
+    "description3": "I'm also into building stuff with <0>Next.js</0> for my side projects and tinkering in general. I have a <1>Cambridge C1 Advanced Certificate</1>, which basically says I can handle myself just fine in English-speaking settings."
   },
   "skills": {
     "title": "Skills"
