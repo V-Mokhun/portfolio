@@ -1,0 +1,238 @@
+---
+title: Setting up Symfony on VM
+slug: setting-up-symfony-on-vm
+category: Development
+date: 2025-03-30
+image: ./image.webp
+imageAlt: Symfony logo
+excerpt: Today I'd like to describe how I set up Symfony PHP Framework on a Virtual Machi...
+---
+
+import { Image } from "astro:assets";
+import networkSettings from "./network-settings.webp";
+
+Today I'd like to describe how I set up [Symfony](https://symfony.com/) PHP Framework on a Virtual Machine (**Ubuntu Server 24.04**) with a Database, Apache, private GitHub access and easier SSH access from host to a VM. It's an unusual topic for me, but since I have been tackling this for my university class, I figured why not write about it, maybe it will help someone.
+
+- P.S. For virtualization, I used [VirtualBox](https://www.virtualbox.org/), and instructions will be for **Mac**, but it shouldn't differ much from other OSs.
+
+## First steps
+
+If you want to follow this article, you should have VirtualBox installed as well as have a Symfony project in your GitHub repo.
+
+1. Download [Ubuntu Server image](https://ubuntu.com/download/server)
+2. Install Ubuntu Server on your virtual machine, set a **Bridged Adapter** in Network Settings. Give at least 15GB hard drive memory
+   <Image src={networkSettings} alt="Network Settings Tab in VirtualBox" />
+3. Do a `sudo apt update` and `sudo apt upgrade -y` if it's your first time booting up this Ubuntu instance.
+4. Install openssh, for operating through your host machine's terminal instead of VM screen (personal preference):
+   - `sudo apt install openssh-server`
+   - `sudo systemctl start ssh`
+   - `sudo systemctl enable ssh`
+
+## Set up SSH key
+
+Now you can ssh through your host machine into VM by:
+
+1. Get VM's ip address: `hostname -I`
+2. In your host terminal, do a `ssh username@ip_addr`
+
+However, if you would like to do an automatic sign in without having to provide a password, you can setup **ssh key**.
+
+On your **Host Machine**:
+
+1. `ssh-keygen -t ed25519 -C "your-email@example.com"`
+2. `ssh-copy-id username@VM-IP-ADDRESS`
+3. Create SSH config file for easier connections (optional):
+
+   `vi ~/.ssh/config`
+
+   ```
+   Host symfony-vm
+      HostName VM-IP-ADDRESS
+      User your-username
+   ```
+
+   Then you can connect with: `ssh symfony-vm`, or `ssh username@VM-IP-ADDRESS`
+
+## Installing necessary PHP packages and cloning GitHub Repo
+
+### Install necessary packages (Using MariaDB for database):
+
+`sudo apt install apache2 php php-cli php-xml php-mbstring php-curl php-zip php-intl php-mysql git mariadb-server mariadb-client libapache2-mod-php libapache2-mod-fcgid php-bcmath php-gd -y`
+
+### Install composer:
+
+- `curl -sS https://getcomposer.org/installer | php`
+- `sudo mv composer.phar /usr/local/bin/composer`
+
+### Clone a GitHub Repo
+
+```bash
+# 1. Generate SSH Key for private repo access (on VM)
+ssh-keygen -t ed25519 -C "your-email@example.com"
+
+# 2. Add the SSH Key to the SSH Agent
+eval "$(ssh-agent -s)"
+ssh-add ~/.ssh/id_ed25519
+
+# 3. Copy the Public Key to GitHub
+cat ~/.ssh/id_ed25519.pub
+
+# Copy the output.
+# Go to GitHub > Settings > SSH and GPG keys.
+# Click New SSH Key.
+# Paste the key and Save.
+
+# 4. Test the SSH Connection
+ssh -T git@github.com
+
+# 5. Configure Git to Use SSH
+cd /var/www/html
+git pull origin git@github.com:USERNAME/REPO.git
+```
+
+Install packages in a repo, as well as give permissions for Apache
+
+```bash
+sudo chown -R www-data:www-data /var/www/html/PROJECT_NAME
+cd /var/www/html/PROJECT_NAME
+sudo composer install
+```
+
+## Configure Database (MariaDB)
+
+I did it kind of cheaty, probably it can be done without creating and dropping database, but I couldn't care less if it works this way:)
+
+```bash
+sudo mysql -u root -p
+CREATE DATABASE db_name;
+# I noticed that symfony expects admin user to have privileges, so we create a user 'admin', maybe it could be done easier
+CREATE USER 'admin'@'localhost' IDENTIFIED BY 'pass';
+GRANT ALL PRIVILEGES ON db_name.* TO 'admin'@'localhost';
+FLUSH PRIVILEGES;
+drop database db_name;
+EXIT;
+```
+
+Add a DATABASE_URL to your `.env.local`
+
+```bash
+# Format: DATABASE_URL="mysql://USERNAME:PASSWORD@127.0.0.1:3306/DB_NAME?serverVersion=10.11.8-MariaDB"
+sudo vi .env.local
+```
+
+Run doctrine commands for database:
+
+```bash
+php bin/console doctrine:database:create
+# If you have migrations
+php bin/console doctrine:migrations:migrate
+# If you have fixtures
+php bin/console doctrine:fixtures:load
+```
+
+## Configure Apache2 with PHP-FPM
+
+Enable apache modules and install php-fpm
+
+```bash
+sudo a2enmod actions fcgid alias proxy_fcgi
+sudo apt install php-fpm -y
+
+sudo a2enmod rewrite
+sudo a2enmod headers
+
+```
+
+Set up Apache config:
+
+```bash
+sudo vi /etc/apache2/sites-available/PROJ_NAME.conf
+```
+
+Example config from my Symfony project
+
+```ini
+<VirtualHost *:80>
+    ServerName localhost
+    DocumentRoot /var/www/html/PROJ_NAME/public
+
+    # Set up directory permissions
+    <Directory /var/www/html/PROJ_NAME/public>
+        Options Indexes FollowSymLinks MultiViews
+        AllowOverride All
+        Require all granted
+
+        # URL rewriting for Symfony
+        FallbackResource /index.php
+
+        # Disable .htaccess files if you're using them
+        <IfModule mod_rewrite.c>
+            RewriteEngine On
+            RewriteCond %{REQUEST_URI}::$0 ^(/.+)/(.*)::\2$
+            RewriteRule .* - [E=BASE:%1]
+            RewriteCond %{HTTP:Authorization} .+
+            RewriteRule ^ - [E=HTTP_AUTHORIZATION:%0]
+            RewriteCond %{ENV:REDIRECT_STATUS} =""
+            RewriteRule ^index\.php(?:/(.*)|$) %{ENV:BASE}/$1 [R=301,L]
+            RewriteCond %{REQUEST_FILENAME} !-f
+            RewriteRule ^ %{ENV:BASE}/index.php [L]
+        </IfModule>
+    </Directory>
+
+    # Configure PHP-FPM (See your version)
+    <FilesMatch \.php$>
+        SetHandler "proxy:unix:/run/php/php8.3-fpm.sock|fcgi://localhost"
+    </FilesMatch>
+
+    # Deny access to sensitive directories
+    <Directory /var/www/html/PROJ_NAME/config>
+        Require all denied
+    </Directory>
+    <Directory /var/www/html/PROJ_NAME/var>
+        Require all denied
+    </Directory>
+    <Directory /var/www/html/PROJ_NAME/vendor>
+        Require all denied
+    </Directory>
+    <Directory /var/www/html/PROJ_NAME/src>
+        Require all denied
+    </Directory>
+
+    # Configure logs
+    ErrorLog ${APACHE_LOG_DIR}/symfony_error.log
+    CustomLog ${APACHE_LOG_DIR}/symfony_access.log combined
+</VirtualHost>
+
+```
+
+Check your config via `sudo apache2ctl configtest`
+
+Set permissions:
+
+```bash
+sudo usermod -a -G www-data $USER
+sudo chown -R $USER:www-data /var/www/html/PROJ_NAME
+sudo chmod -R 775 /var/www/html/PROJ_NAME/var
+sudo chmod -R 775 /var/www/html/PROJ_NAME/public
+```
+
+Enable site:
+
+```bash
+sudo a2dissite 000-default.conf
+sudo a2ensite PROJ_NAME.conf
+sudo systemctl restart apache2
+```
+
+## Developing in VS Code
+
+1. Install [Remote SSH extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-ssh)
+2. Follow official tutorial on setting up SSH - [TUTORIAL](https://code.visualstudio.com/docs/remote/ssh)
+
+If something's not working properly, check [this troubleshooting guide](https://code.visualstudio.com/docs/remote/troubleshooting)
+
+## The End
+
+That's it, you should be able to go to a **http://VM-IP-ADDRESS** in your browser and see your Symfony app.
+
+I hope this post helps someone who is not very familliar with PHP ecosystem, Apache and Virtual Machines. If you have any comments, I'll be happy to hear them. I am sure this configuration is by no means perfect, but it's working.
