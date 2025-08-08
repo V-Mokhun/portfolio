@@ -71,10 +71,92 @@ I also like the way you can see your DB, existing triggers, functions, indexes, 
 Here are some tips based on my experience.
 
 - **Check Your RLS Policies:** Double, and triple-check your [Row-Level Security policies](https://supabase.com/docs/guides/database/postgres/row-level-security) when updating your database schema. We've all heard stories of misconfigured policies leading to data leaks. AI is usually good at generating them, but please, double-check its work.
+
+```sql
+-- examples of my some policies
+create policy "Anyone can view active skill categories"
+on public.skill_categories
+for select
+to authenticated, anon
+using (is_active = true);
+
+create policy "Only admins and moderators can manage skill categories"
+on public.skill_categories
+for all
+to authenticated
+using (
+  exists (
+    select 1 from public.admin_roles
+    where user_id = (select auth.uid()) and role in ('moderator', 'admin', 'superadmin')
+  )
+)
+with check (
+  exists (
+    select 1 from public.admin_roles
+    where user_id = (select auth.uid()) and role in ('moderator', 'admin', 'superadmin')
+  )
+);
+```
+
 - **Secure Your Storage:** Use [policies for Storage](https://supabase.com/docs/guides/storage) as well, and also set limits on file size and extensions. For private files, use [Signed URLs](https://supabase.com/docs/reference/javascript/storage-from-createsignedurl).
 - **Auto-Renew Signed URLs:** You can implement automatic renewal when a Signed URL expires. I did this by simply storing `url_expires_at` and `url_storage_path` in my database.
 - **Utilize Extensions:** Make sure to explore and utilize the available [Postgres Extensions](https://supabase.com/docs/guides/database/extensions) like `pg_cron` for scheduling jobs.
 - **Edge Functions with Cron Jobs:** I had a particular issue getting an edge function to work with a cron job. [This comment](https://www.reddit.com/r/Supabase/comments/1i40kbx/comment/m7ts8e6/?utm_source=share&utm_medium=web3x&utm_name=web3xcss&utm_term=1&utm_content=share_button) really helped me set it up correctly.
+- **Use Postgres Functions for Complex Logic:** I don't like the supabase client library for building queries, at all. Almost all interactions are made via PostgreSQL functions, and then I call them with `supabase.rpc()`. It gives more centralized logic, simpler client-side code, which fits my view.
+
+```sql
+-- example of such a function
+create or replace function public.create_skill_listing(
+  p_user_id uuid,
+  p_skill_listing jsonb
+)
+returns jsonb
+language plpgsql
+security invoker
+as $$
+declare
+  new_listing public.skill_listings;
+  exchange_types_array text[];
+  learning_styles_array text[];
+begin
+  -- Convert and validate incoming data from JSON
+  exchange_types_array := array(select jsonb_array_elements_text(p_skill_listing->'exchange_types'));
+  if not public.validate_exchange_types(exchange_types_array) then
+    raise exception 'Invalid exchange types provided.';
+  end if;
+
+  learning_styles_array := array(select jsonb_array_elements_text(p_skill_listing->'learning_styles'));
+  if not public.validate_skill_learning_styles(learning_styles_array) then
+    raise exception 'Invalid learning styles provided.';
+  end if;
+
+  -- Perform the insert with the validated data
+  insert into public.skill_listings (
+    user_id,
+    skill_id,
+    proficiency_level,
+    description,
+    exchange_types,
+    learning_styles
+  )
+  values (
+    p_user_id,
+    (p_skill_listing->>'skill_id')::uuid,
+    (p_skill_listing->>'proficiency_level')::public.skill_proficiency_level,
+    p_skill_listing->>'description',
+    exchange_types_array,
+    learning_styles_array
+  )
+  returning * into new_listing;
+
+  return to_jsonb(new_listing);
+exception
+  when unique_violation then
+    raise exception 'You already have a listing for this skill.';
+end;
+$$;
+```
+
 - **Batch Uploads:** If you need to batch upload media to storage, using AI to generate a Python script is very efficient.
 - **Database Migration:** For migrating from one Supabase project to another, [check out this guide](https://supabase.com/docs/guides/platform/migrating-within-supabase/backup-restore).
 - **Next.js Caching:** Be aware that when you use `createServerClient()` in Next.js middleware or route handlers, it can unexpectedly cache responses. I spent about three hours figuring this out! To avoid it, pass a custom fetch option to disable caching:
