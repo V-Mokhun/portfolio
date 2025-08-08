@@ -1,0 +1,95 @@
+---
+title: My Supabase Overview
+slug: my-supabase-overview
+category: Development
+date: 2025-08-09
+image: ./image.webp
+imageAlt: Supabase logo
+excerpt: For the last few months, I've been extensively using Supabase - both in work and for my bache...
+---
+
+import { Image } from "astro:assets";
+import sqlEditor from "./sql-editor.webp";
+import dbOverview from "./database-overview.webp";
+
+For the last few months, I've been extensively using [Supabase](http://supabase.com/) - both for work and for my bachelor's degree project. I feel like I've gained some experience with this BaaS, so this is my overview of working with it, including some quirks I faced, my preferred style of work, and some useful resources. I can't cover everything, but I will talk about what I find most important.
+
+### Getting Started
+
+If it's your first time with Supabase, I recommend going through the official docs for about 5 minutes or using AI for the basic setup. In a nutshell, you get a PostgreSQL database, Auth, Storage (which can be integrated with S3), Edge Functions, Realtime, and much more included in your project. They also have a pretty generous free tier that I find is enough for my side projects.
+
+**Initial Setup**
+
+- Create a project in the [dashboard](https://supabase.com/dashboard).
+- Install the [Supabase CLI](https://supabase.com/docs/guides/local-development/cli/getting-started).
+- Use `supabase login` to connect your account.
+- If you haven't already, initialize the project in your repository with `supabase init`.
+- Link your local project to a remote one with `supabase link`.
+- To generate types from your database schema, use `supabase gen types typescript --project-id your-project-id > lib/database.types.ts`. Add the `--local` flag to generate types from your local instance.
+
+**Helpful Resources**
+
+Right from the start, I want to share a few cool resources to use when you work with Supabase:
+
+- **For local development:** [Overview](https://supabase.com/docs/guides/local-development/overview)
+- **For quickly setting up UI:** [Supabase UI Library](https://supabase.com/ui)
+- **For generating SQL with AI:** [AI Prompts](https://supabase.com/ui/docs/ai-editors-rules/prompts)
+
+### Development Workflows
+
+There are two main ways I've found you can work with Supabase: directly through the dashboard or locally on your machine. I want to discuss both.
+
+#### Through the Dashboard
+
+This approach involves using the `SQL Editor` in the Supabase dashboard, writing snippets, and executing them directly. It's a comfortable experience if you are working on your own, on a project that nobody else is touching. I did it this way on my first Supabase project.
+
+<Image src={sqlEditor} alt="Sql editor screen" />
+
+The main upside is that it's really fast when you need to make quick changes, add or remove records, columns, etc.
+
+However, because you do everything manually, you have no way of tracking these changes. This is why you would have trouble syncing with other developers working on the same project — a problem I think we can all understand.
+
+#### Through Local Development
+
+A better way (in my humble opinion) is to work via [Local Development](https://supabase.com/docs/guides/local-development/overview). It provides a way to actually sync between developers, avoid making changes to the same database when working on different features, and generate migration files.
+
+Basically, the idea is that you have your own instance of Supabase running locally via **Docker**, and you can do whatever you want with it — modify data, schema, etc. You run it using `supabase start`.
+
+The official docs do a great job of explaining the basic steps, so here are the commands I use most often:
+
+- `supabase db diff -f filename` - Generate a new migration file by comparing your local database with its state from the last migration.
+- `supabase migration up` - Apply a migration to your local database.
+- `supabase db push` - Push the latest migrations to your remote database. Using `supabase db push --dry-run` is useful for production to see the changes before applying them.
+- To roll back a migration, I usually check out the commit I want to revert to, then run `supabase db reset`. After that, `supabase db diff -f revert-latest.sql` will generate a diff that drops the changes, which you can execute. Lastly, to fix the migration history, run `supabase migration repair --status reverted migration_id`.
+
+I also like the way you can see your DB, existing triggers, functions, indexes, and migration history.
+
+<Image src={dbOverview} alt="Database overview screen" />
+
+### Tips and Tricks
+
+Here are some tips based on my experience.
+
+- **Check Your RLS Policies:** Double, and triple-check your [Row-Level Security policies](https://supabase.com/docs/guides/database/postgres/row-level-security) when updating your database schema. We've all heard stories of misconfigured policies leading to data leaks. AI is usually good at generating them, but please, double-check its work.
+- **Secure Your Storage:** Use [policies for Storage](https://supabase.com/docs/guides/storage) as well, and also set limits on file size and extensions. For private files, use [Signed URLs](https://supabase.com/docs/reference/javascript/storage-from-createsignedurl).
+- **Auto-Renew Signed URLs:** You can implement automatic renewal when a Signed URL expires. I did this by simply storing `url_expires_at` and `url_storage_path` in my database.
+- **Utilize Extensions:** Make sure to explore and utilize the available [Postgres Extensions](https://supabase.com/docs/guides/database/extensions) like `pg_cron` for scheduling jobs.
+- **Edge Functions with Cron Jobs:** I had a particular issue getting an edge function to work with a cron job. [This comment](https://www.reddit.com/r/Supabase/comments/1i40kbx/comment/m7ts8e6/?utm_source=share&utm_medium=web3x&utm_name=web3xcss&utm_term=1&utm_content=share_button) really helped me set it up correctly.
+- **Batch Uploads:** If you need to batch upload media to storage, using AI to generate a Python script is very efficient.
+- **Database Migration:** For migrating from one Supabase project to another, [check out this guide](https://supabase.com/docs/guides/platform/migrating-within-supabase/backup-restore).
+- **Next.js Caching:** Be aware that when you use `createServerClient()` in Next.js middleware or route handlers, it can unexpectedly cache responses. I spent about three hours figuring this out! To avoid it, pass a custom fetch option to disable caching:
+
+```javascript
+// Pass this option in createServerClient()
+options: {
+  global: {
+    fetch: (url: any, options = {}) => {
+      return fetch(url, { ...options, cache: "no-store" });
+    },
+  },
+},
+```
+
+### Conclusion
+
+Overall, Supabase fits really well for many use cases. I can't speak to how it scales for large production applications, but for low-to-mid-sized projects, the ecosystem it provides feels extensive and robust. However, you have to understand the consequences of vendor lock-in. As always, "it depends." :)
