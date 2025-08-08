@@ -1,8 +1,7 @@
-/** @type {import('astro-i18next').AstroI18nextConfig} */
-export default {
+const config = {
   defaultLocale: "en",
   locales: ["en", "pl", "ua"],
-  load: ["server", "client"], 
+  load: ["server", "client"],
   i18nextServerPlugins: {
     "{initReactI18next}": "react-i18next",
   },
@@ -10,3 +9,5 @@ export default {
     "{initReactI18next}": "react-i18next",
   },
 };
+
+export default config;
