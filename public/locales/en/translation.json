@@ -1,8 +1,8 @@
 {
   "name": "Volodymyr",
   "site": {
-    "title": "Volodymyr Mokhun - Front-End Developer",
-    "description": "Volodymyr Mokhun, Front-End Developer specializing in React.js, TypeScript, Next.js."
+    "title": "Volodymyr Mokhun - Software Engineer",
+    "description": "Volodymyr Mokhun, Software Engineer specializing in TypeScript, Node.js, Next.js"
   },
   "resume": "Resume",
   "contactMe": "Contact Me",
@@ -17,7 +17,7 @@
   "hero": {
     "greeting": "Hi, I'm",
     "title": "Volodymyr Mokhun.",
-    "subtitle": "a Front-End Developer",
+    "subtitle": "a Software Engineer",
     "description": "I'm a CS student and a web developer focused in developing performant and responsive websites. I thrive on creating practical solutions, exploring new opportunities, and keeping the coding journey enjoyable."
   },
   "about": {
