@@ -16,6 +16,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import "./console.css";
 import { SnakeGame } from "./snake";
 import { useFade } from "./useFade";
+import "@xterm/xterm/css/xterm.css";
 
 type CommandHandler = (input: string) => Promise<void> | void;
 
@@ -28,7 +29,12 @@ export const DeveloperConsole = () => {
   const historyIndexRef = useRef<number>(-1);
   const bufferRef = useRef<string>("");
   const [open, setOpen] = useState(false);
-  const dragStartRef = useRef<{ x: number; y: number; left: number; top: number } | null>(null);
+  const dragStartRef = useRef<{
+    x: number;
+    y: number;
+    left: number;
+    top: number;
+  } | null>(null);
   const theme = useStore($theme);
 
   const prompt = useMemo(() => "$ ", []);
@@ -77,7 +83,6 @@ export const DeveloperConsole = () => {
         import("@xterm/xterm"),
         import("@xterm/addon-fit"),
       ]);
-      await import("@xterm/xterm/css/xterm.css");
       if (disposed) return;
 
       const term = new Terminal({
