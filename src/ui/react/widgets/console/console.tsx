@@ -343,7 +343,7 @@ export const DeveloperConsole = () => {
           } else if (sub === "email") {
             const url = new URL(window.location.href);
             const resumeUrl = `${url.origin}/resume.pdf`;
-            window.location.href = `mailto:v.mokhun.dev@gmail.com?subject=Resume%20Request&body=${encodeURIComponent(resumeUrl)}`;
+            window.location.href = `mailto:v.mokhun@gmail.com?subject=Resume%20Request&body=${encodeURIComponent(resumeUrl)}`;
           } else {
             writeln("Usage: resume open | resume email");
           }
@@ -353,10 +353,10 @@ export const DeveloperConsole = () => {
           if (sub !== "open")
             return writeln("Usage: socials open <github|linkedin|x|email>");
           const map: Record<string, string> = {
-            github: "https://github.com/v-mokhun",
+            github: "https://github.com/V-Mokhun",
             linkedin: "https://www.linkedin.com/in/v-mokhun",
             x: "https://x.com/v_mokhun",
-            email: "mailto:v.mokhun.dev@gmail.com",
+            email: "mailto:v.mokhun@gmail.com",
           };
           const href = map[which ?? ""];
           if (!href) return writeln("Unknown social");
