@@ -49,7 +49,7 @@ test.describe("Mobile Footer", () => {
     const twitterPagePromise = page.waitForEvent("popup");
     await page.locator("footer").getByLabel("Twitter (X)").click();
     const twitterPage = await twitterPagePromise;
-    await expect(twitterPage).toHaveURL(/twitter.com/);
+    await expect(twitterPage).toHaveURL(/x.com/);
     await twitterPage.close();
   });
 });
