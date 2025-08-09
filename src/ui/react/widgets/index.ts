@@ -5,3 +5,4 @@ export * from "./theme-toggle";
 export * from "./pagination";
 export * from "./animation-preference";
 export * from "./thumbnail-carousel";
+export * from "./console";

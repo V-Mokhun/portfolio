@@ -6,6 +6,7 @@ import Header from "@/ui/astro/widgets/header.astro";
 import i18next, { t } from "i18next";
 import { ClientRouter } from "astro:transitions";
 import { AnimationPreference } from "@/ui/react";
+import { DeveloperConsole } from "@/ui/react";
 
 const currentUrl = Astro.url.origin;
 
@@ -130,6 +131,8 @@ const { title, animateHeader = false } = Astro.props;
         <slot />
       </main>
       <Footer />
+      <!-- Developer Console overlay; toggled with the 'c' key -->
+      <DeveloperConsole client:only="react" />
     </body>
   </AnimationPreference>
 
