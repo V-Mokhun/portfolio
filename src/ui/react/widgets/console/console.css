@@ -34,6 +34,18 @@
 .console-body {
   height: calc(100% - 42px);
   padding: 10px 12px; /* inner padding for xterm */
+  position: relative;
+}
+
+.console-game { display: grid; place-items: center; height: 100%; }
+
+.console-game-overlay {
+  position: absolute;
+  inset: 8px 8px 8px 8px;
+  display: grid;
+  place-items: center;
+  background: rgba(0,0,0,0.06);
+  border-radius: 6px;
 }
 
 .console-close {

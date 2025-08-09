@@ -1,16 +1,20 @@
-import React, { useEffect, useMemo, useRef, useState } from "react";
-import { languages } from "@/lib/i18n";
-import { $theme, setTheme, type Theme } from "@/lib/stores";
-import { useStore } from "@nanostores/react";
-import type { FitAddon } from "@xterm/addon-fit";
-import type { Terminal } from "@xterm/xterm";
-import { updateParticlesConfig } from "@/lib/stores";
 import {
   LOCAL_STORAGE_ANIMATION_PREF_KEY,
   LOCAL_STORAGE_CONSOLE_HISTORY_KEY,
-  LOCAL_STORAGE_THEME_KEY,
 } from "@/consts/local-storage";
+import { languages } from "@/lib/i18n";
+import {
+  $theme,
+  setTheme,
+  updateParticlesConfig,
+  type Theme,
+} from "@/lib/stores";
+import { useStore } from "@nanostores/react";
+import type { FitAddon } from "@xterm/addon-fit";
+import type { Terminal } from "@xterm/xterm";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import "./console.css";
+import { SnakeGame } from "./snake";
 import { useFade } from "./useFade";
 
 type CommandHandler = (input: string) => Promise<void> | void;
@@ -50,7 +54,7 @@ export const DeveloperConsole: React.FC = () => {
     return () =>
       window.removeEventListener("keydown", onKeyToggle, {
         capture: true,
-      } as any);
+      });
   }, []);
 
   useEffect(() => {
@@ -73,8 +77,16 @@ export const DeveloperConsole: React.FC = () => {
         fontSize: 14,
         theme:
           theme === "dark"
-            ? { background: "#0b1220" }
-            : { background: "#f8fafc" },
+            ? {
+                background: "#0b1220",
+                foreground: "#e5e7eb",
+                cursor: "#22d3ee",
+              }
+            : {
+                background: "#f8fafc",
+                foreground: "#0b1220",
+                cursor: "#0b1220",
+              },
       });
       const fit = new FitAddon();
       fitRef.current = fit;
@@ -83,6 +95,7 @@ export const DeveloperConsole: React.FC = () => {
       term.open(containerRef.current!);
       fit.fit();
       term.focus();
+      let suppressInput = false;
 
       const write = (text: string) => term.write(text.replace(/\n/g, "\r\n"));
       const writeln = (text = "") => write(text + "\r\n");
@@ -111,6 +124,8 @@ export const DeveloperConsole: React.FC = () => {
         writeln("  animation set <on|reduced>");
         writeln("  socials open <github|linkedin|x|email>");
         writeln("  play snake");
+        writeln("");
+        writeln("Tip: Press Tab for autocomplete suggestions.");
       };
 
       const handlers: Record<string, CommandHandler> = {
@@ -121,8 +136,10 @@ export const DeveloperConsole: React.FC = () => {
         clear: () => term.clear(),
         close: () => setOpen(false),
         whoami: () => {
-          writeln("Volodymyr Mokhun - Front-End Developer");
-          writeln("Passionate about React, TypeScript, and delightful UX.");
+          writeln("Volodymyr Mokhun - Software Engineer");
+          writeln(
+            "Passionate about building robust, scalable, and maintainable software."
+          );
         },
         theme: (input) => {
           const [, sub, value] = input.split(/\s+/);
@@ -184,7 +201,7 @@ export const DeveloperConsole: React.FC = () => {
           const messageMatch = input.match(/--message\s+"([^"]+)"/);
           const subject = subjectMatch?.[1] ?? "Hello";
           const body = messageMatch?.[1] ?? "";
-          const href = `mailto:v.mokhun.dev@gmail.com?subject=${encodeURIComponent(
+          const href = `mailto:v.mokhun@gmail.com?subject=${encodeURIComponent(
             subject
           )}&body=${encodeURIComponent(body)}`;
           window.location.href = href;
@@ -194,10 +211,9 @@ export const DeveloperConsole: React.FC = () => {
           const num = Number(val);
           if (Number.isNaN(num)) return writeln("Value must be a number");
           if (key === "noise") {
-            updateParticlesConfig({
-              quantity: Math.max(5, Math.min(200, num)),
-            });
-            writeln(`Particles quantity set to ${num}`);
+            const quantity = Math.max(5, Math.min(200, num));
+            updateParticlesConfig({ quantity });
+            writeln(`Particles quantity set to ${quantity}`);
           } else if (key === "scale") {
             updateParticlesConfig({ staticity: num });
             writeln(`Particles staticity set to ${num}`);
@@ -287,6 +303,34 @@ export const DeveloperConsole: React.FC = () => {
           if (!href) return writeln("Unknown social");
           window.open(href, "_blank");
         },
+        play: (input) => {
+          const [, what] = input.split(/\s+/);
+          if (what !== "snake") {
+            writeln("Usage: play snake");
+            return;
+          }
+          writeln("Launching snake... Use arrows or WASD. Esc to quit.");
+          const bodyEl = containerRef.current?.parentElement as HTMLElement; // .console-body
+          if (!bodyEl) return;
+          suppressInput = true;
+          const overlay = document.createElement("div");
+          overlay.className = "console-game-overlay";
+          bodyEl.appendChild(overlay);
+
+          const root = document.createElement("div");
+          overlay.appendChild(root);
+          import("react-dom/client").then(({ createRoot }) => {
+            const r = createRoot(root);
+            const exit = (score: number) => {
+              r.unmount();
+              bodyEl.removeChild(overlay);
+              writeln(`Exited snake. Score: ${score}`);
+              suppressInput = false;
+              showPrompt();
+            };
+            r.render(<SnakeGame onExit={exit} />);
+          });
+        },
       };
 
       printHelp();
@@ -295,6 +339,7 @@ export const DeveloperConsole: React.FC = () => {
       const onResize = () => fit.fit();
       window.addEventListener("resize", onResize);
       term.onKey(({ domEvent }) => {
+        if (suppressInput) return;
         if (domEvent.key === "Escape") setOpen(false);
       });
 
@@ -326,7 +371,22 @@ export const DeveloperConsole: React.FC = () => {
         showPrompt();
       };
 
+      const showCompletions = () => {
+        const input = bufferRef.current;
+        const [cmd] = input.split(/\s+/);
+        const all = Object.keys(handlers);
+        const matches = all.filter((c) => c.startsWith(cmd));
+        if (matches.length === 1) {
+          bufferRef.current = matches[0] + " ";
+          term.write("\u001b[2K\r" + prompt + bufferRef.current);
+        } else if (matches.length > 1) {
+          writeln("\n" + matches.join("  "));
+          term.write(prompt + bufferRef.current);
+        }
+      };
+
       const onData = (data: string) => {
+        if (suppressInput) return;
         const code = data.charCodeAt(0);
         switch (code) {
           case 13: // Enter
@@ -337,6 +397,9 @@ export const DeveloperConsole: React.FC = () => {
               bufferRef.current = bufferRef.current.slice(0, -1);
               renderLine();
             }
+            break;
+          case 9: // Tab
+            showCompletions();
             break;
           default:
             if (data === "\u001b[A") {
