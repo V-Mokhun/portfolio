@@ -1,4 +1,4 @@
-import { Page, expect, test } from "@playwright/test";
+import { type Page, expect, test } from "@playwright/test";
 
 async function fillForm(page: Page) {
   await page.getByPlaceholder("Name", { exact: true }).click();
