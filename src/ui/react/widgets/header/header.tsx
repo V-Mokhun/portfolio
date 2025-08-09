@@ -84,10 +84,26 @@ export const HeaderClient = ({
               href="/resume.pdf"
               target="_blank"
             >
+              {" "}
               {t("resume")}
             </RippleButton>
             <LangPicker currentLang={currentLang} />
             <ThemeToggle />
+            <button
+              type="button"
+              className="hidden md:inline-flex items-center gap-1 text-foreground-light opacity-70 hover:opacity-100 transition-colors text-xs ml-2"
+              onClick={() => {
+                const evt = new KeyboardEvent("keydown", { key: "c" });
+                window.dispatchEvent(evt);
+              }}
+              aria-label="Open console (press C)"
+              title="Open console"
+            >
+              <span className="hidden lg:inline-flex">Console</span>
+              <kbd className="inline-flex items-center justify-center h-5 px-1.5 rounded border border-border text-xs opacity-70">
+                C
+              </kbd>
+            </button>
           </div>
         </div>
       </Container>

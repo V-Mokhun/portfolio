@@ -12,21 +12,23 @@ import {
 import { useStore } from "@nanostores/react";
 import type { FitAddon } from "@xterm/addon-fit";
 import type { Terminal } from "@xterm/xterm";
-import React, { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import "./console.css";
 import { SnakeGame } from "./snake";
 import { useFade } from "./useFade";
 
 type CommandHandler = (input: string) => Promise<void> | void;
 
-export const DeveloperConsole: React.FC = () => {
+export const DeveloperConsole = () => {
   const containerRef = useRef<HTMLDivElement | null>(null);
+  const panelRef = useRef<HTMLDivElement | null>(null);
   const termRef = useRef<Terminal | null>(null);
   const fitRef = useRef<FitAddon | null>(null);
   const historyRef = useRef<string[]>([]);
   const historyIndexRef = useRef<number>(-1);
   const bufferRef = useRef<string>("");
   const [open, setOpen] = useState(false);
+  const dragStartRef = useRef<{ x: number; y: number; left: number; top: number } | null>(null);
   const theme = useStore($theme);
 
   const prompt = useMemo(() => "$ ", []);
@@ -34,15 +36,22 @@ export const DeveloperConsole: React.FC = () => {
   useEffect(() => {
     try {
       const json = localStorage.getItem(LOCAL_STORAGE_CONSOLE_HISTORY_KEY);
-      if (json) historyRef.current = JSON.parse(json);
+      if (json) {
+        const arr = JSON.parse(json);
+        historyRef.current = Array.isArray(arr) ? arr.slice(-100) : [];
+      }
     } catch {}
   }, []);
 
   useEffect(() => {
     const onKeyToggle = (e: KeyboardEvent) => {
-      const isInputElement = (e.target as HTMLElement)?.closest(
-        "input, textarea, [contenteditable=true]"
-      );
+      const target = e.target as unknown as {
+        closest?: (selector: string) => Element | null;
+      } | null;
+      const isInputElement =
+        typeof target?.closest === "function"
+          ? target!.closest("input, textarea, [contenteditable=true]")
+          : null;
       if (isInputElement) return;
       if (e.key.toLowerCase() === "c" && (e.metaKey || e.ctrlKey)) return; // avoid copy
       if (e.key.toLowerCase() === "c" && !e.metaKey && !e.ctrlKey) {
@@ -104,6 +113,29 @@ export const DeveloperConsole: React.FC = () => {
         term.write("\u001b[2K\r" + prompt + bufferRef.current);
       };
 
+      // Fetch compact content index once
+      let contentIndex: {
+        blog: Array<{ title: string; slug: string }>;
+        projects: Record<
+          string,
+          Array<{
+            id: string;
+            title: string;
+            projectLink: string;
+            sourceCodeLink: string | null;
+            technologies: string[];
+          }>
+        >;
+      } | null = null;
+      const loadIndex = async () => {
+        if (contentIndex) return contentIndex;
+        try {
+          const res = await fetch("/api/console-index");
+          if (res.ok) contentIndex = await res.json();
+        } catch {}
+        return contentIndex;
+      };
+
       const printHelp = () => {
         writeln("Usage: <command> [options]");
         writeln("");
@@ -160,41 +192,60 @@ export const DeveloperConsole: React.FC = () => {
           const parts = input.split(/\s+/);
           const sub = parts[1];
           if (sub === "open" && parts[2]) {
+            const idx = await loadIndex();
+            if (!idx) return writeln("Failed to load index");
+            const n = Number(parts[2]);
+            if (!Number.isNaN(n)) {
+              const item = idx.blog[n - 1];
+              if (item) window.location.href = `/blog/${item.slug}`;
+              else writeln("Blog post not found by index");
+              return;
+            }
             window.location.href = `/blog/${parts[2]}`;
             return;
           }
-          const links = Array.from(
-            document.querySelectorAll('a[href^="/blog/"]')
-          )
-            .map((a) => (a as HTMLAnchorElement).href)
-            .filter((href) => /\/blog\/.+/.test(href));
-          if (links.length === 0) {
-            writeln("No blog links found on this page. Try 'blog open <slug>'");
-            return;
-          }
-          links.slice(0, 5).forEach((href, i) => writeln(`${i + 1}. ${href}`));
+          const idx = await loadIndex();
+          if (!idx) return writeln("Failed to load index");
+          const limitMatch = input.match(/--limit=(\d+)/);
+          const limit = limitMatch
+            ? Math.max(1, parseInt(limitMatch[1], 10))
+            : Number.POSITIVE_INFINITY;
+          const list = idx.blog.slice(0, limit);
+          list.forEach((p, i) =>
+            writeln(`${i + 1}. ${p.title}  ->  /blog/${p.slug}`)
+          );
         },
         project: async (input) => {
           const parts = input.split(/\s+/);
           const sub = parts[1];
+          const idx = await loadIndex();
+          if (!idx) return writeln("Failed to load index");
+          const lang = location.pathname.match(/^\/(pl|ua)\b/)?.[1] ?? "en";
+          const list = idx.projects[lang] ?? [];
           if (sub === "open" && parts[2]) {
             const n = Number(parts[2]);
             if (!Number.isNaN(n)) {
-              const cards = Array.from(
-                document.querySelectorAll('#projects a[href^="http"]')
-              ) as HTMLAnchorElement[];
-              const link = cards[n - 1]?.href;
-              if (link) window.open(link, "_blank");
-              else writeln("Project not found by index");
+              const item = list[n - 1];
+              if (item?.projectLink) {
+                window.open(item.projectLink, "_blank");
+                return;
+              }
+              writeln("Project not found by index");
               return;
             }
+            const match = list.find((p) => p.id === parts[2]);
+            if (match?.projectLink) {
+              window.open(match.projectLink, "_blank");
+              return;
+            }
+            writeln("Project not found");
+            return;
           }
-          const cards = Array.from(
-            document.querySelectorAll('#projects a[href^="http"]')
-          ) as HTMLAnchorElement[];
-          if (cards.length === 0)
-            return writeln("No projects found on this page");
-          cards.slice(0, 10).forEach((a, i) => writeln(`${i + 1}. ${a.href}`));
+          list
+            .slice(0, 10)
+            .forEach((p, i) =>
+              writeln(`${i + 1}. ${p.title}  ->  ${p.projectLink}`)
+            );
         },
         contact: (input) => {
           const subjectMatch = input.match(/--subject\s+"([^"]+)"/);
@@ -263,15 +314,18 @@ export const DeveloperConsole: React.FC = () => {
           const map: Record<string, string> = {
             home: "/",
             blog: "/blog",
-            projects: "#projects",
-            about: "#about",
-            contact: "#contact",
+            projects: "/#projects",
+            about: "/#about",
+            contact: "/#contact",
           };
           const target = map[dest ?? ""];
           if (!target) return writeln("Unknown destination");
-          if (target.startsWith("#")) {
+          if (
+            target.startsWith("/#") &&
+            document.querySelector(target.substring(2))
+          ) {
             document
-              .querySelector(target)
+              .querySelector(target.substring(2))
               ?.scrollIntoView({ behavior: "smooth" });
           } else {
             window.location.href = target;
@@ -347,6 +401,9 @@ export const DeveloperConsole: React.FC = () => {
         const input = bufferRef.current.trim();
         if (input) {
           historyRef.current.push(input);
+          if (historyRef.current.length > 100) {
+            historyRef.current = historyRef.current.slice(-100);
+          }
           try {
             localStorage.setItem(
               LOCAL_STORAGE_CONSOLE_HISTORY_KEY,
@@ -455,10 +512,51 @@ export const DeveloperConsole: React.FC = () => {
       onClick={() => setOpen(false)}
     >
       <div
+        ref={panelRef}
         className={`console-panel ${theme} ${phase}`}
         onClick={(e) => e.stopPropagation()}
       >
-        <div className="console-header">
+        <div
+          className="console-header"
+          onMouseDown={(e) => {
+            if (!panelRef.current) return;
+            const rect = panelRef.current.getBoundingClientRect();
+            dragStartRef.current = {
+              x: e.clientX,
+              y: e.clientY,
+              left: rect.left,
+              top: rect.top,
+            };
+            const onMove = (ev: MouseEvent) => {
+              if (!dragStartRef.current || !panelRef.current) return;
+              const dx = ev.clientX - dragStartRef.current.x;
+              const dy = ev.clientY - dragStartRef.current.y;
+              const panel = panelRef.current;
+              const panelW = panel.offsetWidth;
+              const panelH = panel.offsetHeight;
+              const maxLeft = Math.max(0, window.innerWidth - panelW);
+              const maxTop = Math.max(0, window.innerHeight - panelH);
+              let nextLeft = dragStartRef.current.left + dx;
+              let nextTop = dragStartRef.current.top + dy;
+              // clamp to viewport
+              nextLeft = Math.min(Math.max(0, nextLeft), maxLeft);
+              nextTop = Math.min(Math.max(0, nextTop), maxTop);
+              dragStartRef.current.left = nextLeft;
+              dragStartRef.current.top = nextTop;
+              dragStartRef.current.x = ev.clientX;
+              dragStartRef.current.y = ev.clientY;
+              panel.style.left = nextLeft + "px";
+              panel.style.top = nextTop + "px";
+              panel.style.position = "absolute";
+            };
+            const onUp = () => {
+              window.removeEventListener("mousemove", onMove);
+              window.removeEventListener("mouseup", onUp);
+            };
+            window.addEventListener("mousemove", onMove);
+            window.addEventListener("mouseup", onUp);
+          }}
+        >
           <span>Developer Console</span>
           <button
             aria-label="Close"
