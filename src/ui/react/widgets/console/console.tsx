@@ -354,7 +354,7 @@ export const DeveloperConsole = () => {
             return writeln("Usage: socials open <github|linkedin|x|email>");
           const map: Record<string, string> = {
             github: "https://github.com/v-mokhun",
-            linkedin: "https://www.linkedin.com/in/volodymyrmokhun/",
+            linkedin: "https://www.linkedin.com/in/v-mokhun",
             x: "https://x.com/v_mokhun",
             email: "mailto:v.mokhun.dev@gmail.com",
           };
