@@ -120,6 +120,17 @@ const { title, animateHeader = false } = Astro.props;
       }
       localStorage.setItem(LOCAL_STORAGE_THEME_KEY, theme);
     </script>
+    <script is:inline>
+      (() => {
+        console.log("%cPsst... type aboutMe()", "color:#64748b");
+        window.aboutMe = () =>
+          console.table({
+            Name: "Volodymyr",
+            Role: "Software Engineer",
+            Hobbies: "Calisthenics, MMA, Guitar, Running",
+          });
+      })();
+    </script>
   </head>
 
   <AnimationPreference client:load>
@@ -135,6 +146,4 @@ const { title, animateHeader = false } = Astro.props;
       <DeveloperConsole client:only="react" />
     </body>
   </AnimationPreference>
-
-
 </html>
